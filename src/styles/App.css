@@ -1,0 +1,112 @@
+.left {
+  border: 1px solid;
+  width: 63%;
+  height: 44.6rem;
+  background-color: rgb(243, 243, 243);
+}
+
+.logo img {
+  width: 10rem;
+  height: 10rem;
+  padding-bottom: 0px;
+  display: flex;
+  margin: auto;
+}
+
+.login-page {
+  flex-direction: column;
+  width: 20rem;
+  height: 77%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.login-page h2 {
+  margin: 0px auto;
+}
+
+.login-page p {
+  font-size: 12px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.third-party {
+  display: flex;
+  justify-content: space-between;
+  width: 16rem;
+  margin-left: 33px;
+  margin-bottom: 25px;
+}
+
+.google {
+  background-color: #FEF1F1FF;
+  width: 75px;
+  border-radius: 30px;
+}
+
+.google img {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 6px 26px;
+}
+
+.facebook {
+  background-color: #F3F6FBFF;
+  width: 75px;
+  border-radius: 30px;
+}
+
+.facebook img {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 6px 26px;
+}
+
+.apple {
+  background-color: #F3F4F6FF;
+  width: 75px;
+  border-radius: 30px;
+}
+
+.apple img {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 6px 26px;
+}
+
+#floatingInputCustom,
+#floatingPasswordCustom {
+  background: #F3F4F6FF
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.keep-me-li {
+  display: flex;
+}
+
+#checkbox {
+  margin-right: 5px;
+}
+
+.btn, .btn:hover {
+  background: #EB6769FF;
+  outline: none;
+  border: none;
+}
+
+.btn:hover {
+  box-shadow: 5px 5px 15px #EB6769FF;
+}
