@@ -13,20 +13,22 @@
   margin: auto;
 }
 
-.login-page {
-  flex-direction: column;
-  width: 20rem;
-  height: 77%;
-  margin: auto;
+.logo-left {
   display: flex;
-  justify-content: center;
 }
 
-.login-page h2 {
+.logo-left img {
+  width: 10rem;
+  height: 10rem;
+  padding-bottom: 0px;
+  display: flex;
+}
+
+.hello {
   margin: 0px auto;
 }
 
-.login-page p {
+.hello2 {
   font-size: 12px;
   margin: auto;
   margin-bottom: 20px;
@@ -37,7 +39,7 @@
   display: flex;
   justify-content: space-between;
   width: 16rem;
-  margin-left: 33px;
+  margin-left: 0;
   margin-bottom: 25px;
 }
 
@@ -80,33 +82,17 @@
   margin: 6px 26px;
 }
 
-#floatingInputCustom,
-#floatingPasswordCustom {
-  background: #F3F4F6FF
+.temp {
+  margin-top: 26px;
+  margin-right: 20px;
 }
 
-.bottom {
+.ending {
   display: flex;
-  justify-content: space-between;
-  font-size: smaller;
-  margin-top: 5px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2px;
+  font-size: 11px;
+  margin-top: 51px;
 }
 
-.keep-me-li {
-  display: flex;
-}
-
-#checkbox {
-  margin-right: 5px;
-}
-
-.btn, .btn:hover {
-  background: #EB6769FF;
-  outline: none;
-  border: none;
-}
-
-.btn:hover {
-  box-shadow: 5px 5px 15px #EB6769FF;
-}
