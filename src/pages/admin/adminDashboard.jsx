@@ -14,6 +14,8 @@ const data = [
   {
     name: "Dashboard",
     icon: <HomeOutlinedIcon />,
+    active: true,
+    color: '#fff'
   },
   { name: "Inbox", icon: <InboxOutlinedIcon /> },
   { name: "Outbox", icon: <CheckBoxOutlineBlankOutlinedIcon /> },
@@ -24,27 +26,31 @@ const data = [
 
 const AdminDashboard = () => {
   return (
-    <>
-      <div>
+    <div style={{ display: 'flex' }}>
+      <div style={{ flex: '0 0 250px', marginRight: '30px' }}>
         <Sidebar data={data} />
-        <div>
+      </div>
+      <div style={{ flex: 1, padding: '30px' }}>
+        <div style={{ marginBottom: '30px' }}>
           <h1>Analytics Overview</h1>
         </div>
+        <div style={{ display: 'flex', marginBottom: '30px', gap: '50px' }}>
+          <div style={{ flex: 1 }}>
+            <AdminBarChart />
+          </div>
+          <div style={{ flex: 1 }}>
+            <AdminLineChart />
+          </div>
+        </div>
         <div>
-        <div style={{ display: 'flex' }}>
-            <div>
-                <AdminBarChart />
-            </div>
-            <div>
-                <AdminLineChart />
-            </div>
-            </div>
-          <div>
-            <CampaignTable />
+
+          <div style={{ margin: '10 auto' }}>
+            <h1 style={{ marginBottom: '30px' }} >On Going Campaign</h1>
+            <CampaignTable style={{ width: '100vw' }} />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
