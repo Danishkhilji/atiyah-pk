@@ -96,3 +96,179 @@
   margin-top: 51px;
 }
 
+.navbar {
+  border-bottom: 1px solid rgba(137, 137, 137, 0.405);
+  padding-bottom: 0;
+  padding-top: 0;
+  display: flex;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 999;
+}
+
+.right-navbar {
+  display: flex;
+  margin-right: 1.7rem;
+}
+
+.logo-navbar {
+  width: 9rem;
+  height: 3rem;
+  margin-right: 2.2rem;
+  margin-top: 2px;
+  margin-left: 1rem;
+}
+
+.navbar2 {
+  display: flex;
+}
+
+.tabs {
+  margin-top: 2px;
+  font-size: x-small;
+}
+
+.search {
+  background-color: #F3F4F6FF;
+  border-radius: 11px;
+  width: 20rem;
+  height: 30px;
+  margin-top: 5px;
+}
+
+.search-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+
+.notification-logo {
+  margin-right: 0.9rem;
+  margin-left: 2.4rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 8px;
+}
+
+.user-img {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 4px;
+}
+
+.down {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 7px;
+}
+
+#text-search {
+  background: none;
+  border: none;
+  width: 18rem;
+  padding-left: 7px;
+  padding-top: 2px;
+  outline: none;
+}
+
+.campaign-image {
+  height: 20rem;
+  border-radius: 20px;
+}
+
+.block {
+  background: #F8F9FAFF;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 74rem;
+  align-items: center;
+  margin-left: 10rem;
+  border-top:  solid rgba(137, 137, 137, 0.405);
+}
+
+.footer-logo {
+  height: 13rem;
+  width: 13rem;
+}
+
+.email-group {
+  display: flex;
+}
+
+.socials {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.fb-logo,
+.t-logo,
+.li-logo,
+.yt-logo {
+  height: 2rem;
+  width: 2rem;
+}
+
+.products {
+  margin-top: -37px;
+}
+
+.resources {
+  margin-top: -15px;
+}
+
+.company {
+  margin-top: -40px;
+}
+
+.subscribe {
+  margin-left: 15rem;
+}
+
+.subscribe h5 {
+  margin-bottom: 1px;
+}
+
+.subscribe p {
+  font-size: 11px;
+}
+
+.email {
+  border: 1px solid;
+  border-radius: 9px;
+  width: 15rem;
+  margin-right: 10px;
+}
+
+#email {
+  margin-top: 3px;
+  width: 12rem;
+  margin-left: 5px;
+  outline: none;
+  border: none;
+}
+
+.mail-icon {
+  height: 20px;
+  width: 20px;
+  margin-bottom: 3px;
+  margin-left: 4px;
+}
+
+#subscribe-btn {
+  border-radius: 9px;
+}
+
+.container-center {
+  margin: auto;
+}
+
+.container-cen {
+  display: flex;
+}
