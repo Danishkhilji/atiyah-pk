@@ -4,7 +4,7 @@ import './styles/responsive.css'
 // import Signup from './pages/websites/signup/signup';
 // import Navbar from './components/Navbar/Navbar'
 import CampaignPage from './pages/donor/CampaignPage';
-// import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       {/* <Signup /> */}
       {/* <Navbar /> */}
       <CampaignPage />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -179,6 +179,7 @@
 }
 
 .block {
+  margin-top: 20px;
   background: #F8F9FAFF;
 }
 
@@ -188,7 +189,7 @@
   width: 74rem;
   align-items: center;
   margin-left: 10rem;
-  border-top:  solid rgba(137, 137, 137, 0.405);
+  border-top: solid rgba(137, 137, 137, 0.405);
 }
 
 .footer-logo {
@@ -267,8 +268,60 @@
 
 .container-center {
   margin: auto;
+  width: 60rem;
 }
 
 .container-cen {
   display: flex;
+}
+
+#col {
+  border: 1px solid;
+  margin-left: 1rem;
+  width: 16rem;
+  height: 20rem;
+  border-radius: 20px;
+}
+
+.endorsment-sec {
+  display: flex;
+  flex-direction: column;
+}
+
+.endorsment-sec h6,
+.endorsment-sec p {
+  margin: auto;
+}
+
+.endorsement-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.endorsement-btn button {
+  width: 14rem;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.comment-section {
+  width: 30rem;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-left: 17rem;
+  margin-top: 10px;
+}
+
+.description {
+  border: 1px solid;
+  margin: 5px 0;
+}
+
+.recent-donations {
+  border: 1px solid;
+  width: 15rem;
+  height: 8rem;
+  margin: auto;
 }
