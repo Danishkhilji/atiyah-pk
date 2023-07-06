@@ -1,0 +1,69 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.drop-btn {
+    width: 150px;
+    height: 50px;
+    border: 1px solid white;
+    color: #808080;
+}
+
+.tabs {
+    width: 700px;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #808080;
+}
+
+.navbar-register {
+
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+a {
+    color: #EB6769FF;
+    text-decoration: none;
+}
+
+.sigup-btn {
+    width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EB6769FF;
+    opacity: 1;
+    border: none;
+    border-radius: 6px;
+    color: #FFFFFFFF;
+    font-size: 14px;
+}
+
+.sigup-btn:hover {
+    color: #FFFFFFFF;
+    background: #E7474AFF;
+}
+
+.sigup-btn:hover:active {
+    color: #FFFFFFFF;
+    background: #CF1B1EFF;
+}
+
+.sigup-btn:disabled {
+    opacity: 0.4;
+}

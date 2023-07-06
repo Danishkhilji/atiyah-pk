@@ -1,62 +1,117 @@
-import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from "../../../Assets/transparent/1.png"
 import googleLogo from '../../../Assets/logos/google.png'
 import facebookLogo from '../../../Assets/logos/facebook.png'
 import appleLogo from '../../../Assets/logos/apple.png'
+import { useNavigate, NavLink } from 'react-router-dom';
+const defaultTheme = createTheme();
 
-export default function Login() {
+export default function SignIn() {
+
+    const navigate =useNavigate()
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        console.log({
+            email: data.get('email'),
+            password: data.get('password'),
+        });
+    };
+
     return (
         <>
             <div className="left">
-                <div className="logo">
-                    <img src={Logo} alt="Atiyah.pk" />
-                </div>
-                <div className="login-page">
-                    <h2>Hello Again!</h2>
-                    <p>Enter your credential to access your account</p>
-                    <div className="third-party">
-                        <div className="google">
-                            <img src={googleLogo} alt='Google' />
-                        </div>
-                        <div className="facebook">
-                            <img src={facebookLogo} alt='Facebook' />
-                        </div>
-                        <div className="apple">
-                            <img src={appleLogo} alt='Apple' />
-                        </div>
+                <ThemeProvider theme={defaultTheme}>
+                    <div className="logo">
+                        <img src={Logo} alt="Atiyah.pk" />
                     </div>
-                    <Form.Floating className="mb-3 input">
-                        <Form.Control
-                            id="floatingInputCustom"
-                            type="email"
-                            placeholder="name@example.com"
-                        />
-                        <label htmlFor="floatingInputCustom">Email address</label>
-                    </Form.Floating>
-                    <Form.Floating className='input'>
-                        <Form.Control
-                            id="floatingPasswordCustom"
-                            type="password"
-                            placeholder="Password"
-                        />
-                        <label htmlFor="floatingPasswordCustom">Password</label>
-                    </Form.Floating>
-                    <div className="bottom">
-                        <div className='keep-me-li'>
-                            <Form.Check type={"checkbox"} id="checkbox" className='Logged-in' />
-                            Keep me Logged In
-                        </div>
-                        <div className="forgot">
-                            Forgot Password?
-                        </div>
-                    </div>
-                    <Button className='btn'>
-                        Login
-                    </Button>
-                </div>
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <Box
+                            sx={{
+                                marginTop: 3,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <h2 className='hello'>Hello Again!</h2>
+                            <p className='hello2'>Enter your credential to access your account</p>
+                            <div className="third-party">
+                                <div className="google">
+                                    <img src={googleLogo} alt='Google' />
+                                </div>
+                                <div className="facebook">
+                                    <img src={facebookLogo} alt='Facebook' />
+                                </div>
+                                <div className="apple">
+                                    <img src={appleLogo} alt='Apple' />
+                                </div>
+                            </div>
+                            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    autoFocus
+                                />
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox value="remember" color="primary" />}
+                                    label="Remember me"
+                                />
+                                <Button
+                                    style={{
+                                        background: "#EB6769FF",
+                                    }}
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                    onClick={()=>navigate("/admin")}
+                                >
+                                    Sign In
+                                </Button>
+                                <Grid container>
+                                    <Grid item xs>
+                                        <Link href="#" variant="body2" id='lg-ending'>
+                                            Forgot password?
+                                        </Link>
+                                    </Grid>
+                                    <Grid item>
+                                        <NavLink to="/signup">
+                                            {"Don't have an account? Sign Up"}
+                                        </NavLink>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </Box>
+                    </Container>
+                </ThemeProvider>
             </div>
-
             <div className="right"></div>
         </>
     );

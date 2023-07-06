@@ -6,9 +6,12 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Block } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import './profile.css';
 
 const Profile = () => {
+
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleNameClick = (event) => {
@@ -20,6 +23,7 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
+    navigate("/login")
     // Handle logout logic here
   };
 
@@ -75,7 +79,7 @@ const Profile = () => {
       >
         <List>
           <ListItemButton onClick={handleClosePopover}>
-            <ListItemText primary="Profile Settings" />
+            <ListItemText primary="Profile" />
           </ListItemButton>
           <ListItemButton onClick={handleLogout} style={{ color: 'red' }}>
             <ListItemText primary="Logout" />
