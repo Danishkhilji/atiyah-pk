@@ -197,3 +197,33 @@
         font-size: small;
     }
 }
+
+@media screen and (min-width: 400px) and (max-width: 650px) {
+    .logo-left img {
+        width: 6rem;
+        height: 6rem;
+        padding-bottom: 0px;
+        display: flex;
+    }
+
+    .temp a {
+        font-size: 8px;
+    }
+
+    .third-party {
+        margin-left: 0px
+    }
+
+    .ending {
+        font-size: 8px;
+        margin-top: 80px;
+    }
+
+    h2 {
+        font-size: larger;
+    }
+
+    #lg-ending {
+        font-size: 12px;
+    }
+}

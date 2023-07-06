@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar/LandingNav'
 import mainImg from "../../Assets/landing main image/landing-main-img.jpg"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
+import Footer from '../../components/footer/Footer'
 const Home = () => {
   return (
     <div>
@@ -29,6 +30,9 @@ const Home = () => {
           <Cards />
           <Cards />
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
 
     </div>
