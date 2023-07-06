@@ -40,23 +40,24 @@ export default function Footer() {
 
                     </div>
                 </div>
+                <div className="footer-copyright-content">
+                    <div>
+                        <select className='drop-footer-btn' name="" id="">
+                            <option value="">English</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>©2023 Atiyah Ltd . Privacy . Terms . sidemap</h6>
+                    </div>
+                    <div className="footer-icon">
+                        <img src={Twitter_bw} alt="" className="t-logo" />
+                        <img src={Facebook_bw} alt="" className="fb-logo" />
+                        <img src={LinkedIn_bw} alt="" className="li-logo" />
+                        <img src={Youtube_bw} alt="" className="yt-logo" />
+                    </div>
+                </div>
             </div>
-            <div className="footer-copyright-content">
-                <div>
-                    <select className='drop-footer-btn' name="" id="">
-                        <option value="">English</option>
-                    </select>
-                </div>
-                <div>
-                    <h6>©2023 Atiyah Ltd . Privacy . Terms . sidemap</h6>
-                </div>
-                <div className="footer-icon">
-                    <img src={Twitter_bw} alt="" className="t-logo" />
-                    <img src={Facebook_bw} alt="" className="fb-logo" />
-                    <img src={LinkedIn_bw} alt="" className="li-logo" />
-                    <img src={Youtube_bw} alt="" className="yt-logo" />
-                </div>
-            </div>
+
         </>
     )
 }
