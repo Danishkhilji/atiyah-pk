@@ -1,71 +1,85 @@
-import React from "react";
-import {
-    Bar,
-  BarChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
+import { useEffect, useState } from 'react';
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
+// material-ui
+import { useTheme } from '@mui/material/styles';
+
+// third-party
+import ReactApexChart from 'react-apexcharts';
+
+// chart options
+const barChartOptions = {
+  chart: {
+    type: 'bar',
+    height: 365,
+    toolbar: {
+      show: false
+    }
   },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
+  plotOptions: {
+    bar: {
+      columnWidth: '45%',
+      borderRadius: 4
+    }
   },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
+  dataLabels: {
+    enabled: false
   },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
+  xaxis: {
+    categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    axisBorder: {
+      show: false
+    },
+    axisTicks: {
+      show: false
+    }
   },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
+  yaxis: {
+    show: false
   },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+  grid: {
+    show: false
   }
-];
+};
 
-export default function AdminBarChart() {
+// ==============================|| MONTHLY BAR CHART ||============================== //
+
+const MonthlyBarChart = () => {
+  const theme = useTheme();
+
+  const { primary, secondary } = theme.palette.text;
+  const info = theme.palette.info.light;
+
+  const [series] = useState([
+    {
+      data: [80, 95, 70, 42, 65, 55, 78]
+    }
+  ]);
+
+  const [options, setOptions] = useState(barChartOptions);
+
+  useEffect(() => {
+    setOptions((prevState) => ({
+      ...prevState,
+      colors: [info],
+      xaxis: {
+        labels: {
+          style: {
+            colors: [secondary, secondary, secondary, secondary, secondary, secondary, secondary]
+          }
+        }
+      },
+      tooltip: {
+        theme: 'light'
+      }
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [primary, info, secondary]);
+
   return (
-<BarChart width={730} height={250} data={data}>
-  <CartesianGrid strokeDasharray="3 3" />
-  <XAxis dataKey="name" />
-  <YAxis />
-  <Tooltip />
-  <Legend />
-  <Bar dataKey="pv" fill="#8884d8" />
-  <Bar dataKey="uv" fill="#82ca9d" />
-</BarChart>
+    <div >
+      <ReactApexChart options={options} series={series} type="bar" />
+    </div>
   );
-}
+};
 
-
+export default MonthlyBarChart;

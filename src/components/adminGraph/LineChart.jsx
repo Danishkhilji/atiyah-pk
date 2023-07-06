@@ -1,84 +1,109 @@
-import React from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
+import { useEffect, useState } from 'react';
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
+// material-ui
+import { useTheme } from '@mui/material/styles';
+
+// third-party
+import ReactApexChart from 'react-apexcharts';
+
+// chart options
+const areaChartOptions = {
+  chart: {
+    height: 340,
+    type: 'line',
+    toolbar: {
+      show: false
+    }
   },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
+  dataLabels: {
+    enabled: false
   },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
+  stroke: {
+    curve: 'smooth',
+    width: 1.5
   },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
+  grid: {
+    strokeDashArray: 4
   },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
+  xaxis: {
+    type: 'datetime',
+    categories: [
+      '2018-05-19T00:00:00.000Z',
+      '2018-06-19T00:00:00.000Z',
+      '2018-07-19T01:30:00.000Z',
+      '2018-08-19T02:30:00.000Z',
+      '2018-09-19T03:30:00.000Z',
+      '2018-10-19T04:30:00.000Z',
+      '2018-11-19T05:30:00.000Z',
+      '2018-12-19T06:30:00.000Z'
+    ],
+    labels: {
+      format: 'MMM'
+    },
+    axisBorder: {
+      show: false
+    },
+    axisTicks: {
+      show: false
+    }
   },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
+  yaxis: {
+    show: false
   },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+  tooltip: {
+    x: {
+      format: 'MM'
+    }
   }
-];
+};
 
-export default function AdminLineChart() {
-  return (
-    <LineChart
-      width={500}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
-  );
-}
+// ==============================|| REPORT AREA CHART ||============================== //
+
+const ReportAreaChart = () => {
+  const theme = useTheme();
+
+  const { primary, secondary } = theme.palette.text;
+  const line = theme.palette.divider;
+
+  const [options, setOptions] = useState(areaChartOptions);
+
+  useEffect(() => {
+    setOptions((prevState) => ({
+      ...prevState,
+      colors: [theme.palette.warning.main],
+      xaxis: {
+        labels: {
+          style: {
+            colors: [secondary, secondary, secondary, secondary, secondary, secondary, secondary, secondary]
+          }
+        }
+      },
+      grid: {
+        borderColor: line
+      },
+      tooltip: {
+        theme: 'light'
+      },
+      legend: {
+        labels: {
+          colors: 'grey.500'
+        }
+      }
+    }));
+  }, [primary, secondary, line, theme]);
+
+  const [series] = useState([
+    {
+      name: 'Series 1',
+      data: [58, 115, 28, 83, 63, 75, 35, 55]
+    }
+  ]);
+
+  return(
+    <div>
+<ReactApexChart options={options} series={series} type="line" />;
+    </div>
+  )
+};
+
+export default ReportAreaChart;

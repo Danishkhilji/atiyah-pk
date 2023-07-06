@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/drawer";
-import CampaignTable from "../../components/CampaignTable/CampaignTable";
+import CampaignTable from "../../components/AdminTables/CampaignTable";
 import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined";
 import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -17,11 +17,10 @@ const data = [
     active: true,
     color: '#fff'
   },
-  { name: "Inbox", icon: <InboxOutlinedIcon /> },
-  { name: "Outbox", icon: <CheckBoxOutlineBlankOutlinedIcon /> },
-  { name: "Sent mail", icon: <MailOutlineIcon /> },
-  { name: "Draft", icon: <DraftsOutlinedIcon /> },
-  { name: "Trash", icon: <ReceiptOutlinedIcon /> },
+  { name: "Donors", icon: <InboxOutlinedIcon /> },
+  { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon /> },
+  { name: "Profit", icon: <MailOutlineIcon /> },
+  { name: "Setting", icon: <DraftsOutlinedIcon /> },
 ];
 
 const AdminDashboard = () => {
