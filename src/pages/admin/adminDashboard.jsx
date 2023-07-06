@@ -15,10 +15,11 @@ const data = [
     name: "Dashboard",
     icon: <HomeOutlinedIcon />,
     active: true,
-    color: '#fff'
+    color: '#fff',
+    path: ""
   },
-  { name: "Donors", icon: <InboxOutlinedIcon /> },
-  { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon /> },
+  { name: "Donors", icon: <InboxOutlinedIcon />, path: "donor-list" },
+  { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list"  },
   { name: "Profit", icon: <MailOutlineIcon /> },
   { name: "Setting", icon: <DraftsOutlinedIcon /> },
 ];

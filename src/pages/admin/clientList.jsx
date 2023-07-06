@@ -10,13 +10,17 @@ const data = [
     {
       name: "Dashboard",
       icon: <HomeOutlinedIcon />,
+      path: ""
     },
     { name: "Donors",
      icon: <InboxOutlinedIcon /> ,
+     path: "donor-list"
     },
     { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />,
     active: true,
-    color: '#fff' },
+    color: '#fff',
+    path: "client-list"
+   },
     { name: "Profit", icon: <MailOutlineIcon /> },
     { name: "Setting", icon: <DraftsOutlinedIcon /> },
   ];
@@ -28,7 +32,7 @@ const ClientList = () => {
       <Sidebar data={data} />
     </div>
     <div style={{ flex: 1, padding: '30px' }}>
-        <h3>Donors</h3>
+        <h3>Client Table</h3>
         <ClientTable/>
     </div> 
   </div>

@@ -5,13 +5,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useState } from "react";
 import Logo from "../../Assets/transparent/1.png";
 import Profile from "./profile";
+import { useNavigate } from "react-router-dom";
+
+
 const Sidebar = ({ data }) => {
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
   const getList = () => (
     <div style={{ width: 250 }} onClick={() => setOpen(false)}>
       <div className="logo" style={{ height: 100, position: "relative" }}>
@@ -33,6 +35,7 @@ const Sidebar = ({ data }) => {
               height:"30px",
               padding: "20px 16px", 
             }}
+            onClick={()=>navigate(`/admin/${item.path}`)}
           >
             <ListItemIcon style={{ color: item.color }}>
               {item.icon}
