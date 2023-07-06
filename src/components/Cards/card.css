@@ -1,0 +1,35 @@
+.card-img {
+    width: 275px;
+    height: 200px;
+}
+
+.card {
+    width: 275px;
+    height: 355px;
+    background: #FFFFFFFF;
+    border-radius: 6px;
+}
+
+.card-btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.star-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.card-rating {
+    display: flex;
+
+}
+
+.card-rating-request {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
