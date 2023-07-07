@@ -28,7 +28,7 @@ const Home = () => {
       </div>
       <div className='box-landing-steps'>
         <div>
-          <h5>What to expect</h5>
+          <h5>How it works</h5>
           <h2>Fundraising of Atiyah Pk<br />takes just a few minutes</h2>
           <div className='main-landing-page-steps'>
             <div className='landing-page-steps'>

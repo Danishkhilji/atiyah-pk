@@ -14,10 +14,10 @@ const Navbar = () => {
       <img className='logo' src={logo} alt={logo} />
       <Tabs className='tabs' value={value} onChange={handleChange} aria-label="disabled tabs example">
 
-        <select className='drop-btn' name="" id="">
-          <option value="">Start A Compaign</option>
-        </select>
-        <Tab label="Donate" />
+
+
+        <Tab label="Home" />
+        <Tab label="Compaigns" />
         <Tab label="About us" />
         <Tab label="How it Works" />
       </Tabs>
