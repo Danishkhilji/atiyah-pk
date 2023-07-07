@@ -3,8 +3,6 @@
     justify-content: center;
 }
 
-
-
 .landing-title {
     width: 60%;
     display: flex;
@@ -17,17 +15,17 @@
     width: 200px;
     height: 52px;
     padding: 0 20px;
-    color: #EB6769FF;
+    color: #117B34FF;
     background: #FFFFFFFF;
     opacity: 1;
     border-radius: 6px;
     border-width: 1px;
-    border-color: #EB6769FF;
+    border-color: #117B34FF;
     border-style: solid;
 }
 
 .landing-head-btn:hover {
-    background-color: #EB6769FF;
+    background-color: #117B34FF;
     color: #FFFFFFFF;
 }
 
@@ -60,4 +58,85 @@
 .popular-cards {
     display: flex;
     justify-content: space-evenly;
+}
+
+.digit-icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+h5 {
+    font-size: 15px;
+}
+
+h6 {
+    font-size: 10px;
+}
+
+.box-landing-steps {
+    margin: 20px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-landing-page-steps {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.landing-trust-msg {
+    background: url(../../Assets/landing\ main\ image/landing\ page\ trust.jpg);
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.landing-started-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 843px;
+    height: 323px;
+    background: #FFFFFFFF;
+    border-radius: 6px;
+    box-shadow: 0px 0px 1.5px #171a1f, 0px 0px 2px #171a1f;
+    padding: 30px;
+}
+
+.main-landing-started-msg {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.Landing-start-btn {
+    width: 174px;
+    height: 44px;
+    padding: 0 16px;
+    font-size: 16px;
+    color: #235312FF;
+    background: #72D94EFF;
+    opacity: 1;
+    border: none;
+    border-radius: 22px;
+}
+
+.Landing-start-btn:hover {
+    background-color: #235312FF;
+    color: #72D94EFF;
+}
+
+.flower-img {
+    width: 293px;
+    height: 276px;
+    border-radius: 6px;
 }

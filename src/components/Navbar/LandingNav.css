@@ -36,7 +36,7 @@
 }
 
 a {
-    color: #EB6769FF;
+    color: #117B34FF;
     text-decoration: none;
 }
 
@@ -46,24 +46,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EB6769FF;
+    background-color: #117B34FF;
     opacity: 1;
-    border: none;
+    border: 1px solid #117B34FF;
     border-radius: 6px;
     color: #FFFFFFFF;
     font-size: 14px;
-}
-
-.sigup-btn:hover {
-    color: #FFFFFFFF;
-    background: #E7474AFF;
-}
-
-.sigup-btn:hover:active {
-    color: #FFFFFFFF;
-    background: #CF1B1EFF;
-}
-
-.sigup-btn:disabled {
-    opacity: 0.4;
 }
