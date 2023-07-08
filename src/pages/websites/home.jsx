@@ -8,6 +8,8 @@ import flower from "../../Assets/landing main image/landing flower.png"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
+
+
 const Home = () => {
   return (
     <div>
