@@ -9,6 +9,38 @@ import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
 const Home = () => {
+  const data = [
+    {
+      title: "Shaheen",
+      description: "Request for money",
+      rating: "4.9",
+      price: "5000 PKR"
+    },
+    {
+      title: "Aslam",
+      description: "Request for Education",
+      rating: "4.9",
+      price: "5000 PKR"
+    },
+    {
+      title: "Shaheen",
+      description: "Request for money",
+      rating: "4.9",
+      price: "5000 PKR"
+    },
+    {
+      title: "Shaheen",
+      description: "Request for money",
+      rating: "4.9",
+      price: "5000 PKR"
+    },
+    {
+      title: "Shaheen",
+      description: "Request for money",
+      rating: "4.9",
+      price: "5000 PKR"
+    },
+  ]
   return (
     <div>
       <Navbar />
@@ -26,7 +58,7 @@ const Home = () => {
       <div className='main-img-container'>
         <img className='main-img' src={mainImg} alt="main-img" />
       </div>
-      <div className='box-landing-steps'>
+      <div id='how-it-works' className='box-landing-steps'>
         <div>
           <h5>How it works</h5>
           <h2>Fundraising of Atiyah Pk<br />takes just a few minutes</h2>
@@ -73,11 +105,9 @@ const Home = () => {
       </div>
       <div className='compaigns'>
         <h5>Popular Compaigns</h5>
-        <div className='popular-cards'>
-          <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
+        <div className='popular-cards' >
+          <Cards className="cards" data={data} />
+          <a href="detail"><p>view all</p></a>
         </div>
       </div>
       <div>

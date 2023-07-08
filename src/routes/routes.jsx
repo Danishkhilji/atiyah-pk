@@ -13,6 +13,7 @@ import DonorList from '../pages/admin/donorList';
 import ClientList from "../pages/admin/clientList"
 import ReciverDashboard from '../pages/reciver/reciverDashboard';
 import DonorLandingPage from '../pages/donor/DonorLandingPage';
+import ViewAll from '../pages/websites/ViewAll';
 
 const AppRoutes = () => {
   return (
@@ -20,16 +21,17 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
-      <Route path="admin" element={<AdminDashboard />}/>
+      <Route path="admin" element={<AdminDashboard />} />
       <Route path="admin/donor-list" element={<DonorList />} />
       <Route path="admin/client-list" element={<ClientList />} />
-      <Route path="campaign" element={<CampaignPage />} />        
+      <Route path="campaign" element={<CampaignPage />} />
       <Route path="reciver" element={<ReciverDashboard />} />
       <Route path="donor" element={<DonorLandingPage />} />
       <Route path="donation" element={<Donation />} />
       <Route path="success" element={<Success />} />
+      <Route path="detail" element={<ViewAll />} />
 
-        
+
     </Routes>
   )
 }

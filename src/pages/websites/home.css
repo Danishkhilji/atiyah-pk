@@ -56,9 +56,10 @@
 }
 
 .popular-cards {
-    display: flex;
-    justify-content: space-evenly;
+    display: inline-block;
+
 }
+
 
 .digit-icon {
     width: 30px;
