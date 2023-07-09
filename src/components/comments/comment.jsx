@@ -13,41 +13,39 @@ const Comment = ({ comments }) => {
               alignItems: "center",
               cursor: "pointer",
               gap: "15px",
+              marginBottom: "10px",
+              backgroundColor: "#FAFAFBFF",
+              borderRadius: "12px",
+              padding: "10px",
             }}
           >
-            <div
-              style={{
-                width: "50px",
-                height: "50px",
-                borderRadius: "50%",
-                border: "2px solid #000",
-                overflow: "hidden",
-              }}
-            >
+            <div>
               <img
                 src={item.userImg} // Replace with the actual profile image source
                 alt="Profile"
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
+                  width: "44px",
+                  height: "44px",
+                  // objectFit: "cover",
                   cursor: "pointer",
+                  borderRadius: "50%",
+                  border: "2px solid #000",
                 }}
-                // onClick={handleNameClick}
+              // onClick={handleNameClick}
               />
             </div>
             <div>
-              <p
+              <h6
                 style={{
                   fontSize: "14px",
                   cursor: "pointer",
                   display: "block",
                   margin: "0px",
                 }}
-                // onClick={handleNameClick}
+              // onClick={handleNameClick}
               >
                 {item.userName}
-              </p>
+              </h6>
               <p
                 style={{
                   fontSize: "12px",
