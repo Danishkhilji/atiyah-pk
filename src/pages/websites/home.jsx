@@ -69,7 +69,7 @@ const Home = () => {
             <button className='Landing-start-btn'>Start Atiyah PK</button>
           </div>
           <div>
-            <img className='flower-img' src={flower} alt="flower image" />
+            <img className='flower-img' src={flower} alt="flowerimage" />
           </div>
         </div>
       </div>

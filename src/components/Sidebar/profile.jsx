@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import userImg from '../../Assets/png/3.jpg';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { Block } from '@mui/icons-material';
+// import { Block } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
 

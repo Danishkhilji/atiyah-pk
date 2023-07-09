@@ -18,7 +18,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
 
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -59,7 +59,12 @@ export default function SignIn() {
                                         <img src={appleLogo} alt='Apple' />
                                     </div>
                                 </div>
-<<<<<<< HEAD
+                                <div className="facebook">
+                                    <img src={facebookLogo} alt='Facebook' />
+                                </div>
+                                <div className="apple">
+                                    <img src={appleLogo} alt='Apple' />
+                                </div>
                                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                                     <TextField
                                         margin="normal"
@@ -93,6 +98,7 @@ export default function SignIn() {
                                         fullWidth
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
+                                        onClick={() => navigate("/admin")}
                                     >
                                         Sign In
                                     </Button>
@@ -103,70 +109,12 @@ export default function SignIn() {
                                             </Link>
                                         </Grid>
                                         <Grid item>
-                                            <Link href="#" variant="body2" id='lg-ending'>
+                                            <NavLink to="/signup">
                                                 {"Don't have an account? Sign Up"}
-                                            </Link>
+                                            </NavLink>
                                         </Grid>
                                     </Grid>
                                 </Box>
-=======
-                                <div className="facebook">
-                                    <img src={facebookLogo} alt='Facebook' />
-                                </div>
-                                <div className="apple">
-                                    <img src={appleLogo} alt='Apple' />
-                                </div>
-                            </div>
-                            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                    autoFocus
-                                />
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                />
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
-                                />
-                                <Button
-                                    style={{
-                                        background: "#EB6769FF",
-                                    }}
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
-                                    onClick={()=>navigate("/admin")}
-                                >
-                                    Sign In
-                                </Button>
-                                <Grid container>
-                                    <Grid item xs>
-                                        <Link href="#" variant="body2" id='lg-ending'>
-                                            Forgot password?
-                                        </Link>
-                                    </Grid>
-                                    <Grid item>
-                                        <NavLink to="/signup">
-                                            {"Don't have an account? Sign Up"}
-                                        </NavLink>
-                                    </Grid>
-                                </Grid>
->>>>>>> origin/main
                             </Box>
                         </Container>
                     </ThemeProvider>

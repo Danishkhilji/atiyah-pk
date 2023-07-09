@@ -13,7 +13,7 @@ const Cards = () => {
     return (
         <div >
             <Card className="card" sx={{ maxWidth: 345 }}>
-                <img className="card-img" src={cardImg} alt="card image" />
+                <img className="card-img" src={cardImg} alt="cardimage" />
                 <CardContent>
                     <div className="card-btn">
                         <DonateBtn />
