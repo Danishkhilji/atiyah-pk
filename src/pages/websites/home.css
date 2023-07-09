@@ -55,9 +55,8 @@
     margin-left: 40px;
 }
 
-.popular-cards {
-    display: inline-block;
-
+.view-all {
+    text-align: end;
 }
 
 

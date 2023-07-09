@@ -1,6 +1,9 @@
 import React from 'react'
-import Navbar from '../../components/Navbar/LandingNav'
+import Navbar from '../../components/Navbar/Navbar'
 import mainImg from "../../Assets/landing main image/landing-main-img.jpg"
+import cardImg from "../../Assets/card image/card-img.jpg"
+import eduImg from "../../Assets/card image/education.jpg"
+import bookImg from "../../Assets/card image/book.jpg"
 import oneIcon from "../../Assets/logos/number-1.png"
 import twoIcon from "../../Assets/logos/number-2.png"
 import threeIcon from "../../Assets/logos/number-3.png"
@@ -8,42 +11,57 @@ import flower from "../../Assets/landing main image/landing flower.png"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
+import { NavLink } from 'react-router-dom';
+import { CardImg } from 'react-bootstrap'
 const Home = () => {
   const data = [
     {
+      images: cardImg,
       title: "Shaheen",
       description: "Request for money",
       rating: "4.9",
       price: "5000 PKR"
     },
     {
+      images: eduImg,
       title: "Aslam",
       description: "Request for Education",
-      rating: "4.9",
-      price: "5000 PKR"
+      rating: "4.8",
+      price: "4000 PKR"
     },
     {
+      images: bookImg,
       title: "Shaheen",
-      description: "Request for money",
+      description: "Request for book",
       rating: "4.9",
-      price: "5000 PKR"
     },
     {
+      images: cardImg,
       title: "Shaheen",
       description: "Request for money",
-      rating: "4.9",
-      price: "5000 PKR"
+      rating: "4.5",
+      price: "10000 PKR"
     },
     {
+      images: eduImg,
       title: "Shaheen",
-      description: "Request for money",
-      rating: "4.9",
-      price: "5000 PKR"
+      description: "Request for education",
+      rating: "4.0",
+      price: "7000 PKR"
     },
   ]
   return (
     <div>
-      <Navbar />
+      <Navbar link1="Home" link2="Campaigns" link3="About" link4="How it works" link5={<div style={{
+        width: '150px',
+        display: 'flex',
+        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: "space-around"
+      }}>
+        <NavLink to="login">SignIn</NavLink>
+        <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
+      </div>} />
       <div className='main-landing-title'>
         <div className='landing-title'>
           <h1>ATIYAH PK</h1>
@@ -105,10 +123,11 @@ const Home = () => {
       </div>
       <div className='compaigns'>
         <h5>Popular Compaigns</h5>
-        <div className='popular-cards' >
-          <Cards className="cards" data={data} />
-          <a href="detail"><p>view all</p></a>
+        <div  >
+          <Cards data={data} />
+
         </div>
+        <a className='view-all' href="detail"><p>view all</p></a>
       </div>
       <div>
         <Footer />

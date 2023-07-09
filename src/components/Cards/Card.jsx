@@ -1,6 +1,6 @@
 import "./card.css"
 import React from 'react'
-import cardImg from "../../Assets/card image/card-img.jpg"
+
 import Card from '@mui/material/Card';
 import starIcon from "../../Assets/card image/star.png"
 import CardActions from '@mui/material/CardActions';
@@ -12,10 +12,10 @@ import { index } from "d3-array";
 const Cards = ({ data }) => {
 
     return (
-        <div >
+        <div className="cards">
             {data.map((item) => (
                 <Card className="card" sx={{ maxWidth: 345 }}>
-                    <img className="card-img" src={cardImg} alt="card image" />
+                    <img className="card-img" src={item.images} alt="card image" />
                     <CardContent>
                         <div className="card-btn">
                             <DonateBtn />
@@ -31,9 +31,9 @@ const Cards = ({ data }) => {
                         <div className="card-rating-request">
                             <div className="card-rating">
                                 <img className="star-icon" src={starIcon} alt="icon" />
-                                <h6>{item.rating}</h6>
+                                <h6 className="card-font">{item.rating}</h6>
                             </div>
-                            <h6>{item.price}</h6>
+                            <h6 className="card-font">{item.price}</h6>
                         </div>
                     </CardActions>
                 </Card>
