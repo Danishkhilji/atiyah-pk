@@ -1,8 +1,16 @@
 .left {
   border: 1px solid;
-  width: 63%;
+  width: 69%;
   height: 44.6rem;
-  background-color: rgb(243, 243, 243);
+  /* background-color: rgb(243, 243, 243); */
+}
+
+.web-body {
+  display: flex;
+}
+
+.right img {
+  height: 44.6rem;
 }
 
 .logo img {
