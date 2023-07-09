@@ -11,9 +11,9 @@ import Success from '../pages/donor/success';
 import CampaignPage from "../pages/donor/CampaignPage"
 import DonorList from '../pages/admin/donorList';
 import ClientList from "../pages/admin/clientList"
-import ReciverDashboard from '../pages/reciver/reciverDashboard';
+import ReciverDashboard from '../pages/receiver/receiverDashboard';
 import DonorLandingPage from '../pages/donor/DonorLandingPage';
-import Test from '../pages/reciver/testFile';
+import Test from '../pages/receiver/testFile';
 const AppRoutes = () => {
   return (
     <Routes>
