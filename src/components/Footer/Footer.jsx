@@ -1,10 +1,11 @@
 import React from "react";
+import "./footer.css"
 import Logo from '../../Assets/transparent/1.png'
 import { Button } from "@mui/material";
-import Facebook_bw from '../../Assets/logos/facebook-bw.png'
-import Twitter_bw from '../../Assets/logos/twitter-bw.png'
-import LinkedIn_bw from '../../Assets/logos/linkedin-bw.png'
-import Youtube_bw from '../../Assets/logos/youtube-bw.png'
+import Facebook_bw from '../../Assets/logos/facebook.png'
+import Twitter_bw from '../../Assets/logos/twitter.png'
+import LinkedIn_bw from '../../Assets/logos/linkedin.png'
+import Youtube_bw from '../../Assets/logos/youtube.png'
 import Mail from '../../Assets/logos/mail.png'
 
 export default function Footer() {
@@ -30,21 +31,33 @@ export default function Footer() {
                         <p>For Product annoucments and exclusive insights</p>
                         <div className="email-group">
                             <div className="email">
-                                <img src={Mail} alt="" className="mail-icon"/>
+                                <img src={Mail} alt="" className="mail-icon" />
                                 <input type="text" id="email" name="email" placeholder="Input your Email" />
                             </div>
                             <Button variant="contained" id="subscribe-btn">Subscribe</Button>
                         </div>
                         <br />
-                        <div className="socials">
-                            <img src={Twitter_bw} alt="" className="t-logo" />
-                            <img src={Facebook_bw} alt="" className="fb-logo" />
-                            <img src={LinkedIn_bw} alt="" className="li-logo" />
-                            <img src={Youtube_bw} alt="" className="yt-logo" />
-                        </div>
+
+                    </div>
+                </div>
+                <div className="footer-copyright-content">
+                    <div>
+                        <select className='drop-footer-btn' name="" id="">
+                            <option value="">English</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>©2023 Atiyah Ltd . Privacy . Terms . sidemap</h6>
+                    </div>
+                    <div className="footer-icon">
+                        <img src={Twitter_bw} alt="" className="t-logo" />
+                        <img src={Facebook_bw} alt="" className="fb-logo" />
+                        <img src={LinkedIn_bw} alt="" className="li-logo" />
+                        <img src={Youtube_bw} alt="" className="yt-logo" />
                     </div>
                 </div>
             </div>
+
         </>
     )
 }

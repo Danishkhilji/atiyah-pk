@@ -1,0 +1,21 @@
+.footer-copyright-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.block {
+
+    margin-top: 20px;
+}
+
+.footer-icon {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.drop-footer-btn {
+    border: 1px solid rgb(247, 234, 234);
+    border-radius: 6px;
+}

@@ -1,0 +1,9 @@
+.donate-btn {
+    width: 63px;
+    height: 24px;
+    border: 1px solid #117B34FF;
+    background: #117B34FF;
+    color: #FFFFFFFF;
+    font-size: 11px;
+    border-radius: 12px;
+}
