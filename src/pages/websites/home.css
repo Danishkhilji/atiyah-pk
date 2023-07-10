@@ -55,10 +55,10 @@
     margin-left: 40px;
 }
 
-.popular-cards {
-    display: flex;
-    justify-content: space-evenly;
+.view-all {
+    text-align: end;
 }
+
 
 .digit-icon {
     width: 30px;
