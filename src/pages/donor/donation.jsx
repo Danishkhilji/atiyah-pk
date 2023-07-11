@@ -24,6 +24,7 @@ import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import img from "../../Assets/jpeg/child.jpg";
+import img2 from "../../Assets/transparent/1.png";
 
 // Styled components for custom styles
 const DonationContainer = styled('div')(({ theme }) => ({
@@ -50,8 +51,8 @@ export default function CreditCardPage() {
   const [cvc, setCvc] = React.useState('');
   const [cardHolderName, setCardHolderName] = React.useState('');
   const [saveCard, setSaveCard] = React.useState(false);
-  const [donationAmount, setDonationAmount] = React.useState('');
-  const [tipAmount, setTipAmount] = React.useState('');
+  const [donationAmount, setDonationAmount] = React.useState('00.00');
+  const [tipAmount, setTipAmount] = React.useState('00.00');
 
   const validateCardNumber = () => {
     const cardNumberRegex = /^\d{13}$/;
@@ -107,65 +108,81 @@ export default function CreditCardPage() {
     const value = e.target.value.replace(/[^0-9.]/g, '');
     setDonationAmount(value);
   };
-
+  
   const handleTipAmountChange = (e) => {
     const value = e.target.value.replace(/[^0-9.]/g, '');
     setTipAmount(value);
+  };
+
+  const handleBackClick = () => {
+    // Handle back button click here
   };
 
   return (
     <>
       <AppBar position="static" color="inherit">
         <Toolbar>
-          <IconButton edge="start" color="primary" aria-label="back">
+          <IconButton edge="start" color="info" aria-label="back" onClick={handleBackClick}>
             <ArrowBackIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <div style={{ flexGrow: 1, textAlign: 'center' }}>
+            <img src={img2} alt="Logo" style={{ width: '100px' }} />
+          </div>
+          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Back
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
       <Container maxWidth="sm" sx={{ paddingTop: '2rem' }}>
         <Card variant="outlined">
           <CardContent>
-            <Typography variant="h5" component="div" gutterBottom>
-              My Donation 
+            {/* <Typography variant="h5" component="div" gutterBottom>
+              My Donation
             </Typography>
-            <Divider sx={{ marginBottom: '1rem' }} />
-
+            <Divider sx={{ marginBottom: '1rem' }} /> */}
+            {/* Divider */}
+            <Divider style={{ margin: '2rem 0' }} />
             {/* Image with title and subtitle */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img src={img} alt="Campaign_description" style={{ marginRight: '30px', width: '200px' }} />
               <div>
-                <Typography variant="h6" component="div" gutterBottom>
-                  <span style={{ color: 'black' }}>You're supporting Faraz Ali</span>
+                <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+                  You're supporting Faraz Ali
                 </Typography>
-                <Typography variant="subtitle1" component="div" gutterBottom>
+                <Typography variant="subtitle1" component="div" gutterBottom style={{ color: 'black' }}>
                   Your donation will benefit Faraz Ali's Education
                 </Typography>
               </div>
             </div>
 
-
+            {/* Divider */}
+            <Divider style={{ margin: '2rem 0' }} />
 
             {/* Donation container */}
             <DonationContainer>
-              <Typography variant="h6" component="div" gutterBottom>
-                Enter Your Donation
-              </Typography>
-              <OutlinedInput
-                value={donationAmount}
-                onChange={handleDonationAmountChange}
-                // placeholder="0.00"
-                type="text"
-                startAdornment={<Typography variant="body1">PKR</Typography>}
-                endAdornment={<Typography variant="body1">00.00</Typography>}
-                sx={{ fontWeight: 'bold', borderRadius: '20px', width: '100%' }}
-              />
-            </DonationContainer>
+  <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+    Enter Your Donation
+  </Typography>
+  <OutlinedInput
+    value={donationAmount}
+    onChange={handleDonationAmountChange}
+    type="text"
+    startAdornment={
+      <Typography variant="body1" style={{ color: 'black', fontSize: '1.1rem', fontWeight: 'bold' }}>
+        PKR
+      </Typography>
+    }
+    endAdornment={
+      <Typography variant="body1" style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+        {donationAmount ? donationAmount : '00.00'}
+      </Typography>
+    }
+    sx={{ fontWeight: 'bold', borderRadius: '20px', width: '100%' }}
+  />
+</DonationContainer>
 
             {/* Additional text */}
-            <Typography variant="subtitle1" component="div" gutterBottom>
+            <Typography variant="subtitle1" component="div" gutterBottom style={{ color: 'black', fontSize: '1rem' }}>
               AtyiahPk has a 0% platform fee for organizers. AtyiahPk will continue offering its services thanks to
               donors who will leave an optional amount here.
             </Typography>
@@ -173,73 +190,80 @@ export default function CreditCardPage() {
             {/* Optional tip container */}
             <OptionalTipContainer>
               {/* Tip amount */}
-            <Typography variant="h6" component="div" gutterBottom>
-              Support AtiyahPK
-            </Typography>
-
+              <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+                Support AtiyahPK
+              </Typography>
               <OutlinedInput
                 value={tipAmount}
                 onChange={handleTipAmountChange}
-                // placeholder="0.00"
                 type="text"
-                startAdornment={<Typography variant="body1">PKR</Typography>}
-                endAdornment={<Typography variant="body1">00.00</Typography>}
+                startAdornment={
+                  <Typography variant="body1" style={{ color: 'black', fontSize: '1.1rem', fontWeight: 'bold' }}>
+                    PKR
+                  </Typography>
+                }
+                endAdornment={
+                  <Typography variant="body1" style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    {tipAmount ? tipAmount : '00.00'}
+                  </Typography>
+                }
                 sx={{ fontWeight: 'bold', borderRadius: '20px', width: '100%' }}
               />
-            </OptionalTipContainer>
-
+            </OptionalTipContainer>            
 
             {/* Additional text */}
-            <Typography variant="subtitle1" component="div" gutterBottom>
-              Adding a GoFundMe tip means being a key part of improving the services for donors like you and the
+            <Typography variant="subtitle1" component="div" gutterBottom style={{ color: 'black', fontSize: '1rem' }}>
+              Adding a AtiyahPK tip means being a key part of improving the services for donors like you and the
               campaigns you support.
             </Typography>
 
+            {/* Divider */}
+            <Divider style={{ margin: '2rem 0' }} />
             {/* Payment details */}
             <div>
-              <Typography variant="h6" component="div" gutterBottom>
-              <br/>
+              <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+                <br />
                 Payment Details
               </Typography>
               <FormControl sx={{ width: '50%', margin: '0 auto', marginBottom: '1rem' }}>
-              <FormLabel>Card number</FormLabel>
-              <Input
-                endDecorator={<CreditCardIcon />}
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
-                placeholder="1234567890123"
-                error={!validateCardNumber()}
-              />
-            </FormControl>
+                <FormLabel>Card number</FormLabel>
+                <Input
+                  endDecorator={<CreditCardIcon />}
+                  value={cardNumber}
+                  onChange={(e) => setCardNumber(e.target.value)}
+                  placeholder="1234567890123"
+                  error={!validateCardNumber()}
+                />
+              </FormControl>
 
-            <FormControl sx={{ width: '50%', margin: '0 auto', marginBottom: '1rem' }}>
-            <FormLabel>Expiry date</FormLabel>
-            <Input
-              endDecorator={<CreditCardIcon />}
-              value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
-              placeholder="MM/YY"
-              error={!validateExpiryDate()}
-            />
-          </FormControl>
-          <FormControl sx={{ width: '50%', margin: '0 auto', marginBottom: '1rem' }}>
-            <FormLabel>CVC/CVV</FormLabel>
-            <Input
-              endDecorator={<InfoOutlined />}
-              value={cvc}
-              onChange={(e) => setCvc(e.target.value)}
-              placeholder="123"
-              error={!validateCvc()}
-            />
-          </FormControl>
-          <FormControl sx={{ width: '50%', margin: '0 auto' }}>
-            <FormLabel>Card holder name</FormLabel>
-            <Input
-              placeholder="Enter cardholder's full name"
-              value={cardHolderName}
-              onChange={(e) => setCardHolderName(e.target.value)}
-            />
-          </FormControl>
+              <FormControl sx={{ width: '50%', margin: '0 auto', marginBottom: '1rem' }}>
+                <FormLabel>Expiry date</FormLabel>
+                <Input
+                  endDecorator={<CreditCardIcon />}
+                  value={expiryDate}
+                  onChange={(e) => setExpiryDate(e.target.value)}
+                  placeholder="MM/YY"
+                  error={!validateExpiryDate()}
+                />
+              </FormControl>
+              <FormControl sx={{ width: '50%', margin: '0 auto', marginBottom: '1rem' }}>
+                <FormLabel>CVC/CVV</FormLabel>
+                <Input
+                  endDecorator={<InfoOutlined />}
+                  value={cvc}
+                  onChange={(e) => setCvc(e.target.value)}
+                  placeholder="123"
+                  error={!validateCvc()}
+                />
+              </FormControl>
+              <FormControl sx={{ width: '50%', margin: '0 auto' }}>
+                <FormLabel>Card holder name</FormLabel>
+                <Input
+                  placeholder="Enter cardholder's full name"
+                  value={cardHolderName}
+                  onChange={(e) => setCardHolderName(e.target.value)}
+                />
+              </FormControl>
 
               <Checkbox
                 label="Save card"
@@ -248,70 +272,80 @@ export default function CreditCardPage() {
                 onChange={(e) => setSaveCard(e.target.checked)}
               />
             </div>
-
+            <br/>
             {/* Donation summary */}
             <div>
-              <Typography variant="h6" component="div" gutterBottom>
+              <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
                 Your Donation
               </Typography>
               <Typography variant="subtitle1" component="div">
-                <span style={{ color: 'black', fontWeight: 'bold' }}>Donation Amount:</span>{' '}
-                <span style={{ float: 'right', fontWeight: 'bold', color: 'black' }}>
+                <span style={{ color: 'black', fontWeight: 'bold', fontSize: '1.1rem' }}>Donation Amount:</span>{' '}
+                <span style={{ float: 'right', fontWeight: 'bold', color: 'black', fontSize: '1.2rem' }}>
                   {formatCurrency(donationAmountValue)}
                 </span>
               </Typography>
               {tipAmountValue > 0 && (
                 <Typography variant="subtitle1" component="div">
-                  <span style={{ color: 'black', fontWeight: 'bold' }}>Optional Tip:</span>{' '}
-                  <span style={{ float: 'right', fontWeight: 'bold', color: 'black' }}>
+                  <span style={{ color: 'black', fontWeight: 'bold', fontSize: '1.1rem' }}>Optional Tip:</span>{' '}
+                  <span style={{ float: 'right', fontWeight: 'bold', color: 'black', fontSize: '1.2rem' }}>
                     {formatCurrency(tipAmountValue)}
                   </span>
                 </Typography>
               )}
               <Typography variant="subtitle1" component="div">
-                <span style={{ color: 'black', fontWeight: 'bold' }}>Total Due Today:</span>{' '}
-                <span style={{ float: 'right', fontWeight: 'bold', color: 'black' }}>
+                <span style={{ color: 'black', fontWeight: 'bold', fontSize: '1.1rem' }}>Total Due Today:</span>{' '}
+                <span style={{ float: 'right', fontWeight: 'bold', color: 'black', fontSize: '1.2rem' }}>
                   {formatCurrency(totalAmountDue)}
                 </span>
               </Typography>
             </div>
           </CardContent>
+          {/* Divider */}
+          <Divider style={{ margin: '2rem 0' }} />
           <CardActions>
             <Button
               variant="contained"
-              color="success"
+              style={{ backgroundColor: "green", color: "white", fontSize: '1.2rem', fontWeight: 'bold', borderRadius: '5px' }}
               onClick={handleAddCard}
               disabled={!validateCardNumber() || !validateExpiryDate() || !validateCvc()}
             >
               Donate
             </Button>
           </CardActions>
+          <br/>
+          {/* Additional text */}
+          <Typography variant="subtitle6" component="div" gutterBottom style={{ color: 'black', fontSize: '0.8rem' }}>
+            By continuing, you agree with AtyiahPK terms and privacy notice.
+            <br />
+            <br />
+            Certified Charity donations are made to MASTERCARD/VISA, minus processing fees and granted within 15-45
+            days, subject to its terms.
+            <br />
+            <br />
+            In the unlikely event that there is a problem funding your chosen charity, MASTERCARD/VISA will contact you
+            before reassigning the funds. Your donation is typically tax deductible in Pakistan.
+          </Typography>
 
-                {/* Additional text */}
-
-      <Typography variant="subtitle6" component="div" gutterBottom>
-        By continuing, you agree with AtyiahPK terms and privacy notice.
-        <br />
-        <br />
-        Certified Charity donations are made to MASTERCARD/VISA, minus processing fees and granted within 15-45 days, subject to its terms.
-        <br />
-        <br />
-        In the unlikely event that there is a problem funding your chosen charity, MASTERCARD/VISA will contact you before reassigning the funds.
-        Your donation is typically tax deductible in Pakistan.
-      </Typography>
-
-
-
-      {/* Refund container */}
-      <RefundContainer>
-        <Typography variant="subtitle1" component="div" gutterBottom>
-          <span style={{ fontWeight: 'bold' }}>GoFundMe protects your donation</span>
-          <br />
-          We guarantee you a full refund for up to a year in the rare case that fraud occurs.
-        </Typography>
-      </RefundContainer>
+          {/* Refund container */}
+          <RefundContainer>
+            <Typography variant="subtitle1" component="div" gutterBottom style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>
+              AtiyahPK protects your donation
+              <br />
+              We guarantee you a full refund for up to a year in the rare case that fraud occurs.
+            </Typography>
+          </RefundContainer>
         </Card>
+        {/* Footer */}
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <Typography variant="subtitle1" component="div" style={{ fontSize: '0.9rem' }}>
+            &copy; {new Date().getFullYear()} AtiyahPK. All rights reserved.
+          </Typography>
+          <Typography variant="subtitle1" component="div" style={{ fontSize: '0.9rem' }}>
+            Company Address, Karachi, Pakistan
+          </Typography>
+        </div>
       </Container>
+      <br/>
     </>
   );
 }
