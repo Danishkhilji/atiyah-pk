@@ -4,7 +4,7 @@ import React from 'react'
 const DonateBtn = () => {
     return (
         <div>
-            <button className="donate-btn">DONATE</button>
+            <a href="signup"><button className="donate-btn">DONATE</button></a>
         </div>
     )
 }

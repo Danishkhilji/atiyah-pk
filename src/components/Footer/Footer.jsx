@@ -7,37 +7,48 @@ import Twitter_bw from '../../Assets/logos/twitter.png'
 import LinkedIn_bw from '../../Assets/logos/linkedin.png'
 import Youtube_bw from '../../Assets/logos/youtube.png'
 import Mail from '../../Assets/logos/mail.png'
+import { width } from "@mui/system";
 
 export default function Footer() {
     return (
         <>
-            <div className="block">
-                <div className="footer-container">
-                    <img src={Logo} alt="logo" className="footer-logo" />
-                    <div className="products">
-                        <h6>Products</h6>
-                        <p>Features <br /> Pricing</p>
+            <div className="main-foot">
+                <div className="footer-box" style={{ backgroundColor: "white", marginTop: "20px", border: "none", display: "flex", justifyContent: "space-around", width: "100%" }} >
+                    <div>
+                        <img src={Logo} alt="logo" className="footer-logo" />
                     </div>
-                    <div className="resources">
-                        <h6>Resources</h6>
-                        <p>Blogs <br /> User Guides <br /> Webinars</p>
-                    </div>
-                    <div className="company">
-                        <h6>Company</h6>
-                        <p>About <br /> Join Us</p>
-                    </div>
-                    <div className="subscribe">
-                        <h5>Subscribe to our Newsletter</h5>
-                        <p>For Product annoucments and exclusive insights</p>
-                        <div className="email-group">
-                            <div className="email">
-                                <img src={Mail} alt="" className="mail-icon" />
-                                <input type="text" id="email" name="email" placeholder="Input your Email" />
-                            </div>
-                            <Button variant="contained" id="subscribe-btn">Subscribe</Button>
+                    <div className="main-footer-contents">
+                        <div className="footer-contents">
+                            <h6>Products</h6>
+                            <p>Features</p>
+                            <p>Pricing</p>
                         </div>
-                        <br />
+                        <div className="footer-contents">
+                            <h6>Resources</h6>
+                            <p>Blogs</p>
+                            <p>User Guides</p>
+                            <p>Webinars</p>
+                        </div>
+                        <div className="footer-contents">
+                            <h6>Company</h6>
+                            <p>About</p>
+                            <p>Join Us</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div >
+                            <h5>Subscribe to our Newsletter</h5>
+                            <p>For Product annoucments and exclusive insights</p>
+                            <div className="email-group">
+                                <div className="email">
+                                    <img src={Mail} alt="" className="mail-icon" />
+                                    <input type="text" id="email" name="email" placeholder="Input your Email" />
+                                </div>
+                                <Button variant="contained" id="subscribe-btn">Subscribe</Button>
+                            </div>
+                            <br />
 
+                        </div>
                     </div>
                 </div>
                 <div className="footer-copyright-content">
@@ -56,8 +67,8 @@ export default function Footer() {
                         <img src={Youtube_bw} alt="" className="yt-logo" />
                     </div>
                 </div>
-            </div>
 
+            </div >
         </>
     )
 }

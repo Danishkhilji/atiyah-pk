@@ -46,3 +46,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media only screen and (max-width: 480px) {
+    .cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

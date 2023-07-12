@@ -1,6 +1,7 @@
 .main-landing-title {
     display: flex;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .landing-title {
@@ -110,6 +111,8 @@ h6 {
     border-radius: 6px;
     box-shadow: 0px 0px 1.5px #171a1f, 0px 0px 2px #171a1f;
     padding: 30px;
+
+
 }
 
 .main-landing-started-msg {
@@ -139,4 +142,59 @@ h6 {
     width: 293px;
     height: 276px;
     border-radius: 6px;
+}
+
+/* Mobile screen styling */
+@media only screen and (max-width: 480px) {
+    .main-img {
+        width: 500px;
+        height: 250px;
+    }
+
+    .landing-head-btn {
+        width: 100px;
+        height: 26px;
+        font-size: 8px;
+    }
+
+    .main-landing-head-btn {
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-landing-page-steps {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-landing-page-steps-res {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .landing-started-msg {
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+        height: 600px;
+        justify-content: space-around;
+    }
+
+    h5 {
+        text-align: center;
+    }
+
+    .view-all {
+        text-align: center;
+    }
+
+
+
+
+
 }
