@@ -380,3 +380,80 @@
   margin-left: 16px;
   margin-bottom: 2px;
 }
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 36.5rem;
+  justify-content: center;
+}
+
+.postal-code {
+  width: 25rem;
+}
+
+.section1-2 {
+  width: 26rem;
+  line-height: 2.5rem;
+}
+
+.section1-2 p {
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  border-radius: 20px;
+  display: inline;
+  padding: 4px 10px;
+  margin: 4px 4px;
+}
+
+#continue {
+  display: flex;
+  margin-left: 20rem;
+  margin-top: 5rem;
+}
+
+.section2,
+.section3,
+.section4,
+.section5 {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: auto;
+  height: 36.5rem;
+  justify-content: center;
+}
+
+.section2 h6 {
+  margin: 1.5rem auto;
+}
+
+.section2 button {
+  width: fit-content;
+}
+
+.section2-1 {
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  margin-bottom: 2rem;
+  padding: 15px 15px;
+  line-height: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.BTN {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.section4 button {
+  width: fit-content;
+}
+
+.stepper {
+  margin: 0 20px;
+  margin-top: 35px;
+}
