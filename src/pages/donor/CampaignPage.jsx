@@ -3,11 +3,26 @@ import Navbar from '../../components/Navbar/Navbar'
 import Scenery from '../../Assets/logos/testImg.jpg'
 import Button from '@mui/material/Button';
 import User from '../../Assets/logos/user.png'
+import profileIcon from "../../Assets/logos/user.png"
+import searchIcon from "../../Assets/logos/search.png"
+import notiIcon from "../../Assets/logos/notification.png"
+import { NavLink } from 'react-router-dom';
 
 export default function CampaignPage() {
     return (
         <>
-            <Navbar />
+            <Navbar link1="Home" link2="My profile" link3="My Donations" link4="Donation History" link7="Support" link8={<div style={{
+                width: "230px",
+                height: '35px',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                border: "1px solid rgb(54, 54, 54)",
+                borderRadius: "10px"
+            }}>
+                <NavLink><input style={{ border: "NONE" }} type='text' placeholder='search' /></NavLink>
+                <NavLink ><img style={{ width: "20px", height: "20px" }} src={searchIcon} alt='search' /></NavLink>
+            </div>} link10={<img style={{ width: "25px", height: "25px" }} src={notiIcon} alt="noti" />} link11={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
 
             <div style={{
                 width: '94rem'

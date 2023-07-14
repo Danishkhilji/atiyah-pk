@@ -10,6 +10,19 @@
     border-radius: 6px;
 }
 
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Displays 4 cards in each row */
+    gap: 20px;
+    /* Adds a gap between cards */
+
+}
+
+.card-font {
+    font-size: 18px;
+}
+
 .card-btn {
     width: 100%;
     display: flex;

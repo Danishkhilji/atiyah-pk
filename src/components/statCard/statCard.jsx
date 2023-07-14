@@ -7,12 +7,12 @@ import { Grid, Stack, Typography } from '@mui/material';
 const StatCard = ({ color, title, count, icon }) => (
     <>
     <Stack spacing={0.5}>
-      <Typography variant="h6" color="textSecondary">
+      <Typography variant="h5" color="textSecondary">
         {title}
       </Typography>
       <Grid container alignItems="center">
         <Grid item>
-          <Typography variant="h4" color="inherit">
+          <Typography variant="h5" color="inherit">
             {icon} {count}
           </Typography>
         </Grid>

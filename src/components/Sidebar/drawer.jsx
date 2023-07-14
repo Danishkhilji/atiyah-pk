@@ -16,11 +16,11 @@ const Sidebar = ({ data }) => {
   const navigate = useNavigate();
   const getList = () => (
     <div style={{ width: 250 }} onClick={() => setOpen(false)}>
-      <div className="logo" style={{ height: 100, position: "relative" }}>
+      <div className="logo" style={{ height: 100, position: "relative", marginLeft: "10px" }}>
         <img
           src={Logo}
           alt="Atiyah.pk"
-          style={{ borderRadius: "50%", width: "50%", height: "100%" }}
+          style={{ borderRadius: "50%", width: "100%", height: "100%" }}
         />
       </div>
       <div style={{ width: 200, margin: "0 auto" }}>
