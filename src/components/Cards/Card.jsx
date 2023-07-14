@@ -35,7 +35,7 @@ const Cards = ({ data }) => {
 =======
         <div className="cards">
             {data.map((item) => (
-                <Card className="card" sx={{ maxWidth: 345 }}>
+                <a href="campaign"><Card className="card" sx={{ maxWidth: 345 }}>
                     <img className="card-img" src={item.images} alt="card image" />
                     <CardContent>
                         <div className="card-btn">
@@ -58,7 +58,7 @@ const Cards = ({ data }) => {
                             <h6 className="card-font">{item.price}</h6>
                         </div>
                     </CardActions>
-                </Card>
+                </Card></a>
             ))
 
             }

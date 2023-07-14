@@ -1,12 +1,14 @@
 .navbar {
-    width: 1300px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
 .logo {
+
     width: 100px;
     height: 100px;
+    display: block;
 }
 
 .drop-btn {
@@ -17,6 +19,7 @@
 }
 
 .tabs {
+
     width: 700px;
     height: 100px;
     margin-left: 10px;
@@ -25,6 +28,7 @@
     justify-content: space-around;
     align-items: center;
     color: #808080;
+
 }
 
 .nav-logos {
@@ -71,4 +75,37 @@ a {
     border-radius: 6px;
     color: #FFFFFFFF;
     font-size: 14px;
+}
+
+
+.menu-logo {
+    width: 20px;
+    height: 20px;
+}
+
+.desk-tab {
+    display: block;
+}
+
+.responsive-tab {
+    display: none;
+}
+
+/* style for Mobile */
+@media only screen and (max-width: 480px) {
+    .responsive-tab {
+        display: block;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .desk-tab {
+        display: none;
+    }
+
+    .navbar {
+        width: 470px;
+    }
 }

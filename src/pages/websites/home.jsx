@@ -62,7 +62,7 @@ const Home = () => {
         <NavLink to="login">SignIn</NavLink>
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
-      <div className='main-landing-title'>
+      <div id='home' className='main-landing-title'>
         <div className='landing-title'>
           <h1>ATIYAH PK</h1>
           <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
@@ -70,14 +70,14 @@ const Home = () => {
 
       </div>
       <div className='main-landing-head-btn'>
-        <button className='landing-head-btn'>Start Compaign</button>
-        <button className='landing-head-btn'>Donate Now</button>
+        <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
+        <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
       </div>
       <div className='main-img-container'>
         <img className='main-img' src={mainImg} alt="main-img" />
       </div>
       <div id='how-it-works' className='box-landing-steps'>
-        <div>
+        <div className='main-landing-page-steps-res'>
           <h5>How it works</h5>
           <h2>Fundraising of Atiyah Pk<br />takes just a few minutes</h2>
           <div className='main-landing-page-steps'>
@@ -114,14 +114,14 @@ const Home = () => {
           <div>
             <h4>Ready to get started? join</h4>
             <h4>thousands of others day</h4>
-            <button className='Landing-start-btn'>Start Atiyah PK</button>
+            <a href="signup"><button className='Landing-start-btn'>Start Atiyah PK</button></a>
           </div>
           <div>
             <img className='flower-img' src={flower} alt="flowerimage" />
           </div>
         </div>
       </div>
-      <div className='compaigns'>
+      <div id='campaign' className='compaigns'>
         <h5>Popular Compaigns</h5>
         <div  >
           <Cards data={data} />
@@ -129,7 +129,7 @@ const Home = () => {
         </div>
         <a className='view-all' href="detail"><p>view all</p></a>
       </div>
-      <div>
+      <div id='abouts'>
         <Footer />
       </div>
 
