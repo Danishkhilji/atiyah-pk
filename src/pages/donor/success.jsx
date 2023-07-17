@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";
 
+
 export default function ThankYouPage() {
   const handleBackClick = () => {
     // Handle back button click here
