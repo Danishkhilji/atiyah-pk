@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Login from '../pages/websites/login/login';
 import Signup from '../pages/websites/signup/signup';
@@ -15,6 +15,8 @@ import ReciverDashboard from '../pages/receiver/receiverDashboard';
 import DonorLandingPage from '../pages/donor/DonorLandingPage';
 import ViewAll from '../pages/websites/ViewAll';
 import Test from '../pages/receiver/testFile';
+import RecieverProfile from '../pages/reciver/RecieverProfile';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -32,9 +34,10 @@ const AppRoutes = () => {
       <Route path="success" element={<Success />} />
       <Route path="detail" element={<ViewAll />} />
 
+      <Route path="campaign" element={<CampaignPage />} />
+      <Route path="reciver" element={<RecieverProfile />} />
 
     </Routes>
   )
 }
-
-export default AppRoutes
+export default AppRoutes;

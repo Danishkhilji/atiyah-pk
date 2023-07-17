@@ -3,7 +3,7 @@ import Drawer from "@mui/material/Drawer";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { useState } from "react";
 import Logo from "../../Assets/transparent/1.png";
@@ -32,10 +32,10 @@ const Sidebar = ({ data }) => {
               color: item.color,
               borderRadius: "6px",
               backgroundColor: item.active ? "#f7716a" : "transparent",
-              height:"30px",
-              padding: "20px 16px", 
+              height: "30px",
+              padding: "20px 16px",
             }}
-            onClick={()=>navigate(`/admin/${item.path}`)}
+            onClick={() => navigate(`/admin/${item.path}`)}
           >
             <ListItemIcon style={{ color: item.color }}>
               {item.icon}
@@ -55,15 +55,15 @@ const Sidebar = ({ data }) => {
         anchor={"left"}
         onClose={() => setOpen(false)}
       >
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div>
-        {getList()}
-        <Divider />
-      </div>
-      <div style={{ marginTop: 'auto',marginLeft: '20px', marginBottom: '20px' }}>
-        <Profile />
-      </div>
-    </div>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <div>
+            {getList()}
+            <Divider />
+          </div>
+          <div style={{ marginTop: 'auto', marginLeft: '20px', marginBottom: '20px' }}>
+            <Profile />
+          </div>
+        </div>
 
       </Drawer>
     </>

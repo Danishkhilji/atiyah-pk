@@ -7,6 +7,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Typography from '@mui/joy/Typography';
+// import Container from '@mui/material/Container';
 import Container from '@mui/material/Container';
 import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";

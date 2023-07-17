@@ -6,7 +6,7 @@ import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+// import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import AdminBarChart from "../../components/adminGraph/BarChart";
 import AdminLineChart from "../../components/adminGraph/LineChart";
 

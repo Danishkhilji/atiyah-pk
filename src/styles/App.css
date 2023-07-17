@@ -1,8 +1,16 @@
 .left {
   border: 1px solid;
-  width: 63%;
+  width: 69%;
   height: 44.6rem;
-  background-color: rgb(243, 243, 243);
+  /* background-color: rgb(243, 243, 243); */
+}
+
+.web-body {
+  display: flex;
+}
+
+.right img {
+  height: 44.6rem;
 }
 
 .logo img {
@@ -179,6 +187,7 @@
 }
 
 .block {
+  margin-top: 20px;
   background: #F8F9FAFF;
 }
 
@@ -188,7 +197,7 @@
   width: 74rem;
   align-items: center;
   margin-left: 10rem;
-  border-top:  solid rgba(137, 137, 137, 0.405);
+  border-top: solid rgba(137, 137, 137, 0.405);
 }
 
 .footer-logo {
@@ -267,8 +276,184 @@
 
 .container-center {
   margin: auto;
+  width: 60rem;
+  margin-top: 3rem;
+  margin-left: 25rem;
 }
 
 .container-cen {
   display: flex;
+}
+
+#col {
+  border: 1px solid;
+  margin-left: 1rem;
+  width: 16rem;
+  height: 20rem;
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  border-radius: 20px;
+}
+
+.endorsment-sec {
+  display: flex;
+  flex-direction: column;
+}
+
+.endorsment-sec h6,
+.endorsment-sec p {
+  margin: auto;
+}
+
+.endorsement-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.endorsement-btn button {
+  width: 14rem;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.comment-section {
+  width: 16.3rem;
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-top: 15px;
+  margin-left: -2px;
+}
+
+.comment-section h6,
+.comment-section div {
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+.description {
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  border-radius: 20px;
+  margin: 5px 0;
+  width: 30rem;
+}
+
+.description h6,
+.description p {
+  margin-left: 10px;
+  margin-top: 4px;
+  padding-right: 5px;
+}
+
+.recent-donations {
+  width: 15rem;
+  height: 8.3rem;
+  margin: auto;
+}
+
+.comment {
+  display: flex;
+}
+
+.comment img {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0 6px;
+}
+
+.donation {
+  display: flex;
+  margin-top: 4px;
+  font-size: small;
+  height: 2.5rem;
+}
+
+.donation img {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin: 1px 6px;
+}
+
+.a {
+  font-size: small;
+  margin-left: 16px;
+  margin-bottom: 2px;
+}
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 36.5rem;
+  justify-content: center;
+}
+
+.postal-code {
+  width: 25rem;
+}
+
+.section1-2 {
+  width: 26rem;
+  line-height: 2.5rem;
+}
+
+.section1-2 p {
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  border-radius: 20px;
+  display: inline;
+  padding: 4px 10px;
+  margin: 4px 4px;
+}
+
+#continue {
+  display: flex;
+  margin-left: 20rem;
+  margin-top: 5rem;
+}
+
+.section2,
+.section3,
+.section4,
+.section5 {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: auto;
+  height: 36.5rem;
+  justify-content: center;
+}
+
+.section2 h6 {
+  margin: 1.5rem auto;
+}
+
+.section2 button {
+  width: fit-content;
+}
+
+.section2-1 {
+  border: 1px solid rgba(137, 137, 137, 0.405);
+  margin-bottom: 2rem;
+  padding: 15px 15px;
+  line-height: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.BTN {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.section4 button {
+  width: fit-content;
+}
+
+.stepper {
+  margin: 0 20px;
+  margin-top: 35px;
 }

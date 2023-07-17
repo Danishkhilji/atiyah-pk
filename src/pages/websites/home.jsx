@@ -117,7 +117,7 @@ const Home = () => {
             <a href="signup"><button className='Landing-start-btn'>Start Atiyah PK</button></a>
           </div>
           <div>
-            <img className='flower-img' src={flower} alt="flower image" />
+            <img className='flower-img' src={flower} alt="flowerimage" />
           </div>
         </div>
       </div>

@@ -12,6 +12,27 @@ import { index } from "d3-array";
 const Cards = ({ data }) => {
 
     return (
+<<<<<<< HEAD
+        <div >
+            <Card className="card" sx={{ maxWidth: 345 }}>
+                <img className="card-img" src={cardImg} alt="cardimage" />
+                <CardContent>
+                    <div className="card-btn">
+                        <DonateBtn />
+                    </div>
+                    <Typography gutterBottom variant="h5" component="div">
+                        Shaheen
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Request for Money
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <div className="card-rating-request">
+                        <div className="card-rating">
+                            <img className="star-icon" src={starIcon} alt="icon" />
+                            <h6>4.9</h6>
+=======
         <div className="cards">
             {data.map((item) => (
                 <a href="campaign"><Card className="card" sx={{ maxWidth: 345 }}>
@@ -19,6 +40,7 @@ const Cards = ({ data }) => {
                     <CardContent>
                         <div className="card-btn">
                             <DonateBtn />
+>>>>>>> origin/AdminDashboard
                         </div>
                         <Typography gutterBottom variant="h5" component="div">
                             {item.title}

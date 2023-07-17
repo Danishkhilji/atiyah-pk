@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Box, Chip, Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 // ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
 
