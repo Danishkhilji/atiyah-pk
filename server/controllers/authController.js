@@ -1,7 +1,10 @@
 const tryCatch = require("../utils/tryCatch");
+const sendOTP = require("../utils/sendOTP");
 const bcrypt = require("bcrypt");
-const userModel = require("../models/userModel");
-const createJWT = require("../utils/createJWT");
+const userModel = require("../models/user");
+const OTP = require("../models/otp");
+const createJWT = require("../config/jwt");
+
 const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
@@ -60,19 +63,17 @@ exports.SignUp = tryCatch(async (req, res) => {
 });
 
 exports.LogOut = tryCatch(async (req, res) => {
-  res.status(202).cookie("JWT_token", "").send("Logout");
+  res.status(202).clearCookie("JWT_token").send("Logout");
 });
 
 exports.UpdateProfile = tryCatch(async (req, res) => {
   const { id } = req.params;
   const { name, profession, location, bio } = req.body;
-
   const updatedProfile = await userModel.findByIdAndUpdate(
     id,
     { name: name, profession: profession, location: location, bio: bio },
     { new: true }
   );
-
   if (!updatedProfile) {
     res.status(404).send("User not found");
     return;
@@ -94,59 +95,49 @@ exports.SendOTPmail = tryCatch(async (req, res) => {
     return;
   }
 
-  const otp = generateOTP();
+  const {otp,expirationTime} = generateOTP();
+
+
+  const newOTP = new OTP({
+    user: user._id,
+    otp: otp,
+    expirationTime: expirationTime,
+  });
   sendOTP(email, otp);
-
-  req.session.otp = otp;
-  req.session.userId = user._id;
-
+  await newOTP.save();
   res.status(200).send("OTP sent successfully");
 });
 
+
 exports.VerifyOTP = tryCatch(async (req, res) => {
-  const { otp } = req.body;
-  if (!otp) {
-    res.status(400).send("OTP Required");
+  const { email, otp } = req.body;
+  if (!otp || !email) {
+    res.status(400).send("OTP and Email are required");
     return;
   }
 
-  const storedOTP = req.session.otp;
-  const userId = req.session.userId;
-
-  if (!storedOTP || !userId) {
-    res.status(400).send("Invalid OTP verification request");
-    return;
-  }
-
-  if (otp !== storedOTP) {
-    res.status(401).send("Invalid OTP");
-    return;
-  }
-
-  const user = await userModel.findById(userId);
+  const user = await userModel.findOne({ email });
   if (!user) {
     res.status(404).send("User not found");
     return;
   }
 
-  let access_token = createJWT(user.email, user._id, 3600);
-  const maxAge = 1000 * 60 * 60 * 24;
-  res
-    .status(200)
-    .cookie("JWT_token", access_token, { maxAge, httpOnly: true })
-    .json({
-      email: user.email,
-      name: user.name,
-      _id: user._id,
-    });
+  const storedOTP = await OTP.findOne({ user: user._id }).sort({ createdAt: -1 });
+  if (!storedOTP || otp !== storedOTP.otp || storedOTP.expirationTime < Date.now()) {
+    res.status(401).send("Invalid OTP");
+    return;
+  }
+
+  storedOTP.verified = true;
+  await storedOTP.save();
+  res.status(200).send("OTP verified successfully");
 });
 
 exports.UpdatePassword = tryCatch(async (req, res) => {
-  const { newPassword, confirmPassword } = req.body;
-  const { userId } = req.session;
+  const { newPassword, confirmPassword, email } = req.body;
 
-  if (!newPassword || !confirmPassword) {
-    res.status(400).send("New password and confirm password are required");
+  if (!newPassword || !confirmPassword || !email) {
+    res.status(400).send("New password, confirm password, and email are required");
     return;
   }
 
@@ -155,11 +146,12 @@ exports.UpdatePassword = tryCatch(async (req, res) => {
     return;
   }
 
-  const user = await userModel.findById(userId);
+  const user = await userModel.findOne({ email });
   if (!user) {
     res.status(404).send("User not found");
     return;
   }
+
   const hashedPassword = await bcrypt.hash(newPassword, 10);
   user.password = hashedPassword;
   await user.save();

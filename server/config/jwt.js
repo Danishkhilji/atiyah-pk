@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require('dotenv').config()
 
-exports.createJWT = (email, userId, duration) => {
+const createJWT = (email, userId, duration) => {
    const payload = {
       email,
       userId,
@@ -11,3 +11,5 @@ exports.createJWT = (email, userId, duration) => {
      expiresIn: duration,
    });
 };
+
+module.exports = createJWT;

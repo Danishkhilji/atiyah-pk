@@ -2,7 +2,9 @@ const nodemailer = require("nodemailer");
 require('dotenv').config()
 
 const generateOTP = () => {
-  return Math.floor(100000 + Math.random() * 900000);
+  const otp = Math.floor(100000 + Math.random() * 900000);
+  const expirationTime = new Date(Date.now() + 5 * 60 * 1000);
+  return { otp, expirationTime };
 };
 
 const sendOTP = (email, otp) => {

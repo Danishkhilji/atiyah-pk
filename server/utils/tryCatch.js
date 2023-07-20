@@ -1,11 +1,12 @@
-const tryCatch = async (handler) => {
+const tryCatch = (handler) => {
+  return async (req, res, next) => {
     try {
-      return await handler();
+      await handler(req, res, next);
     } catch (error) {
       console.error('An error occurred:', error);
-      throw error; 
+      res.status(500).send('Internal Server Error');
     }
   };
-  
-  module.exports = tryCatch;
-  
+};
+
+module.exports = tryCatch;

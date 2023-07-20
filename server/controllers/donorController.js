@@ -1,9 +1,7 @@
-const express = require('express');
-const campaignModel = require("../models/campaignModel");
-const Donation = require('./donationModel');
-const userModel = require("../models/userModel");
-const { tryCatch } = require('../util/tryCatch'); 
-
+const Donation = require('../models/donation');
+const Campaign = require("../models/campaign")
+const userModel = require("../models/user");
+const tryCatch = require("../utils/tryCatch");
 
 
 exports.GetCampaigns = tryCatch(async (req, res) => {
@@ -18,7 +16,7 @@ exports.GetCampaigns = tryCatch(async (req, res) => {
 exports.GetDonatedCampaigns = tryCatch(async (req, res) => {
     const { userId } = req.params; 
 
-    const campaigns = await campaignModel.find({ donors: userId }).populate('donors');
+    const campaigns = await Campaign.find({ donors: userId }).populate('donors');
   
     if (campaigns.length === 0) {
       return res.status(404).json({ message: 'No campaigns found for the user.' });
@@ -33,7 +31,7 @@ exports.DonateNow =  tryCatch(async (req, res) => {
   const { campaignId, userId } = req.params;
   const { amount, cardNumber, cardName } = req.body;
 
-  const campaign = await campaignModel.findById(campaignId);
+  const campaign = await Campaign.findById(campaignId);
   if (!campaign) {
     return res.status(404).json({ message: 'Campaign not found.' });
   }

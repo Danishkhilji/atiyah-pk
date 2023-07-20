@@ -1,5 +1,5 @@
 const tryCatch = require("../utils/tryCatch");
-const campaignModel = require("../models/campaignModel");
+const campaignModel = require("../models/campaign");
 
 exports.CreateCampaign = tryCatch(async (req, res) => {
   const { campaign, description, amountNeeded, user } = req.body;
@@ -27,10 +27,10 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
 
 
 exports.RetrieveData = tryCatch(async (req, res) => {
-  const { userId } = req.params;
-
-  const campaigns = await campaignModel.find({ user: userId });
-
+  const { id } = req.params;
+  console.log(id)
+  const campaigns = await campaignModel.find({ user: id }).populate("user");
+  console.log(campaigns)
   if (campaigns.length === 0) {
     res.status(404).send("No campaigns found for the user");
     return;

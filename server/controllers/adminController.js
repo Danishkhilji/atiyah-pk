@@ -1,9 +1,8 @@
-const express = require('express');
-const Campaign = require('./campaignModel');
-const { tryCatch } = require('./utils');
+const Campaign = require('../models/campaign');
+const  tryCatch  = require('../utils/tryCatch');
 
 
-const CampaignStatusUpdate =  tryCatch(async (req, res) => {
+exports.CampaignStatusUpdate =  tryCatch(async (req, res) => {
     const { id } = req.params;
     const { block } = req.body;
     const campaign = await Campaign.findById(id);
@@ -18,8 +17,8 @@ const CampaignStatusUpdate =  tryCatch(async (req, res) => {
   });
 
 
-const GetAllCampagins = tryCatch(async (req, res) => {
-  const user = req.user;
+exports.GetAllCampagins = tryCatch(async (req, res) => {
+    const user = req.user;
   if (!user || !user.role === "admin") {
     return res.status(403).json({ message: 'Unauthorized. Admin access only.' });
   }
@@ -28,5 +27,3 @@ const GetAllCampagins = tryCatch(async (req, res) => {
 
   res.status(200).json(campaigns);
 });
-
-module.exports = router;

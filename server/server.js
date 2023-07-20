@@ -2,10 +2,13 @@ let express = require('express');
 let bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 let app = express();
+const session = require('express-session');
+const db = require('./config/database');
+var cors = require('cors')
+
 require('dotenv').config()
 
 app.use(cookieParser());
-var cors = require('cors')
 app.use(cors({
   origin: 'http://localhost:5000', 
   credentials: true,
@@ -14,6 +17,13 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
+}));
+
+app.use(session({
+  secret: process.env.SESSION_KEY, // Replace with a secret key for session encryption
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }, // Set to true if using SSL
 }));
 
 const publicRoutes = require("./routes/publicRoutes");
