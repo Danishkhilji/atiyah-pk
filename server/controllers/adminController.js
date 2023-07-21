@@ -25,7 +25,9 @@ exports.GetAllCampagins = tryCatch(async (req, res) => {
   //   return res.status(403).json({ message: 'Unauthorized. Admin access only.' });
   // }
 
-  const campaigns = await Campaign.find().populate("user").populate("donations");
+  const campaigns = await Campaign.find().populate("user").populate("donations")
+  .populate("comments")
+  .populate("donations");
 
   res.status(200).json(campaigns);
 });

@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const campaignSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   campaign: {
     type: String,
     required: true,
@@ -42,10 +46,11 @@ const campaignSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  user: {
+  comments: [{
     type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
+    ref: "Comment",
+    default: [],
+  }],
 });
 
 const campaignModel = mongoose.model("Campaigns", campaignSchema);

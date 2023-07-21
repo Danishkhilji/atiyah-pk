@@ -29,8 +29,7 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
 exports.RetrieveData = tryCatch(async (req, res) => {
   const { id } = req.params;
   console.log(id)
-  const campaigns = await campaignModel.find({ user: id }).populate("user");
-  console.log(campaigns)
+  const campaigns = await campaignModel.find({ user: id }).populate("user").populate("comments");
   if (campaigns.length === 0) {
     res.status(404).send("No campaigns found for the user");
     return;
