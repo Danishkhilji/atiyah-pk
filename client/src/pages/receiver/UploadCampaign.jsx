@@ -4,27 +4,30 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import { FormControl, InputAdornment, InputLabel, OutlinedInput, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+// import Fundraising1 from "../../Assets/jpeg/fundraising1.jpg";
+// import Fundraising2 from "../../Assets/jpeg/fundraising2.jpg";
 
-const CountryName = [
+const CityName = [
     {
-        value: 'USA',
-        label: 'United States of America',
+        value: 'Khi',
+        label: 'Karachi',
     },
     {
-        value: 'Aus',
-        label: 'Australia',
+        value: 'Isl',
+        label: 'Islamabad',
     },
     {
-        value: 'ENG',
-        label: 'English',
+        value: 'Hyd',
+        label: 'Hyderabad',
     },
     {
-        value: 'Spa',
-        label: 'Spain',
+        value: 'Lhr',
+        label: 'Lahore',
     },
 ];
 
-const steps = ['Select Country', 'Who are you Raising for', 'Amount', 'Campaign Details', 'Account Details'];
+const steps = ['Select City', 'Who are you Raising for', 'Amount', 'Campaign Details', 'Account Details'];
 
 export default function UploadCampaign() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -57,137 +60,130 @@ export default function UploadCampaign() {
         switch (step) {
             case 0:
                 return (
-                    <div className="section1">
-                        <section className="section1">
-                            <div className="country">
-                                <div className="section1-1">
-                                    <h6>Where are you located?</h6>
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& .MuiTextField-root': { m: 1, width: '25rem' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <div>
-                                            <TextField
-                                                id="outlined-select-currency"
-                                                select
-                                                label="Select"
-                                                defaultValue="USA"
-                                                helperText="Please select your Country"
-                                            >
-                                                {CountryName.map((option) => (
-                                                    <MenuItem key={option.value} value={option.value}>
-                                                        {option.label}
-                                                    </MenuItem>
-                                                ))}
-                                            </TextField>
-                                        </div>
-                                    </Box>
-                                    <TextField id="outlined-basic" label="Postal Code" variant="outlined" className="postal-code" style={{
-                                        marginLeft: '8px'
-                                    }} />
+                    <CSSTransition key={0} classNames="fade" timeout={500}>
+                        <div className="section1">
+                            <section className="section1">
+                                <div className="City">
+                                    <div className="section1-1">
+                                        <h6>Where are you located?</h6>
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& .MuiTextField-root': { m: 1, width: '25rem' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <div>
+                                                <TextField
+                                                    id="outlined-select-currency"
+                                                    select
+                                                    label="Select"
+                                                    defaultValue="Khi"
+                                                    helperText="Please select your City"
+                                                >
+                                                    {CityName.map((option) => (
+                                                        <MenuItem key={option.value} value={option.value}>
+                                                            {option.label}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </div>
+                                        </Box>
+                                        <TextField id="outlined-basic" label="Postal Code" variant="outlined" className="postal-code" style={{
+                                            marginLeft: '8px'
+                                        }} />
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="section1-2">
-                                <h6>What best describes why you're fundraising?</h6>
-                                <p>Animals</p>
-                                <p>Business</p>
-                                <p>Community</p>
-                                <p>Competitions</p>
-                                <br />
-                                <p>Creative</p>
-                                <p>Education</p>
-                                <p>Emergencies</p>
-                                <p>Environment</p>
-                                <br />
-                                <p>Events</p>
-                                <p>Faith</p>
-                                <br />
-                                {/* <Button variant="contained" id="continue">Continue</Button> */}
-                            </div>
-                        </section>
-                    </div>
+                                <div className="section1-2">
+                                    <h6>What best describes why you're fundraising?</h6>
+                                    <p>Animals</p>
+                                    <p>Business</p>
+                                    <p>Community</p>
+                                    <p>Competitions</p>
+                                    <br />
+                                    <p>Creative</p>
+                                    <p>Education</p>
+                                    <p>Emergencies</p>
+                                    <p>Environment</p>
+                                    <br />
+                                    <p>Events</p>
+                                    <p>Faith</p>
+                                    <br />
+                                </div>
+                            </section>
+                        </div>
+                    </CSSTransition>
                 );
             case 1:
                 return (
-                    <div className="section2">
-                        <section className="section2">
-                            <h6>Who are you fundraising for?</h6>
-                            <div className="section2-1">
-                                <p>Yourself</p> <br />
-                                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                            </div>
-                            <div className="section2-1">
-                                <p>Yourself</p> <br />
-                                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                            </div>
-                            <div className="section2-1">
-                                <p>Yourself</p> <br />
-                                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                            </div>
-                            {/* <div className="BTN">
-                                <Button variant="contained">Back</Button>
-                                <Button variant="contained">Continue</Button>
-                            </div> */}
-                        </section>
-                    </div>
+                    <CSSTransition key={1} classNames="fade" timeout={500}>
+                        <div className="section2">
+                            <section className="section2">
+                                <h6>Who are you fundraising for?</h6>
+                                <div className="section2-1">
+                                    <p>Yourself</p> <br />
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="section2-1">
+                                    <p>Yourself</p> <br />
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="section2-1">
+                                    <p>Yourself</p> <br />
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                            </section>
+                        </div>
+                    </CSSTransition>
                 );
             case 2:
                 return (
-                    <div className="section3">
-                        <section className="section3">
-                            <p>Amount to be Raised</p>
-                            <FormControl sx={{ m: 1 }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                    label="Amount"
-                                />
-                            </FormControl>
-                            {/* <div className="BTN">
-                                <Button variant="contained">Back</Button>
-                                <Button variant="contained">Continue</Button>
-                            </div> */}
-                        </section>
-                    </div>
+                    <CSSTransition key={2} classNames="fade" timeout={500}>
+                        <div className="section3">
+                            <section className="section3">
+                                <p>Amount to be Raised</p>
+                                <FormControl sx={{ m: 1 }}>
+                                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+                                    <OutlinedInput
+                                        id="outlined-adornment-amount"
+                                        startAdornment={<InputAdornment position="start">Rs.</InputAdornment>}
+                                        label="Amount"
+                                    />
+                                </FormControl>
+                            </section>
+                        </div>
+                    </CSSTransition>
                 );
             case 3:
                 return (
-                    <div className="section4">
-                        <section className="section4">
-                            <h6>Enter Details about Campaign</h6>
-                            <TextField id="outlined-basic" label="Campaign Name" variant="outlined" style={{
-                                marginBottom: '2rem'
-                            }} />
-                            <TextField id="outlined-basic text" label="Campaign Description" variant="outlined" />
-                            <p>Max 200 words</p>
-                            {/* <div className="BTN">
-                                <Button variant="contained">Back</Button>
-                                <Button variant="contained">Continue</Button>
-                            </div> */}
-                        </section>
-                    </div>
+                    <CSSTransition key={3} classNames="fade" timeout={500}>
+                        <div className="section4">
+                            <section className="section4">
+                                <h6>Enter Details about Campaign</h6>
+                                <TextField id="outlined-basic" label="Campaign Name" variant="outlined" style={{
+                                    marginBottom: '2rem'
+                                }} />
+                                <TextField id="outlined-basic text" label="Campaign Description" variant="outlined" />
+                                <p>Max 200 words</p>
+                            </section>
+                        </div>
+                    </CSSTransition>
                 );
             case 4:
                 return (
-                    <div className="section5">
-                        <section className="section5">
-                            <h6>Please enter your Account Details</h6>
-                            <TextField id="outlined-basic" label="Acount Title" variant="outlined" style={{
-                                marginBottom: '2rem'
-                            }} />
-                            <TextField id="outlined-basic" label="Acount Number" variant="outlined" />
-                            {/* <div className="BTN">
-                                <Button variant="contained">Back</Button>
-                                <Button variant="contained">Post Campaign</Button>
-                            </div> */}
-                        </section>
-                    </div>
+                    <CSSTransition key={4} classNames="fade" timeout={500}>
+                        <div className="section5">
+                            <section className="section5">
+                                <h6>Please enter your Account Details</h6>
+                                <TextField id="outlined-basic" label="Acount Title" variant="outlined" style={{
+                                    marginBottom: '2rem'
+                                }} />
+                                <TextField id="outlined-basic" label="Acount Number" variant="outlined" />
+                            </section>
+                        </div>
+                    </CSSTransition>
                 );
             default:
                 return null;
@@ -196,57 +192,64 @@ export default function UploadCampaign() {
 
     return (
         <>
-            <section className="form left">
-                <section className="stepper">
-                    <Box sx={{ width: '100%' }}>
-                        <Stepper activeStep={activeStep}>
-                            {steps.map((label, index) => {
-                                const stepProps = {};
-                                const labelProps = {};
-                                return (
-                                    <Step key={label} {...stepProps}>
-                                        <StepLabel {...labelProps}>{label}</StepLabel>
-                                    </Step>
-                                );
-                            })}
-                        </Stepper>
-                    </Box>
-                </section>
-                {renderSection(activeStep)}
-                <section className="actions">
-                    {activeStep === steps.length ? (
-                        <React.Fragment>
-                            <Typography sx={{ mt: 2, mb: 1 }}>
-                                After clicking the finish button, will proceed to campaign page..
-                            </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                <Box sx={{ flex: '1 1 auto' }} />
-                                <Button onClick={handleReset}>Reset</Button>
-                            </Box>
-                        </React.Fragment>
-                    ) : (
-                        <React.Fragment>
-                            {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                <Button
-                                    color="inherit"
-                                    disabled={activeStep === 0}
-                                    onClick={handleBack}
-                                    sx={{ mr: 1 }}
-                                >
-                                    Back
-                                </Button>
-                                <Box sx={{ flex: '1 1 auto' }} />
+            <div className="web-body">
+                <section className="form left">
+                    <section className="stepper">
+                        <Box sx={{ width: '100%' }}>
+                            <Stepper activeStep={activeStep}>
+                                {steps.map((label, index) => {
+                                    const stepProps = {};
+                                    const labelProps = {};
+                                    return (
+                                        <Step key={label} {...stepProps}>
+                                            <StepLabel {...labelProps}>{label}</StepLabel>
+                                        </Step>
+                                    );
+                                })}
+                            </Stepper>
+                        </Box>
+                    </section>
+                    <TransitionGroup>
+                        {renderSection(activeStep)}
+                    </TransitionGroup>
+                    <section className="actions">
+                        {activeStep === steps.length ? (
+                            <React.Fragment>
+                                <Typography sx={{ mt: 2, mb: 1 }}>
+                                    After clicking the finish button, will proceed to campaign page..
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                    <Box sx={{ flex: '1 1 auto' }} />
+                                    <Button onClick={handleReset}>Reset</Button>
+                                </Box>
+                            </React.Fragment>
+                        ) : (
+                            <React.Fragment>
+                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                    <Button
+                                        color="inherit"
+                                        disabled={activeStep === 0}
+                                        onClick={handleBack}
+                                        sx={{ mr: 1 }}
+                                    >
+                                        Back
+                                    </Button>
+                                    <Box sx={{ flex: '1 1 auto' }} />
 
-                                <Button onClick={handleNext}>
-                                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                </Button>
-                            </Box>
-                        </React.Fragment>
-                    )}
+                                    <Button onClick={handleNext}>
+                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                    </Button>
+                                </Box>
+                            </React.Fragment>
+                        )}
+                    </section>
                 </section>
-            </section>
-            <section className="right"></section>
+                <section className="right">
+                    <div className="right-text">
+                        Embark on your fundraising journey now!
+                    </div>
+                </section>
+            </div>
         </>
     );
 }
