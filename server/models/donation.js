@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const donationSchema = new Schema({
   campaign: {
     type: Schema.Types.ObjectId,
-    ref: "Campaign",
+    ref: "Campaigns",
     required: true,
   },
   donor: {

@@ -21,10 +21,7 @@ const campaignSchema = new Schema({
   amountCollected: {
     type: Number,
   },
-  donors: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  }],
+
   donations: [{
     type: Schema.Types.ObjectId,
     ref: 'Donation',
