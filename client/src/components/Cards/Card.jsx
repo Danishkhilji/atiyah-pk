@@ -2,7 +2,7 @@ import "./card.css"
 import React from 'react'
 
 import Card from '@mui/material/Card';
-import starIcon from "../../Assets/card image/star.png"
+import starIcon from "../../Assets/card_image/star.png"
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -15,7 +15,7 @@ const Cards = ({ data }) => {
         <div className="cards">
             {data.map((item) => (
                 <a href="campaign"><Card className="card" sx={{ maxWidth: 345 }}>
-                    <img className="card-img" src={item.images} alt="card image" />
+                    <img className="card-img" src={item.images} alt="card_image" />
                     <CardContent>
                         <div className="card-btn">
                             <DonateBtn />

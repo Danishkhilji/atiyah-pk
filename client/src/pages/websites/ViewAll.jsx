@@ -1,9 +1,9 @@
 import React from 'react'
 import Footer from '../../components/Footer/Footer'
 import Cards from '../../components/Cards/Card'
-import cardImg from "../../Assets/card image/card-img.jpg"
-import eduImg from "../../Assets/card image/education.jpg"
-import bookImg from "../../Assets/card image/book.jpg"
+import cardImg from "../../Assets/card_image/card-img.jpg"
+import eduImg from "../../Assets/card_image/education.jpg"
+import bookImg from "../../Assets/card_image/book.jpg"
 import Navbar from '../../components/Navbar/Navbar'
 import searchIcon from "../../Assets/logos/search.png"
 import notiIcon from "../../Assets/logos/notification.png"

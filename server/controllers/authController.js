@@ -9,6 +9,8 @@ const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
   let { email, password } = req.body;
+  
+  console.log(email,password)
   if (!email || !password) {
     res.status(400).send("Email and Password Required");
     return;
@@ -39,10 +41,11 @@ exports.LogIn = tryCatch(async (req, res) => {
 });
 
 exports.SignUp = tryCatch(async (req, res) => {
-  const { name, email, password, role } = req.body;
-
-  if (!name || !password || !email || !role) {
-    res.status(400).send("Each field required");
+  const { name, email, password } = req.body;
+  const role = "admin"
+  console.log(name, email, password)
+  if (!name || !password || !email ) {
+    res.status(400).json({ success: false, message: "Each field required" });
     return;
   }
 
@@ -51,14 +54,14 @@ exports.SignUp = tryCatch(async (req, res) => {
   });
 
   if (existingUser) {
-    res.status(409).send("Try with another username or email");
+    res.status(403).json({ success: false, message: "Try with another username or email" });
     return;
   }
 
   const user = new userModel({ name, email, password, role });
   user.password = await bcrypt.hash(user.password, 12);
   await user.save();
-  res.send("User added");
+  res.json({ success: true, message: "User added" });
 });
 
 exports.LogOut = tryCatch(async (req, res) => {

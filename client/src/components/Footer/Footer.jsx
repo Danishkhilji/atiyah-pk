@@ -7,7 +7,6 @@ import Twitter_bw from '../../Assets/logos/twitter.png'
 import LinkedIn_bw from '../../Assets/logos/linkedin.png'
 import Youtube_bw from '../../Assets/logos/youtube.png'
 import Mail from '../../Assets/logos/mail.png'
-import { width } from "@mui/system";
 
 export default function Footer() {
     return (
@@ -44,7 +43,7 @@ export default function Footer() {
                                     <img src={Mail} alt="" className="mail-icon" />
                                     <input type="text" id="email" name="email" placeholder="Input your Email" />
                                 </div>
-                                <Button variant="contained" id="subscribe-btn">Subscribe</Button>
+                                <Button variant="contained" id="subscribe-btn" style={{ background: '#117b34' }}>Subscribe</Button>
                             </div>
                             <br />
 

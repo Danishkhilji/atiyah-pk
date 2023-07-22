@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import mainImg from "../../Assets/landing main image/landing-main-img.jpg"
-import cardImg from "../../Assets/card image/card-img.jpg"
-import eduImg from "../../Assets/card image/education.jpg"
-import bookImg from "../../Assets/card image/book.jpg"
+import cardImg from "../../Assets/card_image/card-img.jpg"
+import eduImg from "../../Assets/card_image/education.jpg"
+import bookImg from "../../Assets/card_image/book.jpg"
 import oneIcon from "../../Assets/logos/number-1.png"
 import twoIcon from "../../Assets/logos/number-2.png"
 import threeIcon from "../../Assets/logos/number-3.png"
@@ -12,8 +12,14 @@ import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
 import { NavLink } from 'react-router-dom';
-import { CardImg } from 'react-bootstrap'
+
+import { useSpring, animated } from 'react-spring';
 const Home = () => {
+
+
+  const slideInFromLeft = useSpring({ opacity: 1, transform: 'translateX(0)', from: { opacity: 0, transform: 'translateX(-100%)' }, config: { duration: 1000 } });
+
+
   const data = [
     {
       images: cardImg,
@@ -63,12 +69,12 @@ const Home = () => {
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
       <div id='home' className='main-landing-title'>
-        <div className='landing-title'>
+        <animated.div style={slideInFromLeft} className='landing-title'>
           <h1>ATIYAH PK</h1>
           <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
-        </div>
-
+        </animated.div>
       </div>
+
       <div className='main-landing-head-btn'>
         <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
         <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
@@ -76,7 +82,7 @@ const Home = () => {
       <div className='main-img-container'>
         <img className='main-img' src={mainImg} alt="main-img" />
       </div>
-      <div id='how-it-works' className='box-landing-steps'>
+      <animated.div style={slideInFromLeft} id='how-it-works' className='box-landing-steps'>
         <div className='main-landing-page-steps-res'>
           <h5>How it works</h5>
           <h2>Fundraising of Atiyah Pk<br />takes just a few minutes</h2>
@@ -98,7 +104,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </animated.div>
       <div className='landing-trust-msg'>
         <div>
           <h5>Trust and Safety</h5>
@@ -109,7 +115,7 @@ const Home = () => {
           <h4>about a thing, we've got you covered.</h4>
         </div>
       </div>
-      <div className='main-landing-started-msg'>
+      <animated.div style={slideInFromLeft} className='main-landing-started-msg'>
         <div className='landing-started-msg'>
           <div>
             <h4>Ready to get started? join</h4>
@@ -120,7 +126,7 @@ const Home = () => {
             <img className='flower-img' src={flower} alt="flowerimage" />
           </div>
         </div>
-      </div>
+      </animated.div>
       <div id='campaign' className='compaigns'>
         <h5>Popular Compaigns</h5>
         <div  >
@@ -133,7 +139,7 @@ const Home = () => {
         <Footer />
       </div>
 
-    </div>
+    </div >
   )
 }
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState    } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -15,18 +15,19 @@ import facebookLogo from '../../../Assets/logos/facebook.png'
 import appleLogo from '../../../Assets/logos/apple.png'
 import { useNavigate, NavLink } from 'react-router-dom';
 import RightPic from '../../../Assets/png/rightpic.jpg'
+import { Login } from '../../../request/authAPIS';
+import { ToastContainer } from 'react-toastify';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
     const navigate = useNavigate()
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        console.log(email)
+        Login({email,password})
     };
 
     return (
@@ -70,6 +71,8 @@ export default function SignIn() {
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
+                                        onChange={(e)=>setEmail(e.target.value)}
+
                                     />
                                     <TextField
                                         margin="normal"
@@ -80,6 +83,7 @@ export default function SignIn() {
                                         type="password"
                                         id="password"
                                         autoComplete="current-password"
+                                        onChange={(e)=>setPassword(e.target.value)}
                                     />
                                     <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
@@ -93,7 +97,6 @@ export default function SignIn() {
                                         fullWidth
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
-                                        onClick={() => navigate("/admin")}
                                     >
                                         Sign In
                                     </Button>
@@ -118,6 +121,7 @@ export default function SignIn() {
                     <img src={RightPic} alt='' />
                 </div>
             </div >
+            <ToastContainer />
         </>
     );
 }

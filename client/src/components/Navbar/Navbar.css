@@ -2,13 +2,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    height: 5.2rem;
 }
 
 .logo {
-
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 50px;
     display: block;
+    margin-left: 15px;
+    margin-top: 7px;
 }
 
 .drop-btn {
@@ -28,13 +30,12 @@
     justify-content: space-around;
     align-items: center;
     color: #808080;
-
 }
 
 .nav-logos {
-    width: 400px;
+    width: 360px;
     display: flex;
-    justify-content: center;
+    margin-right: 22px;
     align-items: center;
     justify-content: space-around;
 }
@@ -85,10 +86,18 @@ a {
 
 .desk-tab {
     display: block;
+    width: 50rem;
+    height: 76px;
 }
 
 .responsive-tab {
     display: none;
+}
+
+.css-jpln7h-MuiTabs-scroller {
+    overflow: hidden;
+    margin-bottom: 0px;
+    height: 60px;
 }
 
 /* style for Mobile */

@@ -16,7 +16,7 @@ const Sidebar = ({ data }) => {
   const navigate = useNavigate();
   const getList = () => (
     <div style={{ width: 250 }} onClick={() => setOpen(false)}>
-      <div className="logo" style={{ height: 100, position: "relative", marginLeft: "10px" }}>
+      <div className="logo" style={{ height: 100, position: "relative", marginLeft: "10px", width: '7rem' }}>
         <img
           src={Logo}
           alt="Atiyah.pk"
@@ -25,17 +25,21 @@ const Sidebar = ({ data }) => {
       </div>
       <div style={{ width: 200, margin: "0 auto" }}>
         {data.map((item, index) => (
-          <ListItem
+          < ListItem
             button
             key={index}
             style={{
               color: item.color,
               borderRadius: "6px",
-              backgroundColor: item.active ? "#f7716a" : "transparent",
+              backgroundColor: item.active ? "#117b34" : "transparent",
               height: "30px",
               padding: "20px 16px",
             }}
-            onClick={() => navigate(`/admin/${item.path}`)}
+            onClick={() => {
+              if (item.name !== 'My Campaigns' && item.name !== 'Profit' && item.name !== 'Setting') {
+                navigate(`/admin/${item.path}`)
+              }
+            }}
           >
             <ListItemIcon style={{ color: item.color }}>
               {item.icon}
@@ -44,7 +48,7 @@ const Sidebar = ({ data }) => {
           </ListItem>
         ))}
       </div>
-    </div>
+    </div >
   );
 
   return (
