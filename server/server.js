@@ -7,8 +7,8 @@ const db = require('./config/database');
 var cors = require('cors')
 require('dotenv').config()
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 app.use(cookieParser());
+
 app.use(cors({
   origin: 'http://localhost:5000', 
   credentials: true,

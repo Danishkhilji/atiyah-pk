@@ -8,13 +8,13 @@ const createJWT = require("../config/jwt");
 const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
-  let { name, password } = req.body;
-  if (!name || !password) {
-    res.status(400).send("Name and Password Required");
+  let { email, password } = req.body;
+  if (!email || !password) {
+    res.status(400).send("Email and Password Required");
     return;
   }
 
-  const user = await userModel.findOne({ name: name });
+  const user = await userModel.findOne({ email: email });
   if (!user) {
     res.status(404).send("User not found");
     return;
@@ -59,7 +59,6 @@ exports.SignUp = tryCatch(async (req, res) => {
   user.password = await bcrypt.hash(user.password, 12);
   await user.save();
   res.send("User added");
-  console.log("Record added");
 });
 
 exports.LogOut = tryCatch(async (req, res) => {
@@ -123,6 +122,7 @@ exports.VerifyOTP = tryCatch(async (req, res) => {
   }
 
   const storedOTP = await OTP.findOne({ user: user._id }).sort({ createdAt: -1 });
+  console.log(storedOTP)
   if (!storedOTP || otp !== storedOTP.otp || storedOTP.expirationTime < Date.now()) {
     res.status(401).send("Invalid OTP");
     return;
