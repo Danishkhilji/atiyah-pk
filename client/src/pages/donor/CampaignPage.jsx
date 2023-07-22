@@ -8,8 +8,13 @@ import searchIcon from "../../Assets/logos/search.png"
 import notiIcon from "../../Assets/logos/notification.png"
 import { NavLink } from 'react-router-dom';
 import { ProgressBar } from "react-bootstrap";
+import Footer from "../../components/Footer/Footer";
 
 export default function CampaignPage() {
+    const raisedAmount = 12645;
+    const goalAmount = 130000;
+    const progressPercentage = (raisedAmount / goalAmount) * 100;
+
     return (
         <>
             <Navbar link1="Home" link2="My profile" link3="My Donations" link4="Donation History" link7="Support" link8={<div style={{
@@ -42,16 +47,15 @@ export default function CampaignPage() {
                         </div>
                         <div id="col">
                             <div className="endorsment-sec">
-                                <h6 id="progress-data" style={{
-                                    margin: "4px auto",
-                                    fontSize: "smaller"
-                                }}>$126455 Raised of $130000</h6>
-                                <ProgressBar now={60} className="pgbar" />
+                                <h6 id="progress-data" style={{ margin: "4px auto", fontSize: "smaller" }}>
+                                    Rs.{raisedAmount} Raised of Rs.{goalAmount}
+                                </h6>
+                                <ProgressBar now={progressPercentage} className="pgbar" />
                                 <br />
                             </div>
                             <div className="endorsement-btn">
-                                <Button variant="contained">Share</Button>
-                                <Button variant="contained">Donate Now</Button>
+                                <Button variant="contained" style={{ background: "#117b34" }}>Share</Button>
+                                <Button variant="contained" style={{ background: "#117b34" }}>Donate Now</Button>
                             </div>
                             <p className="a">1696 people just donated <br /> Recent Donations</p>
                             <div className="recent-donations">
@@ -69,7 +73,50 @@ export default function CampaignPage() {
                                 </div>
                             </div>
                             <div className="comment-section">
-                                <h6>Comments</h6>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                                <div className="comment">
+                                    <img src={User} alt="" />
+                                    <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
                                 <div className="comment">
                                     <img src={User} alt="" />
                                     <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
@@ -87,6 +134,7 @@ export default function CampaignPage() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import mainImg from "../../Assets/landing main image/landing-main-img.jpg"
-import cardImg from "../../Assets/card image/card-img.jpg"
-import eduImg from "../../Assets/card image/education.jpg"
-import bookImg from "../../Assets/card image/book.jpg"
+import cardImg from "../../Assets/card_image/card-img.jpg"
+import eduImg from "../../Assets/card_image/education.jpg"
+import bookImg from "../../Assets/card_image/book.jpg"
 import oneIcon from "../../Assets/logos/number-1.png"
 import twoIcon from "../../Assets/logos/number-2.png"
 import threeIcon from "../../Assets/logos/number-3.png"
@@ -73,8 +73,8 @@ const Home = () => {
           <h1>ATIYAH PK</h1>
           <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
-
       </div>
+
       <div className='main-landing-head-btn'>
         <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
         <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>

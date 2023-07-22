@@ -19,7 +19,7 @@ const data = [
     path: ""
   },
   { name: "Donors", icon: <InboxOutlinedIcon />, path: "donor-list" },
-  { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list"  },
+  { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list" },
   { name: "Profit", icon: <MailOutlineIcon /> },
   { name: "Setting", icon: <DraftsOutlinedIcon /> },
 ];

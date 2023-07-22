@@ -6,9 +6,9 @@ import searchIcon from "../../Assets/logos/search.png"
 import notiIcon from "../../Assets/logos/notification.png"
 import profileIcon from "../../Assets/logos/user.png"
 import { NavLink } from 'react-router-dom';
-import cardImg from "../../Assets/card image/card-img.jpg"
-import eduImg from "../../Assets/card image/education.jpg"
-import bookImg from "../../Assets/card image/book.jpg"
+import cardImg from "../../Assets/card_image/card-img.jpg"
+import eduImg from "../../Assets/card_image/education.jpg"
+import bookImg from "../../Assets/card_image/book.jpg"
 import "./donorLanding.css"
 
 import { height } from '@mui/system'

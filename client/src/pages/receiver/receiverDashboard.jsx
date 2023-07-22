@@ -21,7 +21,7 @@ const data = [
     color: "#fff",
     path: "",
   },
-  { name: "My Campaigns", icon: <InboxOutlinedIcon />, path: "" },
+  { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
 ];
 
 const ReciverDashboard = () => {
@@ -43,20 +43,20 @@ const ReciverDashboard = () => {
               <h1>Analytics Overview</h1>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
-                    <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px">
-                      <AddIcon /> Create new campaign
-                    </Button>
-                    <Button BGcolor="#EB6769FF" color="#FFFFFFFF" height="36px" style={{ marginLeft: '10px' }}>
-                      <ShareIcon /> Share Campaign
-                    </Button>
-                  </div>
+              <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px">
+                <AddIcon /> Create new campaign
+              </Button>
+              <Button BGcolor="#117b34" color="#FFFFFFFF" height="36px" style={{ marginLeft: '10px' }}>
+                <ShareIcon /> Share Campaign
+              </Button>
+            </div>
           </div>
         </div>
         <div style={{ display: "flex", flex: 1 }}>
           <div style={{ display: "flex", flexDirection: "column", flex: "2" }}>
             <div style={{ flex: 1 }}>
-              <div style={{ display: "flex" , flexWrap: "wrap" , justifyContent: "space-between", gap: "20px" }}>
-              <Box
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "20px" }}>
+                <Box
                   sx={{
                     background: "#F2F4FDFF",
                     padding: "10px",
@@ -127,13 +127,13 @@ const ReciverDashboard = () => {
               </div>
             </div>
             <div style={{ flex: 1, }}>
-            <AdminBarChart />
+              <AdminBarChart />
             </div>
           </div>
-          <div style={{margin: '20px',  flex: '1'}}> <CommentBox /> </div>
+          <div style={{ margin: '20px', flex: '1' }}> <CommentBox /> </div>
         </div>
         <div style={{ flex: 1 }}>
-        <h1 style={{ marginBottom: "30px" }}>Recent Donation</h1>
+          <h1 style={{ marginBottom: "30px" }}>Recent Donation</h1>
           <CampaignTable style={{ width: "100vw" }} />
         </div>
       </div>
