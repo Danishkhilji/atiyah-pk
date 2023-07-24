@@ -8,13 +8,14 @@ const createJWT = require("../config/jwt");
 const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
-  let { name, password } = req.body;
-  if (!name || !password) {
+  let { email, password } = req.body;
+  console.log(email,password)
+  if (!email || !password) {
     res.status(400).send("Name and Password Required");
     return;
   }
 
-  const user = await userModel.findOne({ name: name });
+  const user = await userModel.findOne({ email: email });
   if (!user) {
     res.status(404).send("User not found");
     return;
