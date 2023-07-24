@@ -1,208 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main-landing-title {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  background: url('../../Assets/landingmainimage/1.png') no-repeat center
+    center/cover;
+  height: 45rem;
+  /* margin-top: 100px; */
 }
 
 .landing-title {
-    opacity: 0;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
+  opacity: 0;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .landing-head-btn {
-    width: 200px;
-    height: 52px;
-    padding: 0 20px;
-    color: #117B34FF;
-    background: #FFFFFFFF;
-    opacity: 1;
-    border-radius: 6px;
-    border-width: 1px;
-    border-color: #117B34FF;
-    border-style: solid;
+  width: 200px;
+  height: 52px;
+  padding: 0 20px;
+  color: #117b34ff;
+  background: #ffffffff;
+  opacity: 1;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: #117b34ff;
+  border-style: solid;
 }
 
 .landing-head-btn:hover {
-    background-color: #117B34FF;
-    color: #FFFFFFFF;
+  background-color: #117b34ff;
+  color: #ffffffff;
 }
 
 .main-landing-head-btn {
-    margin: 0% auto;
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    justify-content: space-between;
+  margin: 0% 12rem;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
 }
 
 .main-img {
-    width: 1000px;
-    height: 500px;
-    border-radius: 12px;
-    margin-top: 20px;
-
+  height: 500px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .main-img-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .compaigns {
-    margin-top: 20px;
-    margin-left: 40px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 4rem;
+}
 
+.scroll-container {
+  display: flex;
+  overflow-x: auto; 
+  scroll-behavior: smooth; 
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 0em;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 .view-all {
-    text-align: end;
+  text-align: end;
 }
 
-
-.digit-icon {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+.steps {
+  display: flex;
+  flex-direction: row;
 }
 
-h5 {
-    font-size: 15px;
+.left-steps {
+  margin: 0 10rem;
+  height: 31rem;
+  margin-top: 1rem;
 }
 
-h6 {
-    font-size: 10px;
+.right-steps {
+  margin-top: 2rem;
 }
 
-.box-landing-steps {
-
-    margin: 20px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    width: 90%;
-    display: flex;
-    justify-content: center;
-}
-
-.main-landing-page-steps {
-
-    width: 800px;
-    display: flex;
-    justify-content: space-between;
+.right-steps img {
+  height: 35rem;
+  margin-right: 3rem;
+  margin-top: -4rem;
 }
 
 .landing-trust-msg {
-    background: url(../../Assets/landing\ main\ image/landing\ page\ trust.jpg);
-    background-size: cover;
-    color: rgb(255, 255, 255);
-    padding: 100px;
-    display: flex;
-    justify-content: center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  padding: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 .landing-started-msg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 843px;
-    height: 323px;
-    background: #FFFFFFFF;
-    border-radius: 6px;
-    box-shadow: 0px 0px 1.5px #171a1f, 0px 0px 2px #171a1f;
-    padding: 30px;
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 843px;
+  height: 323px;
+  background: #ffffffff;
+  border-radius: 6px;
+  box-shadow: 0px 0px 1.5px #171a1f, 0px 0px 2px #171a1f;
+  padding: 30px;
 }
 
 .main-landing-started-msg {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
 
 .Landing-start-btn {
-    width: 174px;
-    height: 44px;
-    padding: 0 16px;
-    font-size: 16px;
-    color: #235312FF;
-    background: #72D94EFF;
-    opacity: 1;
-    border: none;
-    border-radius: 22px;
+  width: 174px;
+  height: 44px;
+  padding: 0 16px;
+  font-size: 16px;
+  color: #235312ff;
+  background: #72d94eff;
+  opacity: 1;
+  border: none;
+  border-radius: 22px;
 }
 
 .Landing-start-btn:hover {
-    background-color: #235312FF;
-    color: #72D94EFF;
+  background-color: #235312ff;
+  color: #72d94eff;
 }
-
-
 
 .flower-img {
-    width: 293px;
-    height: 276px;
-    border-radius: 6px;
+  width: 293px;
+  height: 276px;
+  border-radius: 6px;
 }
 
-/* Mobile screen styling */
-@media only screen and (max-width: 480px) {
-    .main-img {
-        width: 500px;
-        height: 250px;
-    }
+.line {
+  transform: rotate(90deg);
+  position: relative;
+  width: 21rem;
+  top: 12rem;
+  right: 14rem;
+}
 
-    .landing-head-btn {
-        width: 100px;
-        height: 26px;
-        font-size: 8px;
-    }
+.arrow1-1 {
+  position: absolute;
+  height: 2.5rem;
+  top: 62rem;
+  left: 83.8px;
+}
 
-    .main-landing-head-btn {
-        height: 60px;
-        display: flex;
-        flex-direction: column;
-    }
+.arrow1-2 {
+  position: absolute;
+  height: 2.5rem;
+  top: 68.7rem;
+  left: 83.8px;
+}
 
-    .main-landing-page-steps {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.arrow1-3 {
+  position: absolute;
+  height: 2.5rem;
+  top: 75.6rem;
+  left: 83.8px;
+}
 
-    .main-landing-page-steps-res {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .landing-started-msg {
-        display: flex;
-        flex-direction: column;
-        box-shadow: none;
-        height: 600px;
-        justify-content: space-around;
-    }
-
-    h5 {
-        text-align: center;
-    }
-
-    .view-all {
-        text-align: center;
-    }
-
-
-
-
-
+.tick1 {
+  position: absolute;
+  height: 2.5rem;
+  top: 82rem;
+  left: 83.8px;
 }
