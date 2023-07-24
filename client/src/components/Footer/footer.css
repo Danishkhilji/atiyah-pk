@@ -1,3 +1,7 @@
+* {
+  cursor: default;
+}
+
 .footer-copyright-content {
   width: 100%;
   display: flex;

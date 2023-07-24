@@ -17,6 +17,7 @@ const Navbar = (props) => {
   };
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -24,6 +25,7 @@ const Navbar = (props) => {
     setAnchorEl(null);
   };
 
+  // console.log(value)
   return (
     <div className='navbar'>
       <img className='logo' src={logo} alt={logo} />
