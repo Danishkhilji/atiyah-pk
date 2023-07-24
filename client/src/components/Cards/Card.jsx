@@ -7,14 +7,13 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DonateBtn from "../DonateBtn/DonateBtn";
-import { index } from "d3-array";
 
 const Cards = ({ data }) => {
 
     return (
         <div className="cards">
             {data.map((item) => (
-                <a href="campaign"><Card className="card" sx={{ maxWidth: 345 }}>
+                <Card className="card" sx={{ maxWidth: 345 }}>
                     <img className="card-img" src={item.images} alt="card_image" />
                     <CardContent>
                         <div className="card-btn">
@@ -36,7 +35,7 @@ const Cards = ({ data }) => {
                             <h6 className="card-font">{item.price}</h6>
                         </div>
                     </CardActions>
-                </Card></a>
+                </Card>
             ))
 
             }

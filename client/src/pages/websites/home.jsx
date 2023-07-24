@@ -1,17 +1,15 @@
 import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
-import mainImg from "../../Assets/landing main image/landing-main-img.jpg"
 import cardImg from "../../Assets/card_image/card-img.jpg"
 import eduImg from "../../Assets/card_image/education.jpg"
 import bookImg from "../../Assets/card_image/book.jpg"
-import oneIcon from "../../Assets/logos/number-1.png"
-import twoIcon from "../../Assets/logos/number-2.png"
-import threeIcon from "../../Assets/logos/number-3.png"
-import flower from "../../Assets/landing main image/landing flower.png"
+import flower from "../../Assets/jpeg/fundraising2.jpg"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
 import { NavLink } from 'react-router-dom';
+import DownArrow from '../../Assets/png/DownArrow.png'
+import TickMark from '../../Assets/png/TickMark.png'
 
 import { useSpring, animated } from 'react-spring';
 const Home = () => {
@@ -55,67 +53,82 @@ const Home = () => {
       rating: "4.0",
       price: "7000 PKR"
     },
+    {
+      images: eduImg,
+      title: "Shaheen",
+      description: "Request for education",
+      rating: "4.0",
+      price: "7000 PKR"
+    },
   ]
+
   return (
     <div>
       <Navbar link1="Home" link2="Campaigns" link3="About" link4="How it works" link5={<div style={{
         width: '150px',
         display: 'flex',
-        justifyContent: "center",
         alignItems: 'center',
         justifyContent: "space-around"
       }}>
         <NavLink to="login">SignIn</NavLink>
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
+
       <div id='home' className='main-landing-title'>
         <animated.div style={slideInFromLeft} className='landing-title'>
           <h1>ATIYAH PK</h1>
           <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
+
+        <div className='main-landing-head-btn'>
+          <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
+          <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
+        </div>
       </div>
 
-      <div className='main-landing-head-btn'>
-        <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
-        <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
-      </div>
-      <div className='main-img-container'>
-        <img className='main-img' src={mainImg} alt="main-img" />
-      </div>
-      <animated.div style={slideInFromLeft} id='how-it-works' className='box-landing-steps'>
-        <div className='main-landing-page-steps-res'>
-          <h5>How it works</h5>
-          <h2>Fundraising of Atiyah Pk<br />takes just a few minutes</h2>
-          <div className='main-landing-page-steps'>
-            <div className='landing-page-steps'>
-              <img className='digit-icon' src={oneIcon} alt="one icon" />
-              <h5>Start with the basics</h5>
-              <h6>Kick things off with you name and location.</h6>
+      <div id='how-it-works'>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div className="steps">
+          <div className="left-steps">
+
+            <hr className='line' />
+
+
+            <div className='one' style={{ marginBottom: '2rem' }}>
+              <img src={DownArrow} alt="arrow" className='arrow1-1' />
+              <h6>Fundraising</h6>
+              <p>Atiyah is all about fundrising platform similar to gofund me where any one can create their campaign accoridng to their need and raise fund it is basically for paksitani people.</p>
             </div>
-            <div className='landing-page-steps'>
-              <img className='digit-icon' src={twoIcon} alt="two icon" />
-              <h5>Tell your story</h5>
-              <h6>we'll guide you with tips along the way</h6>
+            <div className='two' style={{ marginBottom: '2rem' }}>
+              <img src={DownArrow} alt="arrow" className='arrow1-2' />
+              <h6>Create a Campaign</h6>
+              <p>Just select the purpose of your campaign, write a short description and upload photos. Your campaign will be live within seconds!</p>
             </div>
-            <div className='landing-page-steps'>
-              <img className='digit-icon' src={threeIcon} alt="three icon" />
-              <h5>Share with friends and family</h5>
-              <h6>people out there want to help you</h6>
+            <div className='three' style={{ marginBottom: '2rem' }}>
+              <img src={DownArrow} alt="arrow" className='arrow1-3' />
+              <h6>Fundraise</h6>
+              <p>You can fundraise as an individual or you can get family and friends involved too. Share with them via email, Facebook or Twitter. They don't even need an account!</p>
+            </div>
+            <div className='four' style={{ marginBottom: '2rem' }}>
+              <img src={TickMark} alt="arrow" className='tick1' />
+              <h6>Get Help from our Team</h6>
+              <p>We'll take care of everything - we'll support you every step of the way on your fundraising journey</p>
             </div>
           </div>
-        </div>
-      </animated.div>
-      <div className='landing-trust-msg'>
-        <div>
-          <h5>Trust and Safety</h5>
-          <h4>We have your back.</h4>
-          <h4>With a global team dedicated to trust and</h4>
-          <h4>safety,we've sucessfully managed fundraisers</h4>
-          <h4>worlwide for more than a decade, Don't worry </h4>
-          <h4>about a thing, we've got you covered.</h4>
+
+          <div className="right-steps">
+            <img src={flower} alt="flowerimage" />
+          </div>
         </div>
       </div>
-      <animated.div style={slideInFromLeft} className='main-landing-started-msg'>
+
+      {/* <animated.div style={slideInFromLeft} className='main-landing-started-msg'>
         <div className='landing-started-msg'>
           <div>
             <h4>Ready to get started? join</h4>
@@ -126,15 +139,29 @@ const Home = () => {
             <img className='flower-img' src={flower} alt="flowerimage" />
           </div>
         </div>
-      </animated.div>
-      <div id='campaign' className='compaigns'>
-        <h5>Popular Compaigns</h5>
-        <div  >
-          <Cards data={data} />
+      </animated.div> */}
 
+      <div id='campaign' className='compaigns'>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginRight: '2rem'
+        }}>
+          <h5>Popular Campaigns</h5>
+          <a className='view-all' href="detail"><p>view all</p></a>
         </div>
-        <a className='view-all' href="detail"><p>view all</p></a>
+        <div className='scroll-container'>
+          <Cards data={data} />
+        </div>
       </div>
+
       <div id='abouts'>
         <Footer />
       </div>
