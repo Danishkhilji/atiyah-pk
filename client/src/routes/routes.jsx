@@ -19,6 +19,11 @@ import ViewAll from '../pages/websites/ViewAll';
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
 import RecieverProfile from '../pages/receiver/RecieverProfile';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
+import ForgetPass from '../pages/ForgetScreens/ForgetPass';
+import OTP from '../pages/ForgetScreens/OTP';
+import NewPass from '../pages/ForgetScreens/NewPass';
+import Updated from '../pages/ForgetScreens/Updated';
+import ErrMsg from '../pages/ErrorMsg/ErrMsg';
 
 const AppRoutes = () => {
   return (
@@ -38,6 +43,11 @@ const AppRoutes = () => {
       <Route path="detail" element={<ViewAll />} />
       <Route path="campaign" element={<CampaignPage />} />
       <Route path="reciver" element={<RecieverProfile />} />
+      <Route path="forget-pass" element={<ForgetPass />} />
+      <Route path="OTP" element={<OTP />} />
+      <Route path="new-pass" element={<NewPass />} />
+      <Route path="updated" element={<Updated />} />
+      <Route path="err" element={<ErrMsg />} />
     </Routes>
   )
 }
