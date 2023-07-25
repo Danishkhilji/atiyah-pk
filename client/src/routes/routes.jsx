@@ -19,6 +19,11 @@ import ViewAll from '../pages/websites/ViewAll';
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
 import RecieverProfile from '../pages/receiver/RecieverProfile';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
+import ForgetPass from '../pages/ForgetScreens/ForgetPass';
+import OTP from '../pages/ForgetScreens/OTP';
+import NewPass from '../pages/ForgetScreens/NewPass';
+import Updated from '../pages/ForgetScreens/Updated';
+import ErrMsg from '../pages/ErrorMsg/ErrMsg';
 import { PublicRoute , PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
   return (
@@ -27,6 +32,12 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="forget-pass" element={<ForgetPass />} />
+          <Route path="OTP" element={<OTP />} />
+          <Route path="new-pass" element={<NewPass />} />
+          <Route path="updated" element={<Updated />} />
+          <Route path="err" element={<ErrMsg />} />
+
       </Route>
       <Route element={<PrivateRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
