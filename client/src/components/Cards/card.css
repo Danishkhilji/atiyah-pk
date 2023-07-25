@@ -1,57 +1,90 @@
-.card-img {
-    width: 275px;
-    height: 200px;
+.Cards {
+    display: flex;
 }
 
 .card {
-    width: 100%;
-    height: 355px;
-    background: #FFFFFFFF;
-    border-radius: 6px;
+  width: 252px;
+  height: 265px;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  transition: 0.2s ease-in-out;
 }
 
-.cards {
-    display: flex;
-    grid-template-columns: repeat(4, 1fr);
-    /* Displays 4 cards in each row */
-    gap: 20px;
-    /* Adds a gap between cards */
-
+.img {
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  display: flex;
+  align-items: top;
+  justify-content: right;
 }
 
-.card-font {
-    font-size: 18px;
+.text {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
 }
 
-.card-btn {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+.save .svg {
+  transition: 0.2s ease-in-out;
+  width: 15px;
+  height: 15px;
+}
+
+.icon-box {
+  margin-top: 15px;
+  width: 70%;
+  padding: 10px;
+  background-color: #e3fff9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.icon-box svg {
+  width: 17px;
+}
+
+.text .h3 {
+  font-family: 'Lucida Sans' sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+}
+
+.price {
+  display: flex;
+  justify-content: end;
+  font-family: 'Lucida Sans' sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+}
+
+.text .p {
+  font-family: 'Lucida Sans' sans-serif;
+  color: #999999;
+  font-size: 13px;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.save:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.save:hover .svg {
+  fill: #ced8de;
 }
 
 .star-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.card-rating {
-    display: flex;
-
-}
-
-.card-rating-request {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-between;
-}
-
-@media only screen and (max-width: 480px) {
-    .cards {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+    height: 18px;
+    margin-right: 4px;
 }

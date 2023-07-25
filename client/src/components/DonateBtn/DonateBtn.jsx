@@ -3,9 +3,9 @@ import React from 'react'
 
 const DonateBtn = () => {
     return (
-        <div>
-            <a href="signup"><button className="donate-btn">DONATE</button></a>
-        </div>
+        <button className="button">
+            <p className="text">Donate Now</p>
+        </button>
     )
 }
 
