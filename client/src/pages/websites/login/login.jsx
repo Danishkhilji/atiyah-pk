@@ -17,9 +17,13 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { Login } from '../../../request/authAPIS';
 import { ToastContainer } from 'react-toastify';
+import { useDispatch } from 'react-redux';  
+import { setUser } from '../../../store/userSlice';
+
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+    const dispatch =useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
@@ -27,7 +31,12 @@ export default function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(email)
-        Login({email,password})
+        Login({email,password}).then((response)=>{
+            console.log(response,"response")
+            // let user = response.data.user
+            // dispatch(setUser(user))
+ 
+        })
     };
 
     return (

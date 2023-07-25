@@ -12,38 +12,43 @@ exports.LogIn = tryCatch(async (req, res) => {
   
   console.log(email,password)
   if (!email || !password) {
-    res.status(400).send("Email and Password Required");
+    res.status(400).json({ success: false, message: "Email and Password Required" });
     return;
   }
 
   const user = await userModel.findOne({ email: email });
+  console.log(user)
+
   if (!user) {
-    res.status(404).send("User not found");
+    res.status(404).json({ success: false, message: "User not found" });
     return;
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    res.status(401).send("Invalid password");
+    res.status(401).json({ success: false, message: "Invalid password" });
     return;
   }
 
   let access_token = createJWT(user.email, user._id, 3600);
   const maxAge = 1000 * 60 * 60 * 24;
-  res
-    .status(202)
-    .cookie("JWT_token", access_token, { maxAge, httpOnly: true })
-    .json({
-      email: user.email,
-      name: user.name,
-      _id: user._id,
-    });
+  console.log(access_token)
+
+      res.status(202).cookie("access_token", access_token, { maxAge, 
+        httpOnly: true
+       })
+              .json({ success: true, message: "login successfuly" ,
+                user:{email: user.email,
+                      name: user.name,
+                    _id: user._id,
+                    role: user.role
+                  }
+                });
 });
 
 exports.SignUp = tryCatch(async (req, res) => {
   const { name, email, password } = req.body;
-  const role = "admin"
-  console.log(name, email, password)
+  const role = "receiver"
   if (!name || !password || !email ) {
     res.status(400).json({ success: false, message: "Each field required" });
     return;

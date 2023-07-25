@@ -20,10 +20,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-  secret: process.env.SESSION_KEY, // Replace with a secret key for session encryption
+  secret: process.env.SESSION_KEY, 
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }, // Set to true if using SSL
+  cookie: { secure: false },
 }));
 
 const publicRoutes = require("./routes/publicRoutes");
