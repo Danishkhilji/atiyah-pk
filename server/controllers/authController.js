@@ -9,15 +9,15 @@ const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
   let { email, password } = req.body;
-  
-  console.log(email,password)
+
   if (!email || !password) {
-    res.status(400).json({ success: false, message: "Email and Password Required" });
+    res
+      .status(400)
+      .json({ success: false, message: "Email and Password Required" });
     return;
   }
 
   const user = await userModel.findOne({ email: email });
-  console.log(user)
 
   if (!user) {
     res.status(404).json({ success: false, message: "User not found" });
@@ -32,24 +32,26 @@ exports.LogIn = tryCatch(async (req, res) => {
 
   let access_token = createJWT(user.email, user._id, 3600);
   const maxAge = 1000 * 60 * 60 * 24;
-  console.log(access_token)
 
-      res.status(202).cookie("access_token", access_token, { maxAge, 
-        httpOnly: true
-       })
-              .json({ success: true, message: "login successfuly" ,
-                user:{email: user.email,
-                      name: user.name,
-                    _id: user._id,
-                    role: user.role
-                  }
-                });
+  res
+    .status(202)
+    .cookie("access_token", access_token, { maxAge, httpOnly: true })
+    .json({
+      success: true,
+      message: "login successfuly",
+      user: {
+        email: user.email,
+        name: user.name,
+        _id: user._id,
+        role: user.role,
+      },
+    });
 });
 
 exports.SignUp = tryCatch(async (req, res) => {
   const { name, email, password } = req.body;
-  const role = "receiver"
-  if (!name || !password || !email ) {
+  const role = "receiver";
+  if (!name || !password || !email) {
     res.status(400).json({ success: false, message: "Each field required" });
     return;
   }
@@ -59,9 +61,16 @@ exports.SignUp = tryCatch(async (req, res) => {
   });
 
   if (existingUser) {
-    res.status(403).json({ success: false, message: "Try with another username or email" });
+    res
+      .status(403)
+      .json({ success: false, message: "Try with another username or email" });
     return;
   }
+
+  // let permissions
+  // if (role === "donor"){
+  //   permissions = ["/donor", "/donation", "/success","/detail","/campaign", "/donation", "/success","/detail",""]
+  // }
 
   const user = new userModel({ name, email, password, role });
   user.password = await bcrypt.hash(user.password, 12);
@@ -102,8 +111,7 @@ exports.SendOTPmail = tryCatch(async (req, res) => {
     return;
   }
 
-  const {otp,expirationTime} = generateOTP();
-
+  const { otp, expirationTime } = generateOTP();
 
   const newOTP = new OTP({
     user: user._id,
@@ -114,7 +122,6 @@ exports.SendOTPmail = tryCatch(async (req, res) => {
   await newOTP.save();
   res.status(200).send("OTP sent successfully");
 });
-
 
 exports.VerifyOTP = tryCatch(async (req, res) => {
   const { email, otp } = req.body;
@@ -129,9 +136,15 @@ exports.VerifyOTP = tryCatch(async (req, res) => {
     return;
   }
 
-  const storedOTP = await OTP.findOne({ user: user._id }).sort({ createdAt: -1 });
-  console.log(storedOTP)
-  if (!storedOTP || otp !== storedOTP.otp || storedOTP.expirationTime < Date.now()) {
+  const storedOTP = await OTP.findOne({ user: user._id }).sort({
+    createdAt: -1,
+  });
+  console.log(storedOTP);
+  if (
+    !storedOTP ||
+    otp !== storedOTP.otp ||
+    storedOTP.expirationTime < Date.now()
+  ) {
     res.status(401).send("Invalid OTP");
     return;
   }
@@ -145,7 +158,9 @@ exports.UpdatePassword = tryCatch(async (req, res) => {
   const { newPassword, confirmPassword, email } = req.body;
 
   if (!newPassword || !confirmPassword || !email) {
-    res.status(400).send("New password, confirm password, and email are required");
+    res
+      .status(400)
+      .send("New password, confirm password, and email are required");
     return;
   }
 

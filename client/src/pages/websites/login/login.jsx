@@ -19,7 +19,7 @@ import { Login } from '../../../request/authAPIS';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';  
 import { setUser } from '../../../store/userSlice';
-
+import { loginSuccess } from '../../../store/authSlice';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -32,10 +32,9 @@ export default function SignIn() {
         event.preventDefault();
         console.log(email)
         Login({email,password}).then((response)=>{
-            console.log(response,"response")
-            // let user = response.data.user
-            // dispatch(setUser(user))
- 
+            let user = response.data.user
+            dispatch(setUser(user))
+            dispatch(loginSuccess());
         })
     };
 

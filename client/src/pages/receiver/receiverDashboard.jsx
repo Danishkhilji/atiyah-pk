@@ -13,6 +13,7 @@ import CommentBox from "../../components/comments/commentBox";
 import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
+import { useNavigate} from 'react-router-dom';
 const data = [
   {
     name: "Dashboard",
@@ -25,6 +26,12 @@ const data = [
 ];
 
 const ReciverDashboard = () => {
+
+  const navigate = useNavigate()
+  const campaignHandler = ()=>{
+    navigate('/upload-campaign')
+}
+
   return (
     <div style={{ display: "flex" }}>
       <div style={{ flex: "0 0 250px", marginRight: "30px" }}>
@@ -43,7 +50,7 @@ const ReciverDashboard = () => {
               <h1>Analytics Overview</h1>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
-              <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px">
+              <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px" onClick={campaignHandler}>
                 <AddIcon /> Create new campaign
               </Button>
               <Button BGcolor="#117b34" color="#FFFFFFFF" height="36px" style={{ marginLeft: '10px' }}>

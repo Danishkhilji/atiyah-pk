@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const PrivateRoute = () => {
-//   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const isAuthenticated = true
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    console.log(isAuthenticated)
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
@@ -12,8 +12,8 @@ const PrivateRoute = () => {
 };
 
 const PublicRoute = () => {
-//   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const isAuthenticated = true
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    console.log(isAuthenticated)
   if (isAuthenticated) {
     return <Navigate to="/receiverDashboard" />;
   }
