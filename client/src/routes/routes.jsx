@@ -34,7 +34,7 @@ const AppRoutes = () => {
           <Route path="signup" element={<Signup />} />
           <Route path="forget-pass" element={<ForgetPass />} />
           <Route path="OTP" element={<OTP />} />
-          <Route path="new-pass" element={<NewPass />} />
+          <Route path="resetPassword" element={<NewPass />} />
           <Route path="updated" element={<Updated />} />
           <Route path="page404" element={<Page404 />} />
 

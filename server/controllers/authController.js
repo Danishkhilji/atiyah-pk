@@ -115,72 +115,74 @@ exports.SendOTPmail = tryCatch(async (req, res) => {
     res.status(404).json({ success: false, message: "User not found" });
     return;
   }
-  const { otp, expirationTime } = generateOTP();
-  const newOTP = new OTP({
-    user: user._id,
-    otp: otp,
-    expirationTime: expirationTime,
-  });
-  sendOTP(email, otp);
-  await newOTP.save();
-  res.status(200).json({ success: false, message: "OTP sent successfully" });
+
+  const storedOTP = await OTP.findOne({ user: user._id });
+  if (storedOTP) {
+    const { otp, expirationTime } = generateOTP();
+    storedOTP.otp = otp;
+    storedOTP.expirationTime = expirationTime;
+    await storedOTP.save();
+    sendOTP(email, otp);
+  } else {
+    const { otp, expirationTime } = generateOTP();
+    const newOTP = new OTP({
+      user: user._id,
+      otp: otp,
+      expirationTime: expirationTime,
+    });
+    sendOTP(email, otp);
+    await newOTP.save();
+  }
+
+  res.status(200).json({ success: true, message: "OTP sent successfully" });
 });
 
 exports.VerifyOTP = tryCatch(async (req, res) => {
   const { email, otp } = req.body;
   if (!otp || !email) {
-    res.status(400).send("OTP and Email are required");
+    res.status(400).json({ success: false, message: "OTP are required" });
     return;
   }
-
   const user = await userModel.findOne({ email });
   if (!user) {
-    res.status(404).send("User not found");
+    res.status(404).json({ success: false, message: "User not found" });
     return;
   }
 
-  const storedOTP = await OTP.findOne({ user: user._id }).sort({
-    createdAt: -1,
-  });
-  console.log(storedOTP);
+  const storedOTP = await OTP.findOne({ user: user._id })
   if (
-    !storedOTP ||
-    otp !== storedOTP.otp ||
-    storedOTP.expirationTime < Date.now()
-  ) {
-    res.status(401).send("Invalid OTP");
+    !storedOTP || otp !== storedOTP.otp || storedOTP.expirationTime < Date.now()) {
+    res.status(401).json({ success: false, message: "OTP has expired or is invalid." });
     return;
   }
 
   storedOTP.verified = true;
   await storedOTP.save();
-  res.status(200).send("OTP verified successfully");
+  res.status(200).json({ success: true, message: "OTP verified successfully" });
+
 });
 
 exports.UpdatePassword = tryCatch(async (req, res) => {
   const { newPassword, confirmPassword, email } = req.body;
-
+console.log( newPassword, confirmPassword, email)
   if (!newPassword || !confirmPassword || !email) {
-    res
-      .status(400)
-      .send("New password, confirm password, and email are required");
+    res.status(400).json({ success: false, message: "New password, confirm password are required" });
     return;
   }
 
   if (newPassword !== confirmPassword) {
-    res.status(400).send("New password and confirm password do not match");
+    res.status(400).json({ success: false, message: "New password and confirm password do not match" });
     return;
   }
 
   const user = await userModel.findOne({ email });
   if (!user) {
-    res.status(404).send("User not found");
+    res.status(404).json({ success: false, message: "User not found" });
     return;
   }
 
   const hashedPassword = await bcrypt.hash(newPassword, 10);
   user.password = hashedPassword;
   await user.save();
-
-  res.status(200).send("Password updated successfully");
+  res.status(200).json({ success: true, message: "Password updated successfully" });
 });
