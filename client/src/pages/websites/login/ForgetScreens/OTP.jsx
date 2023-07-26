@@ -4,7 +4,7 @@ import ForgetPassscreens from '../../../../components/ForgetPassScreens/ForgetPa
 const OTP = () => {
     return (
         <div>
-            <ForgetPassscreens heading="Please verify your account" text="Enter your OTP here" content="Verify" />
+            <ForgetPassscreens heading="Please verify your account" text="OTP here" content="Verify" />
         </div>
     )
 }

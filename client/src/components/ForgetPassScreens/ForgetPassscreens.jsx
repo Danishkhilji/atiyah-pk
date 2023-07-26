@@ -38,8 +38,8 @@ const ForgetPassscreens = (props) => {
             onChange={(event) => setEmail(event.target.value)}
             error={error}
           />
-          <div>{props.text2}</div>
-        </div>
+          <div className='input-field'>{props.text2}</div>
+       </div>
         <button className='forget-btns' onClick={handleSubmit}>{props.content}</button>
       </div>
       <ToastContainer />
