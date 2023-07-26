@@ -1,5 +1,5 @@
 import React from 'react'
-import ForgetPassscreens from '../../components/ForgetPassScreens/ForgetPassscreens'
+import ForgetPassscreens from '../../../../components/ForgetPassScreens/ForgetPassscreens'
 
 const ForgetPass = () => {
     return (

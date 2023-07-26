@@ -1,5 +1,5 @@
 import React from 'react'
-import icon from "../../Assets/logos/check-button.png"
+import icon from "../../../../Assets/logos/check-button.png"
 
 const Updated = () => {
     return (

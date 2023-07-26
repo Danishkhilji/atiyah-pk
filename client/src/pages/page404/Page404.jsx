@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from "../../Assets/logos/sad.png"
-const ErrMsg = () => {
+const Page404 = () => {
     return (
         <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <div style={{ width: "40%", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center" }}>
@@ -13,4 +13,4 @@ const ErrMsg = () => {
     )
 }
 
-export default ErrMsg
+export default Page404

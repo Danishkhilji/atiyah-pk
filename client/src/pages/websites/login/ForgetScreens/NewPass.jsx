@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@mui/material/TextField';
-import ForgetPassscreens from '../../components/ForgetPassScreens/ForgetPassscreens'
+import ForgetPassscreens from '../../../../components/ForgetPassScreens/ForgetPassscreens'
 
 const NewPass = () => {
     return (
