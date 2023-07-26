@@ -23,7 +23,7 @@ import ForgetPass from '../pages/ForgetScreens/ForgetPass';
 import OTP from '../pages/ForgetScreens/OTP';
 import NewPass from '../pages/ForgetScreens/NewPass';
 import Updated from '../pages/ForgetScreens/Updated';
-import ErrMsg from '../pages/ErrorMsg/ErrMsg';
+import Page404 from '../pages/page404/page404';
 import { PublicRoute , PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
   return (
@@ -36,7 +36,7 @@ const AppRoutes = () => {
           <Route path="OTP" element={<OTP />} />
           <Route path="new-pass" element={<NewPass />} />
           <Route path="updated" element={<Updated />} />
-          <Route path="err" element={<ErrMsg />} />
+          <Route path="err" element={<Page404 />} />
 
       </Route>
       <Route element={<PrivateRoute />}>
