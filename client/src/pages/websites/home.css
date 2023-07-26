@@ -64,10 +64,13 @@
   margin-top: 20px;
   margin-left: 40px;
   margin-bottom: 4rem;
+  margin-right: 20px;
 }
 
 .scroll-container {
   display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
   overflow-x: auto;
   scroll-behavior: smooth;
 }
@@ -107,45 +110,6 @@
   height: 35rem;
   margin-right: 3rem;
   margin-top: -4rem;
-}
-
-.landing-trust-msg {
-  background-size: cover;
-  color: rgb(255, 255, 255);
-  padding: 100px;
-  display: flex;
-  justify-content: center;
-}
-
-.landing-started-msg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 843px;
-  height: 323px;
-  background: #ffffffff;
-  border-radius: 6px;
-  box-shadow: 0px 0px 1.5px #171a1f, 0px 0px 2px #171a1f;
-  padding: 30px;
-}
-
-.main-landing-started-msg {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-
-.Landing-start-btn {
-  width: 174px;
-  height: 44px;
-  padding: 0 16px;
-  font-size: 16px;
-  color: #235312ff;
-  background: #72d94eff;
-  opacity: 1;
-  border: none;
-  border-radius: 22px;
 }
 
 .Landing-start-btn:hover {

@@ -1,45 +1,45 @@
 import "./card.css"
 import React from 'react'
-
-import Card from '@mui/material/Card';
 import starIcon from "../../Assets/card_image/star.png"
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import DonateBtn from "../DonateBtn/DonateBtn";
+import DonateBtn from "../DonateBtn/DonateBtn"
 
 const Cards = ({ data }) => {
 
     return (
-        <div className="cards">
-            {data.map((item) => (
-                <Card className="card" sx={{ maxWidth: 345 }}>
-                    <img className="card-img" src={item.images} alt="card_image" />
-                    <CardContent>
-                        <div className="card-btn">
-                            <DonateBtn />
-                        </div>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {item.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {item.description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <div className="card-rating-request">
-                            <div className="card-rating">
-                                <img className="star-icon" src={starIcon} alt="icon" />
-                                <h6 className="card-font">{item.rating}</h6>
+        <>
+            <div className="Cards">
+                {data.map((item) => (
+                    <div className="card" style={{ display: 'flex', marginRight: '2rem' }} sx={{ maxWidth: 345 }}>
+                        <div className="img" style={{
+                            backgroundImage: `url(${item.images})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover'
+                        }}></div>
+                        <div className="text">
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}>
+                                <p className="h3"> {item.title} </p>
+                                <DonateBtn />
                             </div>
-                            <h6 className="card-font">{item.price}</h6>
+                            <p className="p"> {item.description} </p>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                marginBottom: '-1rem'
+                            }}>
+                                <div style={{ display: 'flex' }}>
+                                    <img className="star-icon" src={starIcon} alt="icon" />
+                                    <p className="price"> {item.rating} </p>
+                                </div>
+                                <p className="price"> {item.price} </p>
+                            </div>
                         </div>
-                    </CardActions>
-                </Card>
-            ))
-
-            }
-        </div>
+                    </div >
+                ))}
+            </div>
+        </>
     )
 }
 
