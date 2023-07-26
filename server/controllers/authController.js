@@ -4,12 +4,12 @@ const bcrypt = require("bcrypt");
 const userModel = require("../models/user");
 const OTP = require("../models/otp");
 const createJWT = require("../config/jwt");
-
+const validator = require('validator');
 const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
   let { email, password } = req.body;
-
+  console.log(email)
   if (!email || !password) {
     res
       .status(400)
@@ -100,19 +100,22 @@ exports.UpdateProfile = tryCatch(async (req, res) => {
 
 exports.SendOTPmail = tryCatch(async (req, res) => {
   const { email } = req.body;
+  console.log(email)
   if (!email) {
-    res.status(400).send("Email Required");
+    res.status(400).json({ success: false, message: "Email required" });
     return;
   }
+    if (!validator.isEmail(email)) {
+      res.status(400).json({ success: false, message: "Invalid Email Address" });
+      return;
+    }
 
   const user = await userModel.findOne({ email: email });
   if (!user) {
-    res.status(404).send("User not found");
+    res.status(404).json({ success: false, message: "User not found" });
     return;
   }
-
   const { otp, expirationTime } = generateOTP();
-
   const newOTP = new OTP({
     user: user._id,
     otp: otp,
@@ -120,7 +123,7 @@ exports.SendOTPmail = tryCatch(async (req, res) => {
   });
   sendOTP(email, otp);
   await newOTP.save();
-  res.status(200).send("OTP sent successfully");
+  res.status(200).json({ success: false, message: "OTP sent successfully" });
 });
 
 exports.VerifyOTP = tryCatch(async (req, res) => {
