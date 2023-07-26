@@ -10,8 +10,6 @@ import cardImg from "../../Assets/card_image/card-img.jpg"
 import eduImg from "../../Assets/card_image/education.jpg"
 import bookImg from "../../Assets/card_image/book.jpg"
 import "./donorLanding.css"
-
-import { height } from '@mui/system'
 const DonorLandingPage = () => {
   const data = [
     {

@@ -16,12 +16,54 @@ import Consultancy from '../../Assets/png/consultancy.png'
 import Setup from '../../Assets/png/setup.png'
 import Social from '../../Assets/png/social-network.png'
 import { useSpring, animated } from 'react-spring';
+import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 
+
+function useIsInViewport(ref) {
+  const [isInViewport, setIsInViewport] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const top = ref.current.getBoundingClientRect().top;
+      setIsInViewport(top < window.innerHeight);
+    };
+
+    // Attach event listener for scroll events
+    window.addEventListener('scroll', handleScroll);
+
+    // Call the handleScroll once on component mount to check if it's in view initially
+    handleScroll();
+
+    // Clean up event listener when component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [ref]);
+
+  return isInViewport;
+}
+
 const Home = () => {
+  const slideInFromLeftNew = useSpring({ opacity: 1, transform: 'translateX(0)', from: { opacity: 0, transform: 'translateX(-100%)' }, config: { duration: 1000 } });
 
 
-  const slideInFromLeft = useSpring({ opacity: 1, transform: 'translateX(0)', from: { opacity: 0, transform: 'translateX(-100%)' }, config: { duration: 1000 } });
+  const stepsRef = useRef();
+  const isInViewport = useIsInViewport(stepsRef);
+
+
+  const slideInFromLeft = useSpring({
+    opacity: isInViewport ? 1 : 0,
+    transform: isInViewport ? 'translateX(0)' : 'translateX(-100%)',
+    config: { duration: 1000 },
+  });
+
+  const slideInFromRight = useSpring({
+    opacity: isInViewport ? 1 : 0,
+    transform: isInViewport ? 'translateX(0)' : 'translateX(100%)',
+    config: { duration: 1000 },
+  });
+
 
 
   const data = [
@@ -101,9 +143,10 @@ const Home = () => {
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
 
-      <div id='home' className='main-landing-title'>
-        <animated.div style={slideInFromLeft} className='landing-title'>
-          <h1>ATIYAH PK</h1>
+      <div id='home' className='main-landing-title' >
+
+        <animated.div style={slideInFromLeftNew} className='landing-title' >
+          <h1 >ATIYAH PK</h1>
           <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
 
@@ -121,7 +164,7 @@ const Home = () => {
         <br />
         <br />
 
-        <div className="steps">
+        <div className="steps" ref={stepsRef}>
           <div className="left-steps">
 
             <hr className='line' />
@@ -129,23 +172,23 @@ const Home = () => {
 
             <div className='one' style={{ marginBottom: '2rem' }}>
               <img src={DownArrow} alt="arrow" className='arrow1-1' />
-              <h6>Fundraising</h6>
-              <p>Atiyah is all about fundrising platform similar to gofund me where any one can create their campaign accoridng to their need and raise fund it is basically for paksitani people.</p>
+              <animated.h6 style={slideInFromRight}>Fundraising</animated.h6>
+              <animated.p style={slideInFromLeft}>Atiyah is all about fundrising platform similar to gofund me where any one can create their campaign accoridng to their need and raise fund it is basically for paksitani people.</animated.p>
             </div>
             <div className='two' style={{ marginBottom: '2rem' }}>
               <img src={DownArrow} alt="arrow" className='arrow1-2' />
-              <h6>Create a Campaign</h6>
-              <p>Just select the purpose of your campaign, write a short description and upload photos. Your campaign will be live within seconds!</p>
+              <animated.h6 style={slideInFromRight}>Create a Campaign</animated.h6>
+              <animated.p style={slideInFromLeft}>Just select the purpose of your campaign, write a short description and upload photos. Your campaign will be live within seconds!</animated.p>
             </div>
             <div className='three' style={{ marginBottom: '2rem' }}>
               <img src={DownArrow} alt="arrow" className='arrow1-3' />
-              <h6>Fundraise</h6>
-              <p>You can fundraise as an individual or you can get family and friends involved too. Share with them via email, Facebook or Twitter. They don't even need an account!</p>
+              <animated.h6 style={slideInFromRight}>Fundraise</animated.h6>
+              <animated.p style={slideInFromLeft}>You can fundraise as an individual or you can get family and friends involved too. Share with them via email, Facebook or Twitter. They don't even need an account!</animated.p>
             </div>
             <div className='four' style={{ marginBottom: '2rem' }}>
               <img src={TickMark} alt="arrow" className='tick1' />
-              <h6>Get Help from our Team</h6>
-              <p>We'll take care of everything - we'll support you every step of the way on your fundraising journey</p>
+              <animated.h6 style={slideInFromRight}>Get Help from our Team</animated.h6>
+              <animated.p style={slideInFromLeft}>We'll take care of everything - we'll support you every step of the way on your fundraising journey</animated.p>
             </div>
           </div>
 
