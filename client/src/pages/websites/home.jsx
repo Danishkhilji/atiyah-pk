@@ -8,6 +8,7 @@ import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
 import { NavLink } from 'react-router-dom';
+import Tab from '@mui/material/Tab';
 import DownArrow from '../../Assets/png/DownArrow.png'
 import TickMark from '../../Assets/png/TickMark.png'
 import Shield from '../../Assets/png/shield.png'
@@ -18,8 +19,7 @@ import Social from '../../Assets/png/social-network.png'
 import { useSpring, animated } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
-
-
+import { useNavigate } from 'react-router-dom'
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 
@@ -65,6 +65,11 @@ const Home = () => {
   });
 
 
+  const navigate = useNavigate();
+
+  const clickBtn = () => {
+    navigate('/login')
+  }
 
   const data = [
     {
@@ -93,48 +98,13 @@ const Home = () => {
       description: "Request for money",
       rating: "4.5",
       price: "10000 PKR"
-    },
-    {
-      images: eduImg,
-      title: "Shaheen",
-      description: "Request for education",
-      rating: "4.0",
-      price: "7000 PKR"
-    },
-    {
-      images: eduImg,
-      title: "Shaheen",
-      description: "Request for education",
-      rating: "4.0",
-      price: "7000 PKR"
-    },
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.5",
-      price: "10000 PKR"
-    },
-    {
-      images: eduImg,
-      title: "Shaheen",
-      description: "Request for education",
-      rating: "4.0",
-      price: "7000 PKR"
-    },
-    {
-      images: eduImg,
-      title: "Shaheen",
-      description: "Request for education",
-      rating: "4.0",
-      price: "7000 PKR"
-    },
+    }
   ]
 
   return (
     <div>
-      <Navbar link1="Home" link2="Campaigns" link3="About" link4="How it works" link5={<div style={{
-        width: '150px',
+      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link5={<div style={{
+        width: '12%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: "space-around"
@@ -143,7 +113,10 @@ const Home = () => {
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
 
-      <div id='home' className='main-landing-title' >
+      <div
+        id='home'
+        className='main-landing-titles'
+      >
 
         <animated.div style={slideInFromLeftNew} className='landing-title' >
           <h1 >ATIYAH PK</h1>
@@ -151,7 +124,7 @@ const Home = () => {
         </animated.div>
 
         <div className='main-landing-head-btn'>
-          <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
+          <a href="/signup"><button className='landing-head-btn'>Start Campaign</button></a >
           <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
         </div>
       </div>
@@ -269,7 +242,7 @@ const Home = () => {
             </div>
           </div>
 
-          <Button variant="contained" style={{ background: '#117b34' }}>Start a Campaign</Button>
+          <Button onClick={clickBtn} variant="contained" style={{ background: '#117b34' }}>Start a Campaign</Button>
 
         </div>
       </div>
@@ -290,7 +263,7 @@ const Home = () => {
           <h5>Popular Campaigns</h5>
           <a className='view-all' href="detail"><p>view all</p></a>
         </div>
-        <div className='scroll-container'>
+        <div >
           <Cards data={data} />
         </div>
 
@@ -305,12 +278,12 @@ const Home = () => {
           <h5>Latest Campaigns</h5>
           <a className='view-all' href="detail"><p>view all</p></a>
         </div>
-        <div className='scroll-container'>
+        <div >
           <Cards data={data} />
         </div>
       </div>
 
-      <div id='abouts'>
+      <div id='about'>
         <Footer />
       </div>
 
