@@ -6,5 +6,6 @@ export const ENDPOINTS = {
     CREATE_CAMPAIGN: "/receiver/createCampagin",
     SEND_OTP_MAIL:"/SendOTPmail",
     VERIFY_OTP :'/verifyOTP',
-    UPDATE_PASSWORD: '/resetPass'
+    UPDATE_PASSWORD: '/resetPass',
+    GET_USER_CAMPAIGNS: 'receiver/dashbaord/',
   };
