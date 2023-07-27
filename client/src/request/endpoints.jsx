@@ -4,6 +4,7 @@ export const ENDPOINTS = {
     LOGIN: "/login",
     SIGIN: "/signup",
     CREATE_CAMPAIGN: "/receiver/createCampagin",
-    SEND_OTP_MAIL:"/SendOTPmail"
-
+    SEND_OTP_MAIL:"/SendOTPmail",
+    VERIFY_OTP :'/verifyOTP',
+    UPDATE_PASSWORD: '/resetPass'
   };

@@ -1,14 +1,16 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { ENDPOINTS } from './endpoints';
 import Api from './api'
 // Create new user
 export function SignIn(payload) {
+  const navigate = useNavigate();
   return Api.post(ENDPOINTS.SIGIN, payload)
     .then(response => {
       if (response?.data.success === true) {
         toast.success('New user created successfully!');
+        navigate('/login');
         return response;
       } else {
         toast.error('Failed to create account!');
@@ -25,7 +27,7 @@ export function SignIn(payload) {
 
 // user login
 export function Login(payload) {
-  console.log(payload)
+  const navigate = useNavigate();
   return Api.post(ENDPOINTS.LOGIN, payload)
     .then(response => {
       if (response?.data.success === true) {
@@ -42,11 +44,10 @@ export function Login(payload) {
 }
 
 
-export function ForgetPassword(payload) {
-  console.log(payload)
+// user forget password
+export  function ForgetPassword(payload) {
   return Api.post(ENDPOINTS.SEND_OTP_MAIL, payload)
     .then(response => {
-      console.log(response,"response")
       if (response?.data.success === true) {
         toast.success('An OTP has been sent!');
         return response;
@@ -56,6 +57,41 @@ export function ForgetPassword(payload) {
       }
     })
     .catch(error => {
+      toast.error(error?.response.data.message);
+    });
+}
+
+
+export function VerifyOTP(payload) {
+  return Api.post(ENDPOINTS.VERIFY_OTP, payload)
+    .then(response => {
+      console.log(response,"response")
+      if (response?.data.success === true) {
+        toast.success('OTP verified successfully!');
+        return response;
+      } else {
+        toast.error('Invalid OTP.');
+        return;
+      }
+    })
+    .catch(error => {
+      toast.error(error?.response.data.message);
+    });
+}
+
+export function UpdatePassword(payload) {
+  return Api.post(ENDPOINTS.UPDATE_PASSWORD, payload)
+    .then(response => {
+      if (response?.data.success === true) {
+        toast.success(response?.data.message);
+        return response;
+      } else {
+        toast.error('Password updated.');
+        return;
+      }
+    })
+    .catch(error => {
+      console.log(error,"error")
       toast.error(error?.response.data.message);
     });
 }

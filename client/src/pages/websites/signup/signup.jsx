@@ -23,7 +23,6 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(name ,email,password)
     SignIn({name ,email,password})
   };
 
