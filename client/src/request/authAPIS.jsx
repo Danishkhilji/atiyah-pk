@@ -27,7 +27,6 @@ export function SignIn(payload) {
 
 // user login
 export function Login(payload) {
-  const navigate = useNavigate();
   return Api.post(ENDPOINTS.LOGIN, payload)
     .then(response => {
       if (response?.data.success === true) {

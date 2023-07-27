@@ -2,27 +2,39 @@ const tryCatch = require("../utils/tryCatch");
 const campaignModel = require("../models/campaign");
 
 exports.CreateCampaign = tryCatch(async (req, res) => {
-  const { campaign, description, amountNeeded, user } = req.body;
 
+  const {
+    user,
+    city,
+    postalCode,
+    category,
+    campaign,
+    description,
+    amountNeeded,
+    accountTitle,
+    accountNumber,
+  } = req.body;
   const activeCampaign = await campaignModel.findOne({
     user: user,
     status: "active",
   });
-
-  if (activeCampaign) {
-    res.status(400).send("User already has an active campaign");
+if (activeCampaign) {
+    res.status(400).json({ success: false, message: "Already has an active campaign" });
     return;
   }
-
   const newCampaign = new campaignModel({
-    campaign: campaign,
-    description: description,
-    amountNeeded: amountNeeded,
-    user: user,
+    user,
+    city,
+    postalCode,
+    category,
+    campaign,
+    description,
+    amountNeeded,
+    accountTitle,
+    accountNumber,
   });
-
   await newCampaign.save();
-  res.status(200).json(newCampaign);
+  res.status(200).json({ success: false, message: "Already has an active campaign", data:newCampaign });
 });
 
 
@@ -31,9 +43,8 @@ exports.RetrieveData = tryCatch(async (req, res) => {
   console.log(id)
   const campaigns = await campaignModel.find({ user: id }).populate("user").populate("comments");
   if (campaigns.length === 0) {
-    res.status(404).send("No campaigns found for the user");
+    res.status(404).json({ success: false, message: "No active campaigns found" });
     return;
   }
-
-  res.status(200).json(campaigns);
+  res.status(200).json({ success: true, data: campaigns });
 });
