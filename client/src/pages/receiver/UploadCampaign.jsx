@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -29,9 +29,28 @@ const CityName = [
 
 const steps = ['Select City', 'Who are you Raising for', 'Amount', 'Campaign Details', 'Account Details'];
 
+const options = [
+    "Animals", "Business", "Community", "Competitions", "Creative",
+    "Education", "Emergencies", "Environment", "Events", "Faith"
+];
+
 export default function UploadCampaign() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [activeSection, setActiveSection] = useState(null);
+
+    // Function to handle option selection
+    const handleOptionSelect = (option) => {
+        setSelectedOption((prevSelectedOption) =>
+            prevSelectedOption === option ? null : option
+        );
+    };
+
+    // Function to check if an option is selected
+    const isOptionSelected = (option) => {
+        return selectedOption === option;
+    };
 
     const isStepSkipped = (step) => {
         return skipped.has(step);
@@ -54,6 +73,15 @@ export default function UploadCampaign() {
 
     const handleReset = () => {
         setActiveStep(0);
+    };
+
+    const handleSectionActivation = (sectionName) => {
+        setActiveSection(sectionName);
+    };
+
+    // Function to check if a section is active
+    const isSectionActive = (sectionName) => {
+        return activeSection === sectionName;
     };
 
     const renderSection = (step) => {
@@ -98,19 +126,17 @@ export default function UploadCampaign() {
                                 </div>
                                 <div className="section1-2">
                                     <h6>What best describes why you're fundraising?</h6>
-                                    <p>Animals</p>
-                                    <p>Business</p>
-                                    <p>Community</p>
-                                    <p>Competitions</p>
-                                    <br />
-                                    <p>Creative</p>
-                                    <p>Education</p>
-                                    <p>Emergencies</p>
-                                    <p>Environment</p>
-                                    <br />
-                                    <p>Events</p>
-                                    <p>Faith</p>
-                                    <br />
+                                    <div className="Opt">
+                                        {options.map((option) => (
+                                            <p
+                                                key={option}
+                                                className={isOptionSelected(option) ? "activeOption" : ""}
+                                                onClick={() => handleOptionSelect(option)}
+                                            >
+                                                {option}
+                                            </p>
+                                        ))}
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -122,17 +148,20 @@ export default function UploadCampaign() {
                         <div className="section2">
                             <section className="section2">
                                 <h6>Who are you fundraising for?</h6>
-                                <div className="section2-1">
+                                <div className={`section2-1 ${isSectionActive("Yourself") ? "activeOption" : ""}`}
+                                    onClick={() => handleSectionActivation("Yourself")} >
                                     <p>Yourself</p> <br />
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p>Funds are delivered to your bank account for your own use</p>
                                 </div>
-                                <div className="section2-1">
-                                    <p>Yourself</p> <br />
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                <div className={`section2-1 ${isSectionActive("Someone else") ? "activeOption" : ""}`}
+                                    onClick={() => handleSectionActivation("Someone else")} >
+                                    <p>Someone else</p> <br />
+                                    <p>You’ll invite a beneficiary to receive funds or distribute them yourself</p>
                                 </div>
-                                <div className="section2-1">
-                                    <p>Yourself</p> <br />
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                <div className={`section2-1 ${isSectionActive("Charity") ? "activeOption" : ""}`}
+                                    onClick={() => handleSectionActivation("Charity")} >
+                                    <p>Charity</p> <br />
+                                    <p>Funds are delivered to your chosen nonprofit for you</p>
                                 </div>
                             </section>
                         </div>
@@ -166,7 +195,7 @@ export default function UploadCampaign() {
                                     marginBottom: '2rem'
                                 }} />
                                 <TextField id="outlined-basic text" label="Campaign Description" variant="outlined" />
-                                <p>Max 200 words</p>
+                                <p>Max 50 words</p>
                             </section>
                         </div>
                     </CSSTransition>
