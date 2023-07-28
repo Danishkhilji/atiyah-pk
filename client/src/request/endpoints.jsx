@@ -1,14 +1,14 @@
 
 export const ENDPOINTS = {
-  	// public
+// Public
     LOGIN: "/login",
     SIGIN: "/signup",
-    LOGOUT: '/logout',
+    LOGOUT: "/logout",
     SEND_OTP_MAIL:"/SendOTPmail",
     VERIFY_OTP :'/verifyOTP',
     UPDATE_PASSWORD: '/resetPass',
 
-    // Receiver 
+// Receiver
     CREATE_CAMPAIGN: "/receiver/createCampagin",
     GET_USER_CAMPAIGNS: 'receiver/dashbaord/',
   };

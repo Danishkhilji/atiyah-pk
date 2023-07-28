@@ -92,11 +92,13 @@ export function UpdatePassword(payload) {
     });
 }
 
+
 export function Logout(payload) {
   return Api.get(ENDPOINTS.LOGOUT, payload)
     .then(response => {
         return response;
-    }).catch(error => {
+    })
+    .catch(error => {
       toast.error(error?.response.data.message);
     });
 }

@@ -27,9 +27,10 @@ const Navbar = (props, to) => {
   // console.log(value)
   return (
     <div className='navbar'>
-      <img className='main-logo' src={logo} alt={logo} />
+
       <div className='desk-tab'>
         <Tabs className='tabs' >
+          <img className='main-logo' src={logo} alt={logo} />
           {props.link1}
           {props.link4}
           {props.link2}

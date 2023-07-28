@@ -9,7 +9,6 @@ router.patch("/campaginStatus/:id",adminController.CampaignStatusUpdate)
 router.put("/updateProfile/:id",authController.UpdateProfile)
 router.post("/comment/:campaignId",commentController.createComment)
 
-
 module.exports = router
 
 

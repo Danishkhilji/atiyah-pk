@@ -9,7 +9,7 @@
 
 .new-campaigns {
     margin: 30px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .donor-landing-title {
@@ -23,6 +23,15 @@
 
 }
 
+@media only screen and (max-width: 800px) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Displays 4 cards in each row */
+        gap: 10px;
+    }
+}
+
 @media only screen and (max-width: 480px) {
     .view-all {
         text-align: center;
@@ -30,5 +39,12 @@
 
     h4 {
         text-align: center;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        /* Displays 4 cards in each row */
+        gap: 10px;
     }
 }

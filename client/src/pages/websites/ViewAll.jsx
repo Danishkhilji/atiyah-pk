@@ -77,13 +77,7 @@ const ViewAll = () => {
     ]
     return (
         <div>
-            <Navbar link1="Home" link2="My profile" link3="My Donations" link4="Donation History" link7="Support" search={<div style={{
-                width: "15%",
-                display: "flex",
-                marginRight: "22px",
-                alignItems: "center",
-                justifyContent: "space-around"
-            }}><img style={{ width: "25px", height: "25px" }} src={notiIcon} alt="noti" /> <img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" /></div>} />
+            <Navbar search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
             <h4 style={{ marginLeft: "30px" }}>click Campaigns</h4>
             <div style={{ margin: "30px" }}>
                 <Cards data={data} />

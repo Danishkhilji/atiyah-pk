@@ -9,7 +9,6 @@ const { generateOTP, otpverification } = require("../utils/Otp");
 
 exports.LogIn = tryCatch(async (req, res) => {
   let { email, password } = req.body;
-  console.log(email)
   if (!email || !password) {
     res
       .status(400)
@@ -79,8 +78,7 @@ exports.SignUp = tryCatch(async (req, res) => {
 });
 
 exports.LogOut = tryCatch(async (req, res) => {
-  console.log("req received")
-  res.status(202).clearCookie("access_token").send("Logout");
+  res.status(202).clearCookie("access_token").json({ success: false, message: "logout" });
 });
 
 exports.UpdateProfile = tryCatch(async (req, res) => {
@@ -165,7 +163,6 @@ exports.VerifyOTP = tryCatch(async (req, res) => {
 
 exports.UpdatePassword = tryCatch(async (req, res) => {
   const { newPassword, confirmPassword, email } = req.body;
-console.log( newPassword, confirmPassword, email)
   if (!newPassword || !confirmPassword || !email) {
     res.status(400).json({ success: false, message: "New password, confirm password are required" });
     return;
