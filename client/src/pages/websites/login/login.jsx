@@ -48,9 +48,15 @@ export default function SignIn() {
         });
     };
 
-    const handleUsernameChange = (e) => {
-        setEmail(e.target.value);
-        setError('');
+    const handleEmailChange = (e) => {
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+
+        if (!emailValue.includes('@')) {
+            setError('Invalid email address. Please enter a valid email.');
+        } else {
+            setError('');
+        }
     }
 
     const handlePasswordChange = (e) => {
@@ -96,8 +102,7 @@ export default function SignIn() {
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
-                                        onChange={handleUsernameChange}
-
+                                        onChange={handleEmailChange}
                                     />
                                     <TextField
                                         margin="normal"

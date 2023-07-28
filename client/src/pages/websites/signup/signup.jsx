@@ -49,8 +49,14 @@ export default function SignUp() {
   }
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setError('');
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+
+    if (!emailValue.includes('@')) {
+      setError('Invalid email address. Please enter a valid email.');
+    } else {
+      setError('');
+    }
   }
 
   const handleRadioChange = (e) => {
@@ -96,6 +102,7 @@ export default function SignUp() {
                       <TextField
                         required
                         fullWidth
+                        type="text"
                         id="fullName"
                         label="Full Name"
                         name="fullName"
@@ -107,6 +114,7 @@ export default function SignUp() {
                       <TextField
                         required
                         fullWidth
+                        type="email"
                         id="email"
                         label="Email Address"
                         name="email"
