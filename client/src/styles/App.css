@@ -666,3 +666,15 @@
     transform: translateX(0);
   }
 }
+
+/* .stepper circle {
+  color: #117b34;
+} */
+
+.Mui-active circle{
+  color: #117b34;
+}
+
+.Mui-completed path {
+    color: #117b34;
+}

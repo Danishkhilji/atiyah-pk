@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from "../../../Assets/transparent/1.png"
 import googleLogo from '../../../Assets/logos/google.png'
 import facebookLogo from '../../../Assets/logos/facebook.png'
-import appleLogo from '../../../Assets/logos/apple.png'
 import { useNavigate, NavLink } from 'react-router-dom';
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { Login } from '../../../request/authAPIS';
