@@ -7,7 +7,7 @@ import flower from "../../Assets/jpeg/fundraising2.jpg"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import DownArrow from '../../Assets/png/DownArrow.png'
 import TickMark from '../../Assets/png/TickMark.png'
 import Shield from '../../Assets/png/shield.png'
@@ -108,8 +108,16 @@ const Home = () => {
         </animated.div>
 
         <div className='main-landing-head-btn'>
-          <a href="/signup"><button className='landing-head-btn'>Start Compaign</button></a >
-          <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
+          <Link to="/login">
+            <button className='landing-head-btn'>
+              Start Compaign
+            </button>
+          </Link>
+          <Link to="/login">
+            <button className='landing-head-btn'>
+              Donate Now
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -226,7 +234,11 @@ const Home = () => {
             </div>
           </div>
 
-          <Button variant="contained" style={{ background: '#117b34' }}>Start a Campaign</Button>
+          <Link to="/login">
+            <Button variant="contained" style={{ background: '#117b34' }}>
+              Start a Campaign
+            </Button>
+          </Link>
 
         </div>
       </div>

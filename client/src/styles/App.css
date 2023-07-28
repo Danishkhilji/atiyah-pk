@@ -50,7 +50,7 @@
 .third-party {
   display: flex;
   justify-content: space-between;
-  width: 16rem;
+  width: 10rem;
   margin-left: 0;
   margin-bottom: 25px;
 }
