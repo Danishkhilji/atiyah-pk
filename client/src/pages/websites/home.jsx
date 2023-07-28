@@ -107,7 +107,7 @@ const Home = () => {
         width: '12%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: "space-around"
+        justifyContent: "space-between"
       }}>
         <NavLink to="login">SignIn</NavLink>
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
@@ -132,10 +132,7 @@ const Home = () => {
       <div id='how-it-works'>
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
+
 
         <div className="steps" ref={stepsRef}>
           <div className="left-steps">
@@ -248,13 +245,6 @@ const Home = () => {
       </div>
 
       <div id='campaign' className='compaigns'>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
