@@ -24,7 +24,7 @@ import OTP from '../pages/websites/login/ForgetScreens/OTP';
 import NewPass from '../pages/websites/login/ForgetScreens/NewPass';
 import Updated from '../pages/websites/login/ForgetScreens/Updated';
 import Page404 from '../pages/page404/Page404';
-import { PublicRoute , PrivateRoute } from './authRoutes';
+import { PublicRoute, PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
   return (
     <Routes>

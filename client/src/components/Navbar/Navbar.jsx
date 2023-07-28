@@ -4,12 +4,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import "./Navbar.css"
 import logo from "../../Assets/logos/1.png"
 import menuIcon from "../../Assets/logos/menu.png"
-import { NavLink } from 'react-router-dom';
-const Navbar = (props) => {
+import { Link } from "react-router-dom"
+const Navbar = (props, to) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -17,7 +16,7 @@ const Navbar = (props) => {
   };
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -28,14 +27,15 @@ const Navbar = (props) => {
   // console.log(value)
   return (
     <div className='navbar'>
-      <img className='logo' src={logo} alt={logo} />
+      <img className='main-logo' src={logo} alt={logo} />
       <div className='desk-tab'>
-        <Tabs className='tabs' value={value} onChange={handleChange} aria-label="disabled tabs example">
-          <Tab activeClassName="active" href="#home" label={props.link1} style={{ color: '#117b34' }} />
-          <Tab activeClassName="active" href="#how-it-works" label={props.link4} style={{ color: '#117b34' }} />
-          <Tab activeClassName="active" href="#campaign" label={props.link2} style={{ color: '#117b34' }} />
-          <Tab activeClassName="active" href="#abouts" label={props.link3} style={{ color: '#117b34' }} />
-          <Tab label={props.link7} style={{ color: '#117b34' }} />
+        <Tabs className='tabs' >
+          {props.link1}
+          {props.link4}
+          {props.link2}
+          {props.link3}
+
+
         </Tabs>
       </div>
       <div className='responsive-tab'>
@@ -65,18 +65,9 @@ const Navbar = (props) => {
           <MenuItem onClick={handleClose}>{props.link7}</MenuItem>
         </Menu>
       </div>
-      <div style={{
-        marginRight: '2rem',
-        position: 'relative',
-        left: '24rem'
-      }}>
-        {props.link5}
-      </div>
-      <div className='nav-logos'>
-        <div>{props.link8}</div>
-        <NavLink className='nav-logo'>{props.link10}</NavLink>
-        <NavLink className='nav-logo'>{props.link11}</NavLink>
-      </div>
+
+      {props.link5}
+      {props.search}
     </div>
   )
 }
