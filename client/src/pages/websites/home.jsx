@@ -20,6 +20,7 @@ import { useSpring, animated } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 

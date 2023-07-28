@@ -46,8 +46,8 @@ export default function SignIn() {
                 setError('');
                 setTimeout(() => {
                     navigate("/receiverDashboard");
-                  }, 1500);
-                  }
+                }, 1500);
+            }
         });
     };
 
