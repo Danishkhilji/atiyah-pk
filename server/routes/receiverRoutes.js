@@ -9,7 +9,6 @@ router.post("/createCampagin",receiverController.CreateCampaign)
 router.put("/updateProfile/:id",authController.UpdateProfile)
 // router.post("/share",receiverController.ResetPass)
 router.post("/comment/:campaignId",commentController.createComment)
-router.get("/logout",authController.LogOut)
 
 module.exports = router
 

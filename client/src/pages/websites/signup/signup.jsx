@@ -14,16 +14,23 @@ import appleLogo from "../../../Assets/logos/apple.png";
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { SignIn } from "../../../request/authAPIS";
 import { ToastContainer } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate =useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
-    SignIn({name ,email,password})
+    SignIn({name ,email,password}).then((response)=>{
+      if(response?.data.success === true){
+        setTimeout(() => {
+          navigate("/login")
+      }, 1500);
+    }
+    })
   };
 
   return (

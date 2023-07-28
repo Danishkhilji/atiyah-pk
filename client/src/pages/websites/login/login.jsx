@@ -32,9 +32,12 @@ export default function SignIn() {
         event.preventDefault();
         console.log(email)
         Login({email,password}).then((response)=>{
-            let user = response.data.user
-            dispatch(setUser(user))
-            dispatch(loginSuccess());
+            if(response?.data.success === true){
+                let user = response.data.user
+                dispatch(setUser(user))
+                dispatch(loginSuccess());
+                navigate("/")
+            }
         })
     };
 

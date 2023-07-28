@@ -79,7 +79,8 @@ exports.SignUp = tryCatch(async (req, res) => {
 });
 
 exports.LogOut = tryCatch(async (req, res) => {
-  res.status(202).clearCookie("JWT_token").send("Logout");
+  console.log("req received")
+  res.status(202).clearCookie("access_token").send("Logout");
 });
 
 exports.UpdateProfile = tryCatch(async (req, res) => {
