@@ -38,7 +38,6 @@ export default function SignIn() {
             setError('Please fill in both email and password fields.');
             return;
         }
-
         Login({ email, password }).then((response) => {
             if (response?.data.success === true) {
                 let user = response.data.user;
