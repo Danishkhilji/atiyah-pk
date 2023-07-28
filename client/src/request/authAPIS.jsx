@@ -1,16 +1,13 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 import { ENDPOINTS } from './endpoints';
 import Api from './api'
 // Create new user
 export function SignIn(payload) {
-  const navigate = useNavigate();
   return Api.post(ENDPOINTS.SIGIN, payload)
     .then(response => {
       if (response?.data.success === true) {
         toast.success('New user created successfully!');
-        navigate('/login');
         return response;
       } else {
         toast.error('Failed to create account!');
@@ -91,6 +88,17 @@ export function UpdatePassword(payload) {
     })
     .catch(error => {
       console.log(error,"error")
+      toast.error(error?.response.data.message);
+    });
+}
+
+
+export function Logout(payload) {
+  return Api.get(ENDPOINTS.LOGOUT, payload)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
       toast.error(error?.response.data.message);
     });
 }

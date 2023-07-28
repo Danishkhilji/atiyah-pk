@@ -9,7 +9,7 @@ import notiIcon from "../../Assets/logos/notification.png"
 import { NavLink } from 'react-router-dom';
 import { ProgressBar } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
-
+import { Tab } from '@mui/material'
 export default function CampaignPage() {
     const raisedAmount = 12645;
     const goalAmount = 130000;
@@ -17,22 +17,15 @@ export default function CampaignPage() {
 
     return (
         <>
-            <Navbar link1="Home" link2="My profile" link3="My Donations" link4="Donation History" link7="Support" link8={<div style={{
-                width: "230px",
-                height: '35px',
+            <Navbar link1={<a href='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<div style={{
+                width: "10%",
                 display: "flex",
-                justifyContent: "center",
+                marginRight: "22px",
                 alignItems: "center",
-                border: "1px solid rgb(54, 54, 54)",
-                borderRadius: "10px"
-            }}>
-                <NavLink><input style={{ border: "NONE" }} type='text' placeholder='search' /></NavLink>
-                <NavLink ><img style={{ width: "20px", height: "20px" }} src={searchIcon} alt='search' /></NavLink>
-            </div>} link10={<img style={{ width: "25px", height: "25px" }} src={notiIcon} alt="noti" />} link11={<img style={{ width: "35px", height: "35px" }} src={profileIcon} alt="profile" />} />
+                justifyContent: "space-around"
+            }}><img style={{ width: "25px", height: "25px" }} src={notiIcon} alt="noti" /> <img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" /></div>} />
 
-            <div style={{
-                width: '94rem'
-            }}>
+            <div>
                 <div className="container-center">
                     <h2 className="campaign-name" style={{ marginLeft: '-3.9rem' }}>Request For Food</h2>
                     <div className="container-cen">
