@@ -40,11 +40,14 @@ if (activeCampaign) {
 
 exports.RetrieveData = tryCatch(async (req, res) => {
   const { id } = req.params;
-  console.log(id)
-  const campaigns = await campaignModel.find({ user: id }).populate("user").populate("comments");
-  if (campaigns.length === 0) {
-    res.status(404).json({ success: false, message: "No active campaigns found" });
+
+  const activeCampaign = await campaignModel.findOne({ user: id, status: "active" }).populate("user").populate("comments");
+  const allCampaigns = await campaignModel.find({ user: id }).populate("user").populate("comments");
+
+  if (!activeCampaign) {
+    res.status(404).json({ success: false, message: "No active campaign found" });
     return;
   }
-  res.status(200).json({ success: true, data: campaigns });
+
+  res.status(200).json({ success: true, activeCampaign: activeCampaign, allCampaigns: allCampaigns });
 });

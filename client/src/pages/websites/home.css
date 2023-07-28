@@ -4,15 +4,17 @@
   box-sizing: border-box;
 }
 
-.main-landing-title {
+.main-landing-titles {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  background: url('../../Assets/landingmainimage/1.png') no-repeat center
-    center/cover;
-  height: 45rem;
-  /* margin-top: 100px; */
+  background: url(../../Assets/landingmainimage/1.png) no-repeat center/cover;
+  height: 400px;
+}
+
+.tab-style {
+  background-color: #009b36;
 }
 
 .landing-title {
@@ -22,9 +24,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  color: rgb(10, 61, 0);
 }
 
 .landing-head-btn {
+  font-weight: bold;
   width: 200px;
   height: 52px;
   padding: 0 20px;
@@ -32,7 +36,7 @@
   background: #ffffffff;
   opacity: 1;
   border-radius: 6px;
-  border-width: 1px;
+  border-width: 2px;
   border-color: #117b34ff;
   border-style: solid;
 }
@@ -62,7 +66,6 @@
 }
 
 .compaigns {
-  margin-top: 20px;
   margin-left: 40px;
   margin-bottom: 4rem;
   margin-right: 20px;
@@ -133,43 +136,43 @@
 .arrow1-1 {
   position: absolute;
   height: 2.5rem;
-  top: 62rem;
+  top: 36rem;
   left: 83.8px;
 }
 
 .arrow1-2 {
   position: absolute;
   height: 2.5rem;
-  top: 68.7rem;
+  top: 44rem;
   left: 83.8px;
 }
 
 .arrow1-3 {
   position: absolute;
   height: 2.5rem;
-  top: 75.6rem;
+  top: 51rem;
   left: 83.8px;
 }
 
 .tick1 {
   position: absolute;
   height: 2.5rem;
-  top: 82rem;
+  top: 57rem;
   left: 83.8px;
 }
 
 .trust-security {
   display: flex;
   flex-direction: column;
-  margin-top: 15rem;
+  margin-top: 15px;
 }
 
 .sec1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 94.9rem;
-  background: #117b34;
+  width: 100%;
+  background: #009b36;
   height: 25rem;
   justify-content: center;
   color: white;
@@ -187,6 +190,7 @@
   margin-top: 2rem;
   width: 70rem;
   align-items: center;
+
 }
 
 .sec2-1 {
@@ -202,3 +206,5 @@
   width: 46rem;
   margin-top: 1.5rem;
 }
+
+@media only screen and (max-width: 480px) {}

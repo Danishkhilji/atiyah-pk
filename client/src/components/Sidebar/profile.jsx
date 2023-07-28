@@ -8,7 +8,8 @@ import ListItemText from '@mui/material/ListItemText';
 // import { Block } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
-
+import { Logout } from '../../request/authAPIS';
+import { response } from 'express';
 const Profile = () => {
 
   const navigate = useNavigate()
@@ -23,7 +24,9 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    navigate("/login")
+    Logout().then((response)=>{
+      navigate("/login")
+    })
     // Handle logout logic here
   };
 

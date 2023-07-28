@@ -1,16 +1,14 @@
 .navbar {
-    width: 100%;
+    height: 90px;
     display: flex;
-    justify-content: space-between;
-    height: 5.2rem;
+    justify-content: space-around;
 }
 
-.logo {
-    width: 130px;
-    height: 50px;
-    display: block;
-    margin-left: 15px;
-    margin-top: 7px;
+.main-logo {
+
+    width: 15%;
+    height: 60px;
+
 }
 
 .drop-btn {
@@ -22,22 +20,14 @@
 
 .tabs {
 
-    width: 700px;
+    width: 100%;
     height: 100px;
     margin-left: 10px;
     margin-right: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     color: #808080;
-}
-
-.nav-logos {
-    width: 360px;
-    display: flex;
-    margin-right: 22px;
-    align-items: center;
-    justify-content: space-around;
 }
 
 .search-option {
@@ -84,9 +74,15 @@ a {
     height: 20px;
 }
 
+.nav-sigin {
+    width: 20%;
+    display: flex;
+    background-color: black;
+}
+
 .desk-tab {
     display: block;
-    width: 50rem;
+    width: 85%;
     height: 76px;
 }
 
@@ -106,7 +102,7 @@ a {
         display: block;
     }
 
-    .logo {
+    .main-logo {
         display: none;
     }
 
@@ -114,7 +110,5 @@ a {
         display: none;
     }
 
-    .navbar {
-        width: 470px;
-    }
+
 }

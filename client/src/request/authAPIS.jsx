@@ -94,3 +94,14 @@ export function UpdatePassword(payload) {
       toast.error(error?.response.data.message);
     });
 }
+
+
+export function Logout(payload) {
+  return Api.get(ENDPOINTS.LOGOUT, payload)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+      toast.error(error?.response.data.message);
+    });
+}

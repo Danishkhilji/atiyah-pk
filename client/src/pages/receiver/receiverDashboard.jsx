@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/drawer";
 import CampaignTable from "../../components/AdminTables/CampaignTable";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -14,6 +14,7 @@ import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
 import { useNavigate} from 'react-router-dom';
+import { GetCampagins } from "../../request/receiverAPIS";
 const data = [
   {
     name: "Dashboard",
@@ -26,7 +27,18 @@ const data = [
 ];
 
 const ReciverDashboard = () => {
+  const [campaigns , setCampaigns] = useState()
+  const [activeCampaign , setActiveCampaign] = useState()
 
+  useEffect(()=>{
+    GetCampagins('64b9837cc6fe1b7ee850ba6d')
+    .then((response)=>{
+      setActiveCampaign(response.data.activeCampaign)
+      setCampaigns(response.data.allCampaigns)
+      
+      console.log(response.data.activeCampaign,response.data.allCampaigns,"CampaignsData")
+    })
+  },[])
   const navigate = useNavigate()
   const campaignHandler = ()=>{
     navigate('/upload-campaign')
@@ -78,7 +90,7 @@ const ReciverDashboard = () => {
                 >
                   <StatCard
                     title="Amount needed"
-                    count="10,000/-"
+                    count={activeCampaign?.amountNeeded}
                     icon={<PaymentIcon fontSize="large" color="primary" />}
                   />
                 </Box>

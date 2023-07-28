@@ -10,7 +10,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../../../Assets/transparent/1.png";
 import googleLogo from "../../../Assets/logos/google.png";
 import facebookLogo from "../../../Assets/logos/facebook.png";
-import appleLogo from "../../../Assets/logos/apple.png";
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { SignIn } from "../../../request/authAPIS";
 import { ToastContainer } from 'react-toastify';
@@ -35,7 +34,15 @@ export default function SignUp() {
 
     setError('');
 
-    SignIn({ name, email, password })
+    SignIn({ name, email, password }).then((response) => {
+      if (response?.data.success === true) {
+          setTimeout(() => {
+              navigate("/login");
+            }, 1500);
+            }
+  });
+
+
   };
 
   const handleUsernameChange = (e) => {
