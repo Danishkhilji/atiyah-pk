@@ -10,7 +10,9 @@ import { NavLink } from 'react-router-dom';
 import { ProgressBar } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
 import { Tab } from '@mui/material'
+
 export default function CampaignPage() {
+    
     const raisedAmount = 12645;
     const goalAmount = 130000;
     const progressPercentage = (raisedAmount / goalAmount) * 100;

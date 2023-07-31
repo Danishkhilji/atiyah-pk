@@ -20,9 +20,8 @@ import { styled } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";
-
 import InputAdornment from '@mui/material/InputAdornment';
-
+import { DonateNow } from '../../request/donorAPIs';
 // Styled components for custom styles
 const DonationContainer = styled('div')(({ theme }) => ({
   marginBottom: theme.spacing(2),
@@ -82,17 +81,21 @@ export default function CreditCardPage() {
       alert('Please enter a valid 3-digit CVC.');
       return;
     }
+    const payload ={
+      amount:donationAmount,
+      cardHolderName:cardHolderName
+    }
 
-
-
-    // Save the data here (You can replace the alert with your saving logic)
-    alert('Card added successfully!');
-    // Clear the form fields
-    setCardNumber('');
-    setExpiryDate('');
-    setCvc('');
-    setCardHolderName('');
-    setSaveCard(false);
+    DonateNow().then(()=>{
+      alert('Card added successfully!');
+      // Clear the form fields
+      setCardNumber('');
+      setExpiryDate('');
+      setCvc('');
+      setCardHolderName('');
+      setSaveCard(false);
+        
+    })
   };
 
   const formatCurrency = (amount) => {

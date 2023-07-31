@@ -72,6 +72,10 @@ const campaignSchema = new Schema({
       default: [],
     },
   ],
+  endosment:{
+    type: Number,
+    default: 0,
+  },
 });
 
 const campaignModel = mongoose.model("Campaigns", campaignSchema);
