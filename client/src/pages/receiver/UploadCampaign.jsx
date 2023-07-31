@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -8,6 +8,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { CreateCampagin } from "../../request/receiverAPIS";
 import { useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify';
+import { Form } from "react-bootstrap";
 // import Fundraising1 from "../../Assets/jpeg/fundraising1.jpg";
 // import Fundraising2 from "../../Assets/jpeg/fundraising2.jpg";
 
@@ -121,26 +122,49 @@ export default function UploadCampaign() {
     };
 
     const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+        newSkipped = new Set(newSkipped.values());
+        newSkipped.delete(activeStep);
+    }
 
-        // Check if the current section is valid (all fields are filled)
-        const isCurrentSectionValid = isSectionValid(activeStep);
-        if (isCurrentSectionValid) {
-            if (activeStep === steps.length - 1) {
-                handleSubmit(); // Call the handleSubmit function on the last step
-            } else {
-                setActiveStep((prevActiveStep) => prevActiveStep + 1);
-                setSkipped(newSkipped);
+    // Check if any input field is empty in the current section
+    const isCurrentSectionValid = isSectionValid(activeStep);
+    if (!isCurrentSectionValid) {
+        alert("Please complete all fields in the current section.");
+        return;
+    }
+
+    // Check if the file type is allowed (png, jpg, jpeg) for Step 3
+    if (activeStep === 3) {
+        const file = fileInputRef.current?.files[0];
+        if (file) {
+            const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+            if (!allowedFileTypes.includes(file.type)) {
+                alert("Please upload a JPG, JPEG, or PNG image.");
+                return;
             }
-        } else {
-            // Show an alert or handle invalid section input in some way
-            alert("Please complete all fields in the current section.");
+
+            // Check if the file size is within the limit (5MB)
+            const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+            if (file.size > maxSize) {
+                alert("The selected image exceeds the maximum allowed size of 5MB.");
+                return;
+            }
         }
-    };
+    }
+
+    // Proceed to the next step
+    if (activeStep === steps.length - 1) {
+        handleSubmit(); // Call the handleSubmit function on the last step
+    } else {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped(newSkipped);
+    }
+};
+
+
+
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -156,10 +180,6 @@ export default function UploadCampaign() {
 
     const isSectionActive = (sectionName) => {
         return activeSection === sectionName;
-    };
-
-    const validateIntegerInput = (value) => {
-        return /^\d+$/.test(value);
     };
 
     const renderSection = (step) => {
@@ -252,25 +272,23 @@ export default function UploadCampaign() {
                         <div className="section3">
                             <section className="section3">
                                 <p>Amount to be Raised</p>
-                                <FormControl sx={{ m: 1 }}>
-                                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                                    <OutlinedInput
-                                        id="outlined-adornment-amount"
-                                        startAdornment={<InputAdornment position="start">Rs.</InputAdornment>}
-                                        label="Amount"
-                                        onChange={handleAmountChange}
-                                        type="number" // Set the type attribute to "number" for numeric input
-                                        inputProps={{
-                                            pattern: "[0-9]*", // Allow only numerical input
-                                            onInput: (event) => {
-                                                const value = event.target.value;
-                                                event.target.setCustomValidity(
-                                                    validateIntegerInput(value) ? '' : 'Please enter a valid integer.'
-                                                );
-                                            },
-                                        }}
-                                    />
-                                </FormControl>
+                                <TextField
+                                    id="outlined-basic"
+                                    label="Amount"
+                                    onChange={handleAmountChange}
+                                    variant="outlined"
+                                    type="number" // Set the type attribute to "number" for numeric input
+                                    inputProps={{
+                                        inputMode: 'numeric',
+                                        pattern: "[0-9]*", // Allow only numerical input
+                                        onInput: (event) => {
+                                            const value = event.target.value;
+                                            event.target.setCustomValidity(
+                                                /^\d+$/.test(value) ? '' : 'Please enter a valid integer.'
+                                            );
+                                        },
+                                    }}
+                                />
                             </section>
                         </div>
                     </CSSTransition>
@@ -281,15 +299,26 @@ export default function UploadCampaign() {
                         <div className="section4">
                             <section className="section4">
                                 <h6>Enter Details about Campaign</h6>
-                                <TextField id="outlined-basic" label="Campaign Name"
+                                <TextField
+                                    id="outlined-basic"
+                                    label="Campaign Name"
                                     onChange={handleFormInputChange("campaignName")}
-                                    variant="outlined" style={{
-                                        marginBottom: '2rem'
-                                    }} />
-                                <TextField id="outlined-basic text" label="Campaign Description"
+                                    variant="outlined"
+                                    style={{
+                                        marginBottom: "2rem",
+                                    }}
+                                />
+                                <TextField
+                                    id="outlined-basic text"
+                                    label="Campaign Description"
                                     onChange={handleFormInputChange("campaignDescription")}
-                                    variant="outlined" />
+                                    variant="outlined"
+                                />
                                 <p>Max 50 words</p>
+                                <Form.Group controlId="formFile" className="mb-3">
+                                    <Form.Label>Select Image for your Campaign</Form.Label>
+                                    <Form.Control type="file" accept=".jpg, .jpeg, .png" ref={fileInputRef} />
+                                </Form.Group>
                             </section>
                         </div>
                     </CSSTransition>
@@ -312,10 +341,10 @@ export default function UploadCampaign() {
                                     label="Account Number"
                                     onChange={handleFormInputChange("accountNumber")}
                                     variant="outlined"
-                                    type="number" // Set the type attribute to "number" for numeric input
+                                    type="number"
                                     inputProps={{
-                                        inputMode: 'numeric', // Display numeric keyboard on mobile devices
-                                        pattern: "[0-9]*", // Allow only numerical input
+                                        inputMode: 'numeric',
+                                        pattern: "[0-9]*",
                                         onInput: (event) => {
                                             const value = event.target.value;
                                             event.target.setCustomValidity(
@@ -332,6 +361,8 @@ export default function UploadCampaign() {
                 return null;
         }
     };
+
+    const fileInputRef = useRef(null);
 
     return (
         <>

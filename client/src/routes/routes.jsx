@@ -45,11 +45,11 @@ const AppRoutes = () => {
           <Route path="admin/donor-list" element={<DonorList />} />
           <Route path="admin/client-list" element={<ClientList />} />
 
-          <Route path="campaign" element={<CampaignPage />} />
+          <Route path="campaign-details" element={<CampaignPage />} />
           <Route path="donor" element={<DonorLandingPage />} />
           <Route path="donation" element={<Donation />} />
           <Route path="success" element={<Success />} />
-          <Route path="detail" element={<ViewAll />} />
+          <Route path="all-campaigns" element={<ViewAll />} />
           
           <Route path="receiverDashboard" element={<ReciverDashboard />} />
           <Route path="reciver" element={<RecieverProfile />} />

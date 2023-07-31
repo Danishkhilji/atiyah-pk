@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Cards from '../../components/Cards/Card'
 import cardImg from "../../Assets/card_image/card-img.jpg"
@@ -75,16 +75,21 @@ const ViewAll = () => {
             price: "10000 PKR"
         }
     ]
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div>
             <Navbar search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
-            <h4 style={{ marginLeft: "30px" }}>click Campaigns</h4>
+            <h4 style={{ marginLeft: "30px", marginTop: '2rem' }}>Choose Campaigns</h4>
             <div style={{ margin: "30px" }}>
                 <Cards data={data} />
             </div>
             <Footer />
         </div>
-    )
-}
+    );
+};
 
 export default ViewAll

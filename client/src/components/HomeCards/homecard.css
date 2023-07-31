@@ -1,6 +1,5 @@
-.Cards {
+.HCards {
   display: flex;
-  flex-flow: wrap;
 }
 
 .card {
@@ -10,7 +9,6 @@
   border-radius: 30px;
   box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
   transition: 0.2s ease-in-out;
-  margin-bottom: 2rem;
 }
 
 .img {
