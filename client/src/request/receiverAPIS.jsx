@@ -23,24 +23,31 @@ export function CreateCampagin(payload) {
     });
 }
 
-// Get list of Campagins
+// Get active Campagins
 export function GetCampagins(id) {
-  console.log(ENDPOINTS.GET_USER_CAMPAIGNS + "/" +id,"CampaignsData")
-
   return Api.get(ENDPOINTS.GET_USER_CAMPAIGNS+id)
     .then(response => {
       if (response?.data.success === true) {
-        toast.success('Campagin created successfully!');
         return response;
-      } else {
-        toast.error('Failed to create campagin!');
-        return;
       }
     })
     .catch(error => {
-      console.log(error)
-      console.log(error,"CampaignsData")
+        toast.error(error?.response.data.message);
+        return;
+    });
+}
 
+
+// Get list of Campagins
+export function GetAllCampagins(id) {
+ 
+  return Api.get(ENDPOINTS.GET_USER_ALL_CAMPAIGNS+id)
+    .then(response => {
+      if (response?.data.success === true) {
+        return response;
+      } 
+    })
+    .catch(error => {
         toast.error(error?.response.data.message);
         return;
     });

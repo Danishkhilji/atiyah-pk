@@ -33,6 +33,7 @@ const campaignSchema = new Schema({
   },
   amountCollected: {
     type: Number,
+    default: 0
   },
   accountTitle: {
     type: String,

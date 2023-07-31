@@ -24,6 +24,7 @@ import OTP from '../pages/websites/login/ForgetScreens/OTP';
 import NewPass from '../pages/websites/login/ForgetScreens/NewPass';
 import Updated from '../pages/websites/login/ForgetScreens/Updated';
 import Page404 from '../pages/page404/Page404';
+import MyCampaigns from '../pages/receiver/myCampaigns';
 import { PublicRoute, PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
   return (
@@ -52,7 +53,9 @@ const AppRoutes = () => {
           <Route path="detail" element={<ViewAll />} />
           
           <Route path="receiverDashboard" element={<ReciverDashboard />} />
+          <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
           <Route path="reciver" element={<RecieverProfile />} />
+          
       {/* </Route> */}
     </Routes>
   )
