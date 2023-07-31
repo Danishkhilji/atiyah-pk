@@ -1,4 +1,4 @@
-import {useState    } from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -17,18 +17,50 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { Login } from '../../../request/authAPIS';
 import { ToastContainer } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../store/userSlice';
+import { loginSuccess } from '../../../store/authSlice';
+
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+    const [error, setError] = useState('');
+
     const navigate = useNavigate()
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(email)
-        Login({email,password})
+
+        if (!email || !password) {
+            setError('Please fill in both email and password fields.');
+            return;
+        }
+
+        Login({ email, password }).then((response) => {
+            if (response?.data.success === true) {
+                let user = response.data.user;
+                dispatch(setUser(user));
+                dispatch(loginSuccess());
+                setError('');
+                setTimeout(() => {
+                    navigate("/receiverDashboard");
+                  }, 1500);
+                  }
+        });
     };
+
+    const handleUsernameChange = (e) => {
+        setEmail(e.target.value);
+        setError('');
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        setError('');
+    }
 
     return (
         <>
@@ -57,9 +89,6 @@ export default function SignIn() {
                                     <div className="facebook" style={{ cursor: 'pointer' }}>
                                         <img src={facebookLogo} alt='Facebook' />
                                     </div>
-                                    <div className="apple" style={{ cursor: 'pointer' }}>
-                                        <img src={appleLogo} alt='Apple' />
-                                    </div>
                                 </div>
                                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                                     <TextField
@@ -71,7 +100,7 @@ export default function SignIn() {
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
-                                        onChange={(e)=>setEmail(e.target.value)}
+                                        onChange={handleUsernameChange}
 
                                     />
                                     <TextField
@@ -83,12 +112,15 @@ export default function SignIn() {
                                         type="password"
                                         id="password"
                                         autoComplete="current-password"
-                                        onChange={(e)=>setPassword(e.target.value)}
+                                        onChange={handlePasswordChange}
                                     />
                                     <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
                                         label="Remember me"
                                     />
+                                    {error && <div className="error-message" style={{
+                                        color: 'red',
+                                    }}>{error}</div>}
                                     <Button
                                         style={{
                                             background: "#117b34",
@@ -102,7 +134,7 @@ export default function SignIn() {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link href="#" variant="body2" id='lg-ending'>
+                                            <Link href="/forget-pass" variant="body2" id='lg-ending'>
                                                 Forgot password?
                                             </Link>
                                         </Grid>

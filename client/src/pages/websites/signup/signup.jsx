@@ -1,8 +1,8 @@
-import {useState} from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -10,22 +10,60 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../../../Assets/transparent/1.png";
 import googleLogo from "../../../Assets/logos/google.png";
 import facebookLogo from "../../../Assets/logos/facebook.png";
-import appleLogo from "../../../Assets/logos/apple.png";
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { SignIn } from "../../../request/authAPIS";
 import { ToastContainer } from 'react-toastify';
+
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [radioValue, setRadioValue] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(name ,email,password)
-    SignIn({name ,email,password})
+
+    if (!name || !email || !password || !radioValue) {
+      setError('Please fill in all fields.');
+      return;
+    }
+
+    setError('');
+
+    SignIn({ name, email, password }).then((response) => {
+      if (response?.data.success === true) {
+          setTimeout(() => {
+              navigate("/login");
+            }, 1500);
+            }
+  });
+
+
   };
+
+  const handleUsernameChange = (e) => {
+    setName(e.target.value);
+    setError('');
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError('');
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setError('');
+  }
+
+  const handleRadioChange = (e) => {
+    setRadioValue(e.target.value);
+    setError('');
+  }
 
   return (
     <>
@@ -43,7 +81,7 @@ export default function SignUp() {
                 </Grid>
               </Grid>
             </div>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" style={{ marginTop: '-30px' }}>
               <CssBaseline />
               <Box
                 sx={{
@@ -69,7 +107,7 @@ export default function SignUp() {
                         label="Full Name"
                         name="fullName"
                         autoComplete="family-name"
-                        onChange={(e)=>{setName(e.target.value)}}
+                        onChange={handleUsernameChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -80,7 +118,7 @@ export default function SignUp() {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
-                        onChange={(e)=>{setEmail(e.target.value)}}
+                        onChange={handleEmailChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -92,11 +130,21 @@ export default function SignUp() {
                         type="password"
                         id="password"
                         autoComplete="new-password"
-                        onChange={(e)=>{setPassword(e.target.value)}}
+                        onChange={handlePasswordChange}
 
                       />
                     </Grid>
                   </Grid>
+                  <div className="radio-input" onChange={handleRadioChange}>
+                    <input type="radio" id="value-1" name="value-radio" defaultValue="value-1" />
+                    <label htmlFor="value-1">Donor</label>
+                    <input type="radio" id="value-2" name="value-radio" defaultValue="value-2" />
+                    <label htmlFor="value-2">Reciever</label>
+                  </div>
+                  {error && <div className="error-message" style={{
+                    position: 'fixed',
+                    color: 'red',
+                  }}>{error}</div>}
                   <Button
                     style={{
                       background: "#117b34",
@@ -117,13 +165,11 @@ export default function SignUp() {
                   <div className="facebook">
                     <img src={facebookLogo} alt="Facebook" />
                   </div>
-                  <div className="apple">
-                    <img src={appleLogo} alt="Apple" />
-                  </div>
                 </div>
               </Box>
             </Container>
           </ThemeProvider>
+
           <div className="ending">
             <p>By Signing up, you agree with the</p>
             <br />

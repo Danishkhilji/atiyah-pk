@@ -8,11 +8,14 @@ import ListItemText from '@mui/material/ListItemText';
 // import { Block } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
-
+import { Logout } from '../../request/authAPIS';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/authSlice';
 const Profile = () => {
 
-  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate()
+  const dispatch =useDispatch()
 
   const handleNameClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,8 +26,11 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    navigate("/login")
-    // Handle logout logic here
+    Logout().then(()=>{
+      dispatch(logout());
+      localStorage.removeItem('persist:root');
+      navigate("/login")
+    })
   };
 
   const open = Boolean(anchorEl);

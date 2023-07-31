@@ -34,7 +34,7 @@ const Comment = ({ comments }) => {
               // onClick={handleNameClick}
               />
             </div>
-            <div>
+            <div            key={item._id}>
               <h6
                 style={{
                   fontSize: "14px",
@@ -54,7 +54,7 @@ const Comment = ({ comments }) => {
                   margin: "0px",
                 }}
               >
-                {item.comment}
+                {item.text}
               </p>
             </div>
           </div>

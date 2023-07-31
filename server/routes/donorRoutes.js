@@ -10,7 +10,7 @@ router.post('/donate/:campaignId/:userId',donorController.DonateNow)
 router.put("/updateProfile/:id",authController.UpdateProfile)
 // router.put("/share",donorController)
 router.post("/comment/:campaignId",commentController.createComment)
-router.get("/logout",authController.LogOut)
+
 
 module.exports = router
 

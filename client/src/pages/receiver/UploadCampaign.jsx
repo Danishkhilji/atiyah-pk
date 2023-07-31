@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import { FormControl, InputAdornment, InputLabel, OutlinedInput, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CreateCampagin } from "../../request/receiverAPIS";
+import { useSelector } from 'react-redux'
+import { ToastContainer } from 'react-toastify';
 // import Fundraising1 from "../../Assets/jpeg/fundraising1.jpg";
 // import Fundraising2 from "../../Assets/jpeg/fundraising2.jpg";
 
@@ -29,24 +32,90 @@ const CityName = [
 
 const steps = ['Select City', 'Who are you Raising for', 'Amount', 'Campaign Details', 'Account Details'];
 
+const options = [
+    "Animals", "Business", "Community", "Competitions", "Creative",
+    "Education", "Emergencies", "Environment", "Events", "Faith"
+];
+
 export default function UploadCampaign() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [activeSection, setActiveSection] = useState(null);
+    const [selectedCity, setSelectedCity] = useState("Khi"); // Default city is Karachi
+    const [campaignData, setCampaignData] = useState({
+      postalCode: "",
+      amountRaised: "",
+      campaignName: "",
+      campaignDescription: "",
+      accountTitle: "",
+      accountNumber: "",
+    });
+
+    const user = useSelector((state) => state.user.user);
+
+    const handleFormInputChange = (name) => (event) => {
+        const { value } = event.target;
+        setCampaignData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      };  const handleCitySelect = (event) => {
+    setSelectedCity(event.target.value);
+  };
+
+  const handleAmountChange = (event) => {
+    const amount = event.target.value;
+    setCampaignData((prevData) => ({
+      ...prevData,
+      amountRaised: amount,
+    }));
+  };
+
+  const handleSubmit = () => {
+    const payload={ 
+    "city": selectedCity,
+    "postalCode":campaignData.postalCode,
+    "category":activeSection,
+    "campaign" : campaignData.campaignName,
+    "description": campaignData.campaignDescription,
+    "amountNeeded": campaignData.amountRaised,
+    "accountTitle" :campaignData.accountTitle,
+    "accountNumber" :campaignData.accountNumber,
+    "user": "64b9837cc6fe1b7ee850ba6d" ,   
+}
+    CreateCampagin(payload)
+  };
+
+  const handleOptionSelect = (option) => {
+        setSelectedOption((prevSelectedOption) =>
+            prevSelectedOption === option ? null : option
+        );
+    };
+
+    // Function to check if an option is selected
+    const isOptionSelected = (option) => {
+        return selectedOption === option;
+    };
 
     const isStepSkipped = (step) => {
         return skipped.has(step);
     };
 
-    const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
+      const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
-    };
+    if (activeStep === steps.length - 1) {
+      handleSubmit(); // Call the handleSubmit function on the last step
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setSkipped(newSkipped);
+    }
+  };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -54,6 +123,15 @@ export default function UploadCampaign() {
 
     const handleReset = () => {
         setActiveStep(0);
+    };
+
+    const handleSectionActivation = (sectionName) => {
+        setActiveSection(sectionName);
+    };
+
+    // Function to check if a section is active
+    const isSectionActive = (sectionName) => {
+        return activeSection === sectionName;
     };
 
     const renderSection = (step) => {
@@ -80,6 +158,7 @@ export default function UploadCampaign() {
                                                     select
                                                     label="Select"
                                                     defaultValue="Khi"
+                                                    onChange={handleCitySelect}
                                                     helperText="Please select your City"
                                                 >
                                                     {CityName.map((option) => (
@@ -90,7 +169,7 @@ export default function UploadCampaign() {
                                                 </TextField>
                                             </div>
                                         </Box>
-                                        <TextField id="outlined-basic" label="Postal Code" variant="outlined" className="postal-code" style={{
+                                        <TextField id="outlined-basic" label="Postal Code"     onChange={handleFormInputChange("postalCode")}   variant="outlined" className="postal-code" style={{
                                             marginLeft: '8px'
                                         }} />
 
@@ -98,19 +177,17 @@ export default function UploadCampaign() {
                                 </div>
                                 <div className="section1-2">
                                     <h6>What best describes why you're fundraising?</h6>
-                                    <p>Animals</p>
-                                    <p>Business</p>
-                                    <p>Community</p>
-                                    <p>Competitions</p>
-                                    <br />
-                                    <p>Creative</p>
-                                    <p>Education</p>
-                                    <p>Emergencies</p>
-                                    <p>Environment</p>
-                                    <br />
-                                    <p>Events</p>
-                                    <p>Faith</p>
-                                    <br />
+                                    <div className="Opt">
+                                        {options.map((option) => (
+                                            <p
+                                                key={option}
+                                                className={isOptionSelected(option) ? "activeOption" : ""}
+                                                onClick={() => handleOptionSelect(option)}
+                                            >
+                                                {option}
+                                            </p>
+                                        ))}
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -122,17 +199,20 @@ export default function UploadCampaign() {
                         <div className="section2">
                             <section className="section2">
                                 <h6>Who are you fundraising for?</h6>
-                                <div className="section2-1">
+                                <div className={`section2-1 ${isSectionActive("Yourself") ? "activeOption" : ""}`}
+                                    onClick={() => handleSectionActivation("Yourself")} >
                                     <p>Yourself</p> <br />
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p>Funds are delivered to your bank account for your own use</p>
                                 </div>
-                                <div className="section2-1">
-                                    <p>Yourself</p> <br />
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                <div className={`section2-1 ${isSectionActive("Someone else") ? "activeOption" : ""}`}
+                                    onClick={() => handleSectionActivation("Someone else")} >
+                                    <p>Someone else</p> <br />
+                                    <p>You’ll invite a beneficiary to receive funds or distribute them yourself</p>
                                 </div>
-                                <div className="section2-1">
-                                    <p>Yourself</p> <br />
-                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                <div className={`section2-1 ${isSectionActive("Charity") ? "activeOption" : ""}`}
+                                    onClick={() => handleSectionActivation("Charity")} >
+                                    <p>Charity</p> <br />
+                                    <p>Funds are delivered to your chosen nonprofit for you</p>
                                 </div>
                             </section>
                         </div>
@@ -150,6 +230,7 @@ export default function UploadCampaign() {
                                         id="outlined-adornment-amount"
                                         startAdornment={<InputAdornment position="start">Rs.</InputAdornment>}
                                         label="Amount"
+                                        onChange={handleAmountChange}
                                     />
                                 </FormControl>
                             </section>
@@ -162,11 +243,15 @@ export default function UploadCampaign() {
                         <div className="section4">
                             <section className="section4">
                                 <h6>Enter Details about Campaign</h6>
-                                <TextField id="outlined-basic" label="Campaign Name" variant="outlined" style={{
+                                <TextField id="outlined-basic" label="Campaign Name" 
+                                onChange={handleFormInputChange("campaignName")}
+                                variant="outlined" style={{
                                     marginBottom: '2rem'
                                 }} />
-                                <TextField id="outlined-basic text" label="Campaign Description" variant="outlined" />
-                                <p>Max 200 words</p>
+                                <TextField id="outlined-basic text" label="Campaign Description"
+                                onChange={handleFormInputChange("campaignDescription")}
+                                variant="outlined" />
+                                <p>Max 50 words</p>
                             </section>
                         </div>
                     </CSSTransition>
@@ -177,10 +262,14 @@ export default function UploadCampaign() {
                         <div className="section5">
                             <section className="section5">
                                 <h6>Please enter your Account Details</h6>
-                                <TextField id="outlined-basic" label="Acount Title" variant="outlined" style={{
+                                <TextField id="outlined-basic" label="Acount Title" variant="outlined"
+                                onChange={handleFormInputChange("accountTitle")}
+                                style={{
                                     marginBottom: '2rem'
                                 }} />
-                                <TextField id="outlined-basic" label="Acount Number" variant="outlined" />
+                                <TextField id="outlined-basic" label="Acount Number" 
+                                onChange={handleFormInputChange("accountNumber")}
+                                variant="outlined" />
                             </section>
                         </div>
                     </CSSTransition>
@@ -250,6 +339,7 @@ export default function UploadCampaign() {
                     </div>
                 </section>
             </div>
+            <ToastContainer />
         </>
     );
 }

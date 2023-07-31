@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/drawer";
 import CampaignTable from "../../components/AdminTables/CampaignTable";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -13,18 +13,37 @@ import CommentBox from "../../components/comments/commentBox";
 import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
+import { useNavigate} from 'react-router-dom';
+import { GetCampagins } from "../../request/receiverAPIS";
 const data = [
   {
-    name: "Dashboard",
+    name: "Home",
     icon: <HomeOutlinedIcon />,
     active: true,
     color: "#fff",
-    path: "",
+    path:""
   },
-  { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
+  { name: "My Campaigns", icon: <InboxOutlinedIcon />,      path: "myCampaigns",
+},
 ];
 
 const ReciverDashboard = () => {
+  const [activeCampaign , setActiveCampaign] = useState()
+  const [comments , setComments] = useState()
+
+  useEffect(()=>{
+    GetCampagins('64b9837cc6fe1b7ee850ba6d')
+    .then((response)=>{
+      setActiveCampaign(response.data.activeCampaign)
+      setComments(response.data.activeCampaign.comments)
+      console.log(response.data.activeCampaign.comments,"comments")
+    })
+  },[])
+  const navigate = useNavigate()
+  const campaignHandler = ()=>{
+    navigate('/upload-campaign')
+}
+
   return (
     <div style={{ display: "flex" }}>
       <div style={{ flex: "0 0 250px", marginRight: "30px" }}>
@@ -43,7 +62,7 @@ const ReciverDashboard = () => {
               <h1>Analytics Overview</h1>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
-              <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px">
+              <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px" onClick={campaignHandler}>
                 <AddIcon /> Create new campaign
               </Button>
               <Button BGcolor="#117b34" color="#FFFFFFFF" height="36px" style={{ marginLeft: '10px' }}>
@@ -71,7 +90,7 @@ const ReciverDashboard = () => {
                 >
                   <StatCard
                     title="Amount needed"
-                    count="10,000/-"
+                    count={activeCampaign?.amountNeeded}
                     icon={<PaymentIcon fontSize="large" color="primary" />}
                   />
                 </Box>
@@ -90,7 +109,7 @@ const ReciverDashboard = () => {
                 >
                   <StatCard
                     title="Amount Collected"
-                    count="5,000/-"
+                    count={activeCampaign?.amountCollected ? activeCampaign?.amountCollected : 0 }
                     icon={
                       <VolunteerActivismIcon
                         fontSize="large"
@@ -115,7 +134,7 @@ const ReciverDashboard = () => {
                 >
                   <StatCard
                     title="Donors"
-                    count=" 6"
+                    count={activeCampaign?.donations ? activeCampaign?.donations.length : 0 }
                     icon={
                       <Diversity1Icon
                         fontSize="large"
@@ -130,7 +149,7 @@ const ReciverDashboard = () => {
               <AdminBarChart />
             </div>
           </div>
-          <div style={{ margin: '20px', flex: '1' }}> <CommentBox /> </div>
+          {/* <div style={{ margin: '20px', flex: '1' }}> <CommentBox comments={comments}/> </div> */}
         </div>
         <div style={{ flex: 1 }}>
           <h1 style={{ marginBottom: "30px" }}>Recent Donation</h1>

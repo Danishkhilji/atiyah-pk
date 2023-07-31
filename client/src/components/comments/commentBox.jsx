@@ -1,25 +1,25 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import Comment from './comment';
-import userImg from '../../Assets/png/3.jpg'
-const comments = [{
-  userName: "Danish",
-  comment: "All comments will display here All comments will display here All comments will display here All comments will display here All comments will display here",
-  userImg: userImg
-},
-{
-  userName: "Awais",
-  comment: "All comments will display here",
-  userImg: userImg
-},
-{
-  userName: "Hamza",
-  comment: "All comments will display here",
-  userImg: userImg
-}
-]
+// import userImg from '../../Assets/png/3.jpg'
+// const comments = [{
+//   userName: "Danish",
+//   comment: "All comments will display here All comments will display here All comments will display here All comments will display here All comments will display here",
+//   userImg: userImg
+// },
+// {
+//   userName: "Awais",
+//   comment: "All comments will display here",
+//   userImg: userImg
+// },
+// {
+//   userName: "Hamza",
+//   comment: "All comments will display here",
+//   userImg: userImg
+// }
+// ]
 
-const CommentBox = () => {
+const CommentBox = ({comments}) => {
   return (
     <Box
       sx={{

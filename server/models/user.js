@@ -27,6 +27,12 @@ const userSchema = new Schema({
     enum: ["admin", "donor", "receiver"],
     required: true,
   },
+  permissions: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
 const userModel = mongoose.model("User", userSchema);

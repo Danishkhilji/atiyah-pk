@@ -19,25 +19,44 @@ import ViewAll from '../pages/websites/ViewAll';
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
 import RecieverProfile from '../pages/receiver/RecieverProfile';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
-
+import ForgetPass from '../pages/websites/login/ForgetScreens/ForgetPass';
+import OTP from '../pages/websites/login/ForgetScreens/OTP';
+import NewPass from '../pages/websites/login/ForgetScreens/NewPass';
+import Updated from '../pages/websites/login/ForgetScreens/Updated';
+import Page404 from '../pages/page404/Page404';
+import MyCampaigns from '../pages/receiver/myCampaigns';
+import { PublicRoute, PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
-      <Route path="admin" element={<AdminDashboard />} />
-      <Route path="admin/donor-list" element={<DonorList />} />
-      <Route path="admin/client-list" element={<ClientList />} />
-      <Route path="campaign" element={<CampaignPage />} />
-      <Route path="upload-campaign" element={<UploadCampaign />} />
-      <Route path="receiverDashboard" element={<ReciverDashboard />} />
-      <Route path="donor" element={<DonorLandingPage />} />
-      <Route path="donation" element={<Donation />} />
-      <Route path="success" element={<Success />} />
-      <Route path="detail" element={<ViewAll />} />
-      <Route path="campaign" element={<CampaignPage />} />
-      <Route path="reciver" element={<RecieverProfile />} />
+      {/* <Route element={<PublicRoute />}> */}
+          <Route path="/" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="forget-pass" element={<ForgetPass />} />
+          <Route path="OTP" element={<OTP />} />
+          <Route path="resetPassword" element={<NewPass />} />
+          <Route path="updated" element={<Updated />} />
+          <Route path="page404" element={<Page404 />} />
+          <Route path="upload-campaign" element={<UploadCampaign />} />
+
+      {/* </Route> */}
+      {/* <Route element={<PrivateRoute />}> */}
+          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/donor-list" element={<DonorList />} />
+          <Route path="admin/client-list" element={<ClientList />} />
+
+          <Route path="campaign" element={<CampaignPage />} />
+          <Route path="donor" element={<DonorLandingPage />} />
+          <Route path="donation" element={<Donation />} />
+          <Route path="success" element={<Success />} />
+          <Route path="detail" element={<ViewAll />} />
+          
+          <Route path="receiverDashboard" element={<ReciverDashboard />} />
+          <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
+          <Route path="reciver" element={<RecieverProfile />} />
+          
+      {/* </Route> */}
     </Routes>
   )
 }
