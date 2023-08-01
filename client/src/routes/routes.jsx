@@ -17,7 +17,7 @@ import ViewAll from '../pages/websites/ViewAll';
 // import RecieverProfile from '../pages/reciver/RecieverProfile';
 // import UploadCampaign from '../pages/reciver/UploadCampaign'
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
-import RecieverProfile from '../pages/receiver/RecieverProfile';
+import RecieverProfile from '../pages/websites/RecieverProfile';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
 import ForgetPass from '../pages/websites/login/ForgetScreens/ForgetPass';
 import OTP from '../pages/websites/login/ForgetScreens/OTP';
