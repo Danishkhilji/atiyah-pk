@@ -21,6 +21,14 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";
 
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Rating from '@mui/material/Rating';
+
+
 import InputAdornment from '@mui/material/InputAdornment';
 
 // Styled components for custom styles
@@ -50,6 +58,10 @@ export default function CreditCardPage() {
   const [saveCard, setSaveCard] = React.useState(false);
   const [donationAmount, setDonationAmount] = React.useState('');
   const [tipAmount, setTipAmount] = React.useState('');
+  const [donationCompleted, setDonationCompleted] = React.useState(false);
+  const [cardHolderNameError, setCardHolderNameError] = React.useState('');
+
+
 
   const validateCardNumber = () => {
     const cardNumberRegex = /^\d{13}$/;
@@ -67,33 +79,43 @@ export default function CreditCardPage() {
   };
 
   const handleAddCard = () => {
-    // Perform final validation checks before adding the card
-    if (!validateCardNumber()) {
-      alert('Please enter a valid 13-digit card number.');
-      return;
-    }
-
-    if (!validateExpiryDate()) {
-      alert('Please enter a valid expiration date (MM/YY).');
-      return;
-    }
-
-    if (!validateCvc()) {
-      alert('Please enter a valid 3-digit CVC.');
-      return;
-    }
-
-
-
-    // Save the data here (You can replace the alert with your saving logic)
-    alert('Card added successfully!');
-    // Clear the form fields
-    setCardNumber('');
-    setExpiryDate('');
-    setCvc('');
-    setCardHolderName('');
-    setSaveCard(false);
-  };
+      if (!validateCardNumber()) {
+        alert('Please enter a valid 13-digit card number.');
+        return;
+      }
+    
+      if (!validateExpiryDate()) {
+        alert('Please enter a valid expiration date (MM/YY).');
+        return;
+      }
+    
+      if (!validateCvc()) {
+        alert('Please enter a valid 3-digit CVC.');
+        return;
+      }
+    
+      if (donationAmountValue <= 0) {
+        alert('Please enter a valid donation amount.');
+        return;
+      }
+    
+      if (!cardHolderName.trim()) {
+        setCardHolderNameError('Card holder name is required.');
+        return;
+      }
+    
+      if (!/^[A-Za-z\s]+$/.test(cardHolderName)) {
+        setCardHolderNameError('Card holder name can only contain alphabets.');
+        return;
+      }
+    
+      // Reset the cardHolderNameError when a valid name is entered
+      setCardHolderNameError('');
+    
+      // Open the comment dialog after successful validation
+      handleOpenCommentDialog();
+    
+    };
 
   const formatCurrency = (amount) => {
     return `$${amount.toFixed(2)}`;
@@ -112,6 +134,34 @@ export default function CreditCardPage() {
 
   const MAX_DONATION_AMOUNT = 1000000;
   const MAX_TIP_PERCENTAGE = 0.3;
+
+  const [showCommentDialog, setShowCommentDialog] = React.useState(false);
+  const [comment, setComment] = React.useState('');
+  const [endorsementRating, setEndorsementRating] = React.useState(0);
+
+  const handleOpenCommentDialog = () => {
+    setShowCommentDialog(true);
+  };
+  
+  const handleCloseCommentDialog = (submitted) => {
+    setShowCommentDialog(false);
+  
+    // If the user submitted the comment and rating, mark the donation as completed
+    if (submitted) {
+      setDonationCompleted(true);
+    } else {
+      setDonationCompleted(false);
+    }
+  };
+  
+  
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+  
+  const handleEndorsementRatingChange = (newValue) => {
+    setEndorsementRating(newValue);
+  };
   
   const handleDonationAmountChange = (e) => {
     let value = e.target.value.replace(/[^0-9.]/g, '');
@@ -141,6 +191,7 @@ export default function CreditCardPage() {
       setTipAmount(value);
     }
   };
+  
   
   return (
     <>
@@ -209,11 +260,11 @@ export default function CreditCardPage() {
                   },
                 }}
               />
-              {donationError && (
-                <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
-                  {donationError}
-                </Typography>
-              )}
+            {donationError && (
+              <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
+                {donationError}
+              </Typography>
+            )}
             </DonationContainer>
 
             {/* Additional text */}
@@ -300,13 +351,20 @@ export default function CreditCardPage() {
                 />
               </FormControl>
               <FormControl sx={{ width: '50%', margin: '0 auto' }}>
-                <FormLabel>Card holder name</FormLabel>
-                <Input
-                  placeholder="Enter cardholder's full name"
-                  value={cardHolderName}
-                  onChange={(e) => setCardHolderName(e.target.value)}
-                />
-              </FormControl>
+              <FormLabel>Card holder name</FormLabel>
+              <Input
+                placeholder="Enter cardholder's full name"
+                value={cardHolderName}
+                onChange={(e) => setCardHolderName(e.target.value)}
+                error={cardHolderNameError !== ''}
+              />
+              {cardHolderNameError && (
+                <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
+                  {cardHolderNameError}
+                </Typography>
+              )}
+            </FormControl>
+
 
               <Checkbox
                 label="Save card"
@@ -355,6 +413,40 @@ export default function CreditCardPage() {
               Donate
             </Button>
           </CardActions>
+          
+          {/* Comment and Endorsement Dialog */}
+          <Dialog open={showCommentDialog} onClose={() => handleCloseCommentDialog(false)}>
+            <DialogTitle>Thank you for your donation!</DialogTitle>
+            <DialogContent>
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                variant="outlined"
+                label="Leave a comment (optional)"
+                value={comment}
+                onChange={handleCommentChange}
+              />
+              <Rating
+                name="endorsementRating"
+                value={endorsementRating}
+                onChange={(event, newValue) => handleEndorsementRatingChange(newValue)}
+                precision={1}
+                size="large"
+                style={{ marginTop: '16px' }}
+              />
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={() => handleCloseCommentDialog(false)} color="primary">
+              Skip
+            </Button>
+            <Button onClick={() => handleCloseCommentDialog(true)} color="primary" disabled={donationAmountValue === 0}>
+              Submit
+            </Button>
+          </DialogActions>
+
+          </Dialog>
+
           <br/>
           {/* Additional text */}
           <Typography variant="subtitle6" component="div" gutterBottom style={{ color: 'black', fontSize: '0.8rem' }}>
@@ -396,3 +488,9 @@ export default function CreditCardPage() {
     </>
   );
 }
+
+{/* 
+Conditional Redirection use 
+----> npm install react-router-dom
+*/}
+// {donationCompleted && <Redirect to="/success" />}
