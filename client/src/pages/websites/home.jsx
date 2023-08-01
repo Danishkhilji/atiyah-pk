@@ -19,7 +19,7 @@ import { useSpring, animated } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import HomeCards from '../../components/HomeCards/HomeCards'
+import Cards from '../../components/Cards/Card'
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 
@@ -85,32 +85,6 @@ const Home = () => {
       description: "Request for Education",
       rating: "4.8",
       price: "4000 PKR"
-    },
-    {
-      images: bookImg,
-      title: "Shaheen",
-      description: "Request for book",
-      rating: "4.9",
-    },
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.5",
-      price: "10000 PKR"
-    },
-    {
-      images: bookImg,
-      title: "Shaheen",
-      description: "Request for book",
-      rating: "4.9",
-    },
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.5",
-      price: "10000 PKR"
     },
     {
       images: bookImg,
@@ -285,14 +259,10 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Popular Campaigns</h5>
-          <Link to="/all-campaigns" className='view-all'>
-            <p>
-              view all
-            </p>
-          </Link>
+          <Link to='/all-campaigns' className='view-all'><p>view all</p></Link>
         </div>
-        <div className='scroll-container'>
-          <HomeCards data={data}/>
+        <div >
+          <Cards data={data} />
         </div>
 
         <br />
@@ -304,14 +274,10 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Latest Campaigns</h5>
-          <Link to="/all-campaigns" className='view-all'>
-            <p>
-              view all
-            </p>
-          </Link>
+          <Link to='/all-campaigns' className='view-all'><p>view all</p></Link>
         </div>
-        <div className='scroll-container'>
-          <HomeCards data={data}/>
+        <div >
+          <Cards data={data} />
         </div>
       </div>
 
