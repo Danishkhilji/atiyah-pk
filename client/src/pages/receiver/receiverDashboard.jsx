@@ -13,36 +13,33 @@ import CommentBox from "../../components/comments/commentBox";
 import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GetCampagins } from "../../request/receiverAPIS";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+
 const data = [
-  {
-    name: "Dashboard",
-    icon: <HomeOutlinedIcon />,
-    active: true,
-    color: "#fff",
-    path: "",
-  },
+  { name: "Dashboard", icon: <HomeOutlinedIcon />, active: true, color: "#fff" },
   { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
+  { name: "My Profile", icon: <PersonOutlinedIcon />, path: "profile" }
 ];
 
 const ReciverDashboard = () => {
-  const [campaigns , setCampaigns] = useState()
-  const [activeCampaign , setActiveCampaign] = useState()
+  const [campaigns, setCampaigns] = useState()
+  const [activeCampaign, setActiveCampaign] = useState()
 
-  useEffect(()=>{
+  useEffect(() => {
     GetCampagins('64b9837cc6fe1b7ee850ba6d')
-    .then((response)=>{
-      setActiveCampaign(response.data.activeCampaign)
-      setCampaigns(response.data.allCampaigns)
-      
-      console.log(response.data.activeCampaign,response.data.allCampaigns,"CampaignsData")
-    })
-  },[])
+      .then((response) => {
+        setActiveCampaign(response.data.activeCampaign)
+        setCampaigns(response.data.allCampaigns)
+
+        console.log(response.data.activeCampaign, response.data.allCampaigns, "CampaignsData")
+      })
+  }, [])
   const navigate = useNavigate()
-  const campaignHandler = ()=>{
+  const campaignHandler = () => {
     navigate('/upload-campaign')
-}
+  }
 
   return (
     <div style={{ display: "flex" }}>

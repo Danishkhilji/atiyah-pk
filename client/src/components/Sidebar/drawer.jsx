@@ -36,7 +36,7 @@ const Sidebar = ({ data }) => {
               padding: "20px 16px",
             }}
             onClick={() => {
-              if (item.name !== 'My Campaigns' && item.name !== 'Profit' && item.name !== 'Setting') {
+              if (item.name !== 'Profit' && item.name !== 'Setting') {
                 navigate(`/admin/${item.path}`)
               }
             }}

@@ -51,8 +51,8 @@ const AppRoutes = () => {
           <Route path="success" element={<Success />} />
           <Route path="all-campaigns" element={<ViewAll />} />
           
-          <Route path="receiverDashboard" element={<ReciverDashboard />} />
-          <Route path="reciver" element={<RecieverProfile />} />
+          <Route path="receiver" element={<ReciverDashboard />} />
+          <Route path="receiver/profile" element={<RecieverProfile />} />
       {/* </Route> */}
     </Routes>
   )

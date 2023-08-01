@@ -60,7 +60,7 @@
 
 .price {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   font-family: "Lucida Sans" sans-serif;
   font-size: 15px;
   font-weight: 600;
