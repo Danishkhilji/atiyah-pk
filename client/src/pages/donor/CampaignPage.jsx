@@ -6,7 +6,6 @@ import User from '../../Assets/logos/user.png'
 import profileIcon from "../../Assets/logos/user.png"
 import searchIcon from "../../Assets/logos/search.png"
 import notiIcon from "../../Assets/logos/notification.png"
-import { NavLink } from 'react-router-dom';
 import { ProgressBar } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
 import { Tab } from '@mui/material'

@@ -17,7 +17,7 @@ import ViewAll from '../pages/websites/ViewAll';
 // import RecieverProfile from '../pages/reciver/RecieverProfile';
 // import UploadCampaign from '../pages/reciver/UploadCampaign'
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
-import RecieverProfile from '../pages/websites/RecieverProfile';
+import Profile from '../pages/websites/Profile';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
 import ForgetPass from '../pages/websites/login/ForgetScreens/ForgetPass';
 import OTP from '../pages/websites/login/ForgetScreens/OTP';
@@ -49,12 +49,13 @@ const AppRoutes = () => {
           <Route path="campaign-details/:campaignId" element={<CampaignPage />} />
           <Route path="all-campaigns" element={<ViewAll />} />
           <Route path="donor" element={<DonorLandingPage />} />
-          <Route path="donation" element={<Donation />} />
-          <Route path="success" element={<Success />} />
+          <Route path="donor/profile" element={<Profile />} />
+          <Route path="donation/:campaignId" element={<Donation />} />
+          <Route path="success/:campaignId" element={<Success />} />
 
           <Route path="receiver" element={<ReciverDashboard />} />
           <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
-          <Route path="receiver/profile" element={<RecieverProfile />} />
+          <Route path="receiver/profile" element={<Profile />} />
           
       {/* </Route> */}
     </Routes>

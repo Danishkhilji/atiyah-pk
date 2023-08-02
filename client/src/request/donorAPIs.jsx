@@ -20,7 +20,7 @@ export function GetAllActiveCampagins() {
 
 
 export function DonateNow(payload) {
-    return Api.post(ENDPOINTS.DONATE_NOW , payload)
+    return Api.post(ENDPOINTS.DONATE_NOW +payload.campaignId+"/"+payload.userId , payload)
       .then(response => {
         if (response?.data.success === true) {
           toast.success('Donation made successfully!');

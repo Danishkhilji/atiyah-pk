@@ -59,16 +59,22 @@ exports.GetDonatedCampaigns = tryCatch(async (req, res) => {
 
 exports.DonateNow = tryCatch(async (req, res) => {
   const { campaignId, userId } = req.params;
-  const { amount, cardToken ,cardHolderName} = req.body;
+  console.log(campaignId, userId)
 
+  const { amount, cardToken ,cardHolderName} = req.body;
+console.log(amount, cardToken ,cardHolderName)
   const campaign = await Campaign.findById(campaignId);
   if (!campaign) {
-    return res.status(404).json({ message: 'Campaign not found.' });
+    return res.status(404).json({ success: false,message: 'Campaign not found.' });
   }
+  if (!amount || !cardToken || !cardHolderName ) {
+    return res.status(404).json({ success: false,message: 'Each field are required.' });
+  }
+
 
   const user = await userModel.findById(userId);
   if (!user) {
-    return res.status(404).json({ message: 'User not found.' });
+    return res.status(404).json({ success: false, message: 'User not found.' });
   }
 
   const paymentMethod = await stripe.paymentMethods.create({
@@ -98,8 +104,8 @@ exports.DonateNow = tryCatch(async (req, res) => {
     campaign.donations.push(donation._id);
     await campaign.save();
 
-    res.status(201).json({ message: 'Donation successful.', donation });
+    res.status(201).json({success: true, message: 'Donation successful.', donation });
   } else {
-    res.status(400).json({ message: 'Payment failed.' });
+    res.status(400).json({success: false, message: 'Payment failed.' });
   }
 });

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useEffect,useState} from 'react';
 import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
 import CardContent from '@mui/joy/CardContent';
@@ -22,6 +22,10 @@ import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";
 import InputAdornment from '@mui/material/InputAdornment';
 import { DonateNow } from '../../request/donorAPIs';
+import { useParams, useNavigate } from 'react-router-dom';
+import { GetCampagin } from '../../request/commonAPIs';
+// import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from '@stripe/react-stripe-js';
+
 // Styled components for custom styles
 const DonationContainer = styled('div')(({ theme }) => ({
   marginBottom: theme.spacing(2),
@@ -49,6 +53,21 @@ export default function CreditCardPage() {
   const [saveCard, setSaveCard] = React.useState(false);
   const [donationAmount, setDonationAmount] = React.useState('');
   const [tipAmount, setTipAmount] = React.useState('');
+  const [campagin ,setCampaign] = useState()
+  const { campaignId } = useParams();
+  
+  const navigate = useNavigate()
+
+
+useEffect(()=>{
+  GetCampagin(campaignId).then((response)=>{
+      if (response?.data.success === true) {
+          console.log(response.data)
+          setCampaign(response.data.data)
+        }
+  })
+},[campaignId])
+
 
   const validateCardNumber = () => {
     const cardNumberRegex = /^\d{13}$/;
@@ -83,18 +102,18 @@ export default function CreditCardPage() {
     }
     const payload ={
       amount:donationAmount,
-      cardHolderName:cardHolderName
+      cardHolderName:cardHolderName,
+      cardToken:"tok_visa",
+      campaignId: campaignId,
+      userId: campagin.user._id
     }
-
-    DonateNow().then(()=>{
-      alert('Card added successfully!');
-      // Clear the form fields
-      setCardNumber('');
-      setExpiryDate('');
-      setCvc('');
-      setCardHolderName('');
-      setSaveCard(false);
-        
+console.log(payload)
+    DonateNow(payload).then((response)=>{
+      if (response?.data.success === true) {
+        setTimeout(() => {
+          navigate(`/success/${campaignId}`);
+        }, 1500);
+      }        
     })
   };
 
@@ -147,7 +166,7 @@ export default function CreditCardPage() {
   
   return (
     <>
-      <AppBar position="static" color="inherit">
+      <AppBar position="sticky" color="inherit">
         <Toolbar>
           <IconButton edge="start" color="info" aria-label="back" onClick={handleBackClick}>
             <ArrowBackIcon />
@@ -172,13 +191,13 @@ export default function CreditCardPage() {
             <Divider style={{ margin: '2rem 0' }} />
             {/* Image with title and subtitle */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src={img} alt="Campaign_description" style={{ marginRight: '30px', width: '200px' }} />
+              <img src={campagin?.ImageURL} alt="Campaign_description" style={{ marginRight: '30px', width: '200px' }} />
               <div>
                 <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
-                  You're supporting Faraz Ali
+                  You're supporting {campagin?.user.name}
                 </Typography>
                 <Typography variant="subtitle1" component="div" gutterBottom style={{ color: 'black' }}>
-                  Your donation will benefit Faraz Ali's Education
+                  Your donation will benefit {campagin?.user.name}'s {campagin?.category}
                 </Typography>
               </div>
             </div>
