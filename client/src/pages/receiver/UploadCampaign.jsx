@@ -45,21 +45,28 @@ export default function UploadCampaign() {
     const [selectedCity, setSelectedCity] = useState("Khi");
     const [error, setError] = useState(null);
     const [postalCode, setPostalCode] = useState(null);
-    const navigate = useNavigate();
+    const [image, setImage] = useState(null);
     const [campaignData, setCampaignData] = useState({
-        postalCode: "",
         amountRaised: "",
         campaignName: "",
         campaignDescription: "",
         accountTitle: "",
         accountNumber: "",
     });
+    const navigate = useNavigate()
+    const fileInputRef = useRef(null);
+        
+  const handleFileChange = () => {
+    const file = fileInputRef.current?.files[0];
+    setImage(file);
+  };
+    
 
     // eslint-disable-next-line
-    const user = useSelector((state) => state.user.user);
-
+    const user = useSelector((state) => state.user.user);   
     const handleFormInputChange = (name) => (event) => {
         const { value } = event.target;
+<<<<<<< HEAD
 
         // Check word count for campaign description
         if (name === "campaignDescription") {
@@ -70,6 +77,9 @@ export default function UploadCampaign() {
             }
         }
 
+=======
+        console.log(name,value)
+>>>>>>> origin/AdminDashboard
         setCampaignData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -90,21 +100,27 @@ export default function UploadCampaign() {
         }));
         setError('');
     };
-
     const handleSubmit = () => {
+
         const payload = {
             "city": selectedCity,
-            "postalCode": campaignData.postalCode,
-            "category": activeSection,
+            "postalCode": postalCode,
+            "fundraiseFor": activeSection,
+            "category": selectedOption,
             "campaign": campaignData.campaignName,
             "description": campaignData.campaignDescription,
             "amountNeeded": campaignData.amountRaised,
             "accountTitle": campaignData.accountTitle,
             "accountNumber": campaignData.accountNumber,
-            "user": "64b9837cc6fe1b7ee850ba6d",
+            "user": user._id,
+            "image": image,
         }
-        CreateCampagin(payload).then(() => {
-            navigate("/campaign-details");
+        console.log(payload,"payload")
+        CreateCampagin(payload).then((response) => {
+            const campaignId =  response.data.data._id
+            setTimeout(() => {
+                navigate(`/campaign-details/${campaignId}`);
+              }, 1500);
         })
     };
 
@@ -245,6 +261,7 @@ export default function UploadCampaign() {
                                                 <Form.Control
                                                     autoComplete="off"
                                                     placeholder="Postal Code"
+                                                    type="number"  
                                                     required
                                                     onChange={handlePostalCodeChange}
                                                 />
@@ -350,7 +367,7 @@ export default function UploadCampaign() {
                                     <p>Max 50 words</p>
                                     <Form.Group controlId="formFile" className="mb-3">
                                         <Form.Label>Select Image for your Campaign</Form.Label>
-                                        <Form.Control type="file" accept=".jpg, .jpeg, .png" ref={fileInputRef} />
+                                        <Form.Control type="file" accept=".jpg, .jpeg, .png" ref={fileInputRef}  onChange={handleFileChange}  />
                                     </Form.Group>
                                 </FloatingLabel>
                                 {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
@@ -392,7 +409,6 @@ export default function UploadCampaign() {
         }
     };
 
-    const fileInputRef = useRef(null);
 
     return (
         <>

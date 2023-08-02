@@ -17,7 +17,6 @@ const data = [
   { name: "Profit", icon: <MailOutlineIcon /> },
   { name: "Setting", icon: <DraftsOutlinedIcon /> },
 ];
-
 const AdminDashboard = () => {
   return (
     <div style={{ display: 'flex' }}>

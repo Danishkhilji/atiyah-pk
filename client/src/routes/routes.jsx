@@ -24,6 +24,7 @@ import OTP from '../pages/websites/login/ForgetScreens/OTP';
 import NewPass from '../pages/websites/login/ForgetScreens/NewPass';
 import Updated from '../pages/websites/login/ForgetScreens/Updated';
 import Page404 from '../pages/page404/Page404';
+import MyCampaigns from '../pages/receiver/myCampaigns';
 import { PublicRoute, PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
   return (
@@ -37,7 +38,6 @@ const AppRoutes = () => {
           <Route path="resetPassword" element={<NewPass />} />
           <Route path="updated" element={<Updated />} />
           <Route path="page404" element={<Page404 />} />
-          <Route path="upload-campaign" element={<UploadCampaign />} />
 
       {/* </Route> */}
       {/* <Route element={<PrivateRoute />}> */}
@@ -45,15 +45,18 @@ const AppRoutes = () => {
           <Route path="admin/donor-list" element={<DonorList />} />
           <Route path="admin/client-list" element={<ClientList />} />
 
-          <Route path="campaign-details" element={<CampaignPage />} />
+          <Route path="upload-campaign" element={<UploadCampaign />} />
+          <Route path="campaign-details/:campaignId" element={<CampaignPage />} />
+          <Route path="all-campaigns" element={<ViewAll />} />
           <Route path="donor" element={<DonorLandingPage />} />
           <Route path="donor/profile" element={<Profile />} />
           <Route path="donation" element={<Donation />} />
           <Route path="success" element={<Success />} />
-          <Route path="all-campaigns" element={<ViewAll />} />
-          
+
           <Route path="receiver" element={<ReciverDashboard />} />
-          <Route path="receiver/profile" element={<Profile />} />
+          <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
+          <Route path="receiver/profile" element={<RecieverProfile />} />
+          
       {/* </Route> */}
     </Routes>
   )

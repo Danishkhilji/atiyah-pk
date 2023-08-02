@@ -19,6 +19,10 @@ const campaignSchema = new Schema({
     type: String,
     required: true,
   },
+  fundraiseFor: {
+    type: String,
+    required: true,
+  },
   campaign: {
     type: String,
     required: true,
@@ -33,6 +37,7 @@ const campaignSchema = new Schema({
   },
   amountCollected: {
     type: Number,
+    default: 0
   },
   accountTitle: {
     type: String,
@@ -71,6 +76,13 @@ const campaignSchema = new Schema({
       default: [],
     },
   ],
+  endosment:{
+    type: Number,
+    default: 0,
+  },
+  ImageURL:{
+    type: String,
+  },
 });
 
 const campaignModel = mongoose.model("Campaigns", campaignSchema);
