@@ -66,7 +66,6 @@ export default function UploadCampaign() {
     const user = useSelector((state) => state.user.user);   
     const handleFormInputChange = (name) => (event) => {
         const { value } = event.target;
-<<<<<<< HEAD
 
         // Check word count for campaign description
         if (name === "campaignDescription") {
@@ -77,9 +76,7 @@ export default function UploadCampaign() {
             }
         }
 
-=======
         console.log(name,value)
->>>>>>> origin/AdminDashboard
         setCampaignData((prevData) => ({
             ...prevData,
             [name]: value,
