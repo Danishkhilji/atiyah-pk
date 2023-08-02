@@ -17,7 +17,7 @@ import ViewAll from '../pages/websites/ViewAll';
 // import RecieverProfile from '../pages/reciver/RecieverProfile';
 // import UploadCampaign from '../pages/reciver/UploadCampaign'
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
-import Profile from '../pages/websites/Profile';
+import Profile from '../pages/websites/ProfilePage';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
 import ForgetPass from '../pages/websites/login/ForgetScreens/ForgetPass';
 import OTP from '../pages/websites/login/ForgetScreens/OTP';
@@ -55,7 +55,7 @@ const AppRoutes = () => {
 
           <Route path="receiver" element={<ReciverDashboard />} />
           <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
-          <Route path="receiver/profile" element={<RecieverProfile />} />
+          <Route path="profile" element={<Profile />} />
           
       {/* </Route> */}
     </Routes>

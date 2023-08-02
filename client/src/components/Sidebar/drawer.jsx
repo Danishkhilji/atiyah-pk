@@ -36,9 +36,9 @@ const Sidebar = ({ data }) => {
               padding: "20px 16px",
             }}
             onClick={() => {
-              if (item.name === 'Dashboard' ||item.name === 'Donors' || item.name === 'Client' ||item.name === 'Profit' ||item.name === 'Setting') {
+              if (item.name === 'Dashboard' || item.name === 'Donors' || item.name === 'Client' || item.name === 'Profit' || item.name === 'Setting') {
                 navigate(`/admin/${item.path}`)
-              }else if(item.name === 'My Campaigns' || item.name === 'Home' ){
+              } else if (item.name === 'My Campaigns' || item.name === 'Home') {
                 navigate(`/receiverDashboard/${item.path}`)
               }
             }}
@@ -70,7 +70,6 @@ const Sidebar = ({ data }) => {
             <Profile />
           </div>
         </div>
-
       </Drawer>
     </>
   );

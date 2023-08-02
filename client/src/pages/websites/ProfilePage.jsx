@@ -156,7 +156,7 @@ const Profile = () => {
     paddingRight: '34px',
     fontFamily: 'Mulish',
     fontSize: '14px',
-    background: '#F3F4F6FF',
+    background: '#a3a3a3ff',
     borderRadius: '6px',
     borderWidth: '0px',
     outline: 'none',
@@ -201,7 +201,7 @@ const Profile = () => {
           </div>
 
           <div style={profileContainerStyle} className="container">
-            <h3>Profile</h3>
+            <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', }}>Profile</h3>
             <div style={{ display: 'flex' }}>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <h5>Full Name</h5>
@@ -209,29 +209,29 @@ const Profile = () => {
               </div>
             </div>
 
-            <h5>Profession</h5>
+            <h5 style={{ marginTop: '1rem' }}>Profession</h5>
             <div>
               <input type="text" style={{ ...textboxInputStyle, width: '800px' }} />
             </div>
 
 
-            <h5>Location</h5>
+            <h5 style={{ marginTop: '1rem' }}>Location</h5>
             <div>
               <input type="text" style={{ ...textboxInputStyle, width: '800px' }} />
             </div>
 
-            <h5>Bio</h5>
+            <h5 style={{ marginTop: '1rem' }}>Bio</h5>
             <div>
               <textarea style={{ ...textboxInputStyle, height: '100px', paddingTop: '7px', paddingBottom: '7px', width: '800px' }}></textarea>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem', marginTop: '1rem' }}>
               <button style={buttonStyle} className="button" onClick={updateProfilePicture}>Save Information</button>
             </div>
 
-            <div className="line"></div>
+            <hr />
 
-            <h3>Reset Password</h3>
+            <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', }}>Reset Password</h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
                 <label htmlFor="CurrentPassword" >Current Password</label>
@@ -248,7 +248,7 @@ const Profile = () => {
             </div>
 
             <div className="line"></div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
               <button style={buttonStyle} className="button" onClick={updateProfilePicture}>Update Password</button>
             </div>
           </div>
