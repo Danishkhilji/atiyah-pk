@@ -4,13 +4,14 @@
   box-sizing: border-box;
 }
 
+
 .main-landing-titles {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: end;
   background: url(../../Assets/landingmainimage/1.png) no-repeat center/cover;
-  height: 450px;
+  height: 400px;
 }
 
 .tab-style {
@@ -29,7 +30,7 @@
 
 .landing-head-btn {
   font-weight: bold;
-  width: 200px;
+  width: 100%;
   height: 52px;
   padding: 0 20px;
   color: #117b34ff;
@@ -95,14 +96,31 @@
 
 .steps {
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
 }
 
 .left-steps {
+  width: 10%;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.center-steps {
+  width: 60%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* .left-steps {
   margin: 0 10rem;
   height: 31rem;
-  margin-top: 1rem;
-}
+  margin-top: 1rem;li
+} */
 
 .right-steps {
   margin-top: 2rem;
@@ -119,47 +137,54 @@
   color: #72d94eff;
 }
 
+/* 
 .flower-img {
   width: 293px;
-  height: 276px;
+  height: 576px;
   border-radius: 6px;
-}
+} */
+
 
 .line {
   transform: rotate(90deg);
   position: relative;
   width: 21rem;
   top: 12rem;
-  right: 14rem;
+  right: 6.3rem;
 }
 
-.arrow1-1 {
+.step-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* .arrow1-1 {
   position: absolute;
   height: 2.5rem;
-  top: 45.5rem;
+  top: 36rem;
   left: 83.8px;
 }
 
 .arrow1-2 {
   position: absolute;
   height: 2.5rem;
-  top: 52.5rem;
+  top: 44rem;
   left: 83.8px;
 }
 
 .arrow1-3 {
   position: absolute;
   height: 2.5rem;
-  top: 59rem;
+  top: 51rem;
   left: 83.8px;
 }
 
 .tick1 {
   position: absolute;
   height: 2.5rem;
-  top: 66rem;
+  top: 57rem;
   left: 83.8px;
-}
+} */
 
 .trust-security {
   display: flex;
@@ -190,6 +215,7 @@
   margin-top: 2rem;
   width: 70rem;
   align-items: center;
+
 }
 
 .sec2-1 {
@@ -206,5 +232,45 @@
   margin-top: 1.5rem;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 800px) {
+  .right-steps {
+    display: none;
+  }
+
+  .steps {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .left-steps {
+    height: 100vh;
+  }
+
+  .center-steps {
+    height: 100vh;
+  }
+
+  .main-landing-head-btn {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+  }
+
+  .landing-head-btn {
+    height: 30px;
+    font-size: 9px;
+  }
+
+  .main-landing-titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

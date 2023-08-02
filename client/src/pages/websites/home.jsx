@@ -4,9 +4,10 @@ import cardImg from "../../Assets/card_image/card-img.jpg"
 import eduImg from "../../Assets/card_image/education.jpg"
 import bookImg from "../../Assets/card_image/book.jpg"
 import flower from "../../Assets/jpeg/fundraising2.jpg"
+import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Tab from '@mui/material/Tab';
 import DownArrow from '../../Assets/png/DownArrow.png'
 import TickMark from '../../Assets/png/TickMark.png'
@@ -19,7 +20,6 @@ import { useSpring, animated } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import Cards from '../../components/Cards/Card'
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 
@@ -102,8 +102,8 @@ const Home = () => {
   ]
 
   return (
-    <div>
-      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link5={<div style={{
+    <div className='main-container'>
+      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link5={<div className='sigin-signup' style={{
         width: '12%',
         display: 'flex',
         alignItems: 'center',
@@ -124,54 +124,47 @@ const Home = () => {
         </animated.div>
 
         <div className='main-landing-head-btn'>
-          <Link to='/login'>
-            <button className='landing-head-btn'>
-              Start Campaign
-            </button>
-          </Link>
-          <Link to='/login'>
-            <button className='landing-head-btn'>
-              Donate Now
-            </button>
-          </Link>
+          <a href="/signup"><button className='landing-head-btn'>Start Campaign</button></a >
+          <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
         </div>
       </div>
 
       <div id='how-it-works'>
-
-        <div style={{ height: '9rem' }} />
-
+        <br />
+        <br />
+        <hr className='line' />
 
         <div className="steps" ref={stepsRef}>
-          <div className="left-steps">
-
-            <hr className='line' />
+          <div className='left-steps'>
 
 
-            <div className='one' style={{ marginBottom: '2rem' }}>
-              <img src={DownArrow} alt="arrow" className='arrow1-1' />
+            <img src={DownArrow} alt="arrow" className='step-icon' />
+            <img src={DownArrow} alt="arrow" className='step-icon' />
+            <img src={DownArrow} alt="arrow" className='step-icon' />
+            <img src={TickMark} alt="arrow" className='step-icon' />
+          </div>
+          <div className='center-steps'>
+            <div>
               <animated.h6 style={slideInFromRight}>Fundraising</animated.h6>
               <animated.p style={slideInFromLeft}>Atiyah is all about fundrising platform similar to gofund me where any one can create their campaign accoridng to their need and raise fund it is basically for paksitani people.</animated.p>
             </div>
-            <div className='two' style={{ marginBottom: '2rem' }}>
-              <img src={DownArrow} alt="arrow" className='arrow1-2' />
+            <div>
               <animated.h6 style={slideInFromRight}>Create a Campaign</animated.h6>
               <animated.p style={slideInFromLeft}>Just select the purpose of your campaign, write a short description and upload photos. Your campaign will be live within seconds!</animated.p>
             </div>
-            <div className='three' style={{ marginBottom: '2rem' }}>
-              <img src={DownArrow} alt="arrow" className='arrow1-3' />
+            <div>
               <animated.h6 style={slideInFromRight}>Fundraise</animated.h6>
               <animated.p style={slideInFromLeft}>You can fundraise as an individual or you can get family and friends involved too. Share with them via email, Facebook or Twitter. They don't even need an account!</animated.p>
             </div>
-            <div className='four' style={{ marginBottom: '2rem' }}>
-              <img src={TickMark} alt="arrow" className='tick1' />
+            <div>
               <animated.h6 style={slideInFromRight}>Get Help from our Team</animated.h6>
               <animated.p style={slideInFromLeft}>We'll take care of everything - we'll support you every step of the way on your fundraising journey</animated.p>
             </div>
+
           </div>
 
           <div className="right-steps">
-            <img src={flower} alt="flowerimage" />
+            <img className='flower-image' src={flower} alt="flowerimage" />
           </div>
         </div>
       </div>
@@ -259,7 +252,7 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Popular Campaigns</h5>
-          <Link to='/all-campaigns' className='view-all'><p>view all</p></Link>
+          <a className='view-all' href="detail"><p>view all</p></a>
         </div>
         <div >
           <Cards data={data} />
@@ -274,7 +267,7 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Latest Campaigns</h5>
-          <Link to='/all-campaigns' className='view-all'><p>view all</p></Link>
+          <a className='view-all' href="detail"><p>view all</p></a>
         </div>
         <div >
           <Cards data={data} />
