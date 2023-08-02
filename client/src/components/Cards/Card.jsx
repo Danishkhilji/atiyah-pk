@@ -23,7 +23,7 @@ const Cards = ({ data }) => {
                 style={{ textDecoration: "none", color: "inherit" }}>
                <Card className="card" sx={{ maxWidth: 345 }}>
                     
-                    <img className="card-img" src={item.images} alt="card image" />
+                    <img className="card-img" src={item.ImageURL} alt="card image" loading="lazy" />
                     <CardContent>
 
                         <Typography gutterBottom variant="h5" component="div">

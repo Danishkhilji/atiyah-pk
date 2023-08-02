@@ -76,6 +76,9 @@ const campaignSchema = new Schema({
     type: Number,
     default: 0,
   },
+  ImageURL:{
+    type: String,
+  },
 });
 
 const campaignModel = mongoose.model("Campaigns", campaignSchema);
