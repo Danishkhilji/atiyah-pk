@@ -60,12 +60,23 @@ export default function UploadCampaign() {
 
     const handleFormInputChange = (name) => (event) => {
         const { value } = event.target;
+
+        // Check word count for campaign description
+        if (name === "campaignDescription") {
+            const wordCount = value.trim().split(/\s+/).length;
+            if (wordCount > 50) {
+                setError("Campaign description should not exceed 50 words.");
+                return;
+            }
+        }
+
         setCampaignData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
         setError('');
     };
+
 
     const handleCitySelect = (event) => {
         setSelectedCity(event.target.value);
@@ -161,8 +172,8 @@ export default function UploadCampaign() {
         }
 
         if (activeStep === 4) {
-            if (!campaignData.accountNumber || campaignData.accountNumber.length !== 16) {
-                setError("Please enter a valid 16-digit account number.");
+            if (!campaignData.accountNumber || campaignData.accountNumber.length < 8 || campaignData.accountNumber.length > 17) {
+                setError("Please enter a valid account number.");
                 return;
             }
         }
@@ -174,7 +185,6 @@ export default function UploadCampaign() {
             setSkipped(newSkipped);
         }
     };
-
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -332,6 +342,7 @@ export default function UploadCampaign() {
                                     <Form.Control
                                         id="outlined-basic text"
                                         placeholder="Campaign Description"
+                                        name="campaignDescription"
                                         onChange={handleFormInputChange("campaignDescription")}
                                         variant="outlined"
                                         style={{ marginBottom: "1rem" }}
