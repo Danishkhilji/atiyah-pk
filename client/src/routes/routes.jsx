@@ -53,7 +53,7 @@ const AppRoutes = () => {
           <Route path="donation" element={<Donation />} />
           <Route path="success" element={<Success />} />
 
-          <Route path="receiver" element={<ReciverDashboard />} />
+          <Route path="receiverDashboard" element={<ReciverDashboard />} />
           <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
           <Route path="profile" element={<Profile />} />
           

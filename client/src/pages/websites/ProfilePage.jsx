@@ -13,9 +13,10 @@ import { useEffect } from 'react';
 const data = [
   // { name: "Dashboard", icon: <HomeOutlinedIcon />, active: true, color: "#fff", path: "", },
   { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
-  { name: "My Profile", icon: <PersonOutlinedIcon />, path: "" },
-  { name: "Analytics", icon: <BarChartOutlinedIcon />, path: "" },
+  { name: "My Profile", icon: <PersonOutlinedIcon /> },
+  { name: "Analytics", icon: <BarChartOutlinedIcon />, },
   { name: "Comments", icon: <CommentOutlinedIcon /> },
+  { name: "Comment", icon: <CommentOutlinedIcon /> },
 ];
 
 
