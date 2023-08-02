@@ -10,17 +10,11 @@ import { useEffect } from 'react';
 
 
 const data = [
-  {
-    name: "Dashboard",
-    icon: <HomeOutlinedIcon />,
-    active: true,
-    color: "#fff",
-    path: "",
-  },
-  { name: "My Campaigns", icon: <InboxOutlinedIcon />, path: "" },
+  // { name: "Dashboard", icon: <HomeOutlinedIcon />, active: true, color: "#fff", path: "", },
+  { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
   { name: "My Profile", icon: <PersonOutlinedIcon />, path: "" },
   { name: "Analytics", icon: <BarChartOutlinedIcon />, path: "" },
-  { name: "Comments", icon: <CommentOutlinedIcon />, path: " " },
+  { name: "Comments", icon: <CommentOutlinedIcon /> },
 ];
 
 const ReceiverProfile = () => {
@@ -65,7 +59,7 @@ const ReceiverProfile = () => {
     containerStyle.width = '100%';
     containerStyle.top = '0';
     containerStyle.left = '0';
-  
+
     profileContainerStyle.position = 'static';
     profileContainerStyle.margin = '0 auto';
     profileContainerStyle.width = '100%';

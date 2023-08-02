@@ -1,20 +1,21 @@
 .left {
-  width: 69%;
-  height: 44.6rem;
+  width: 99%;
+  height: 44.2rem;
 }
 
 .web-body {
   display: flex;
+  height: 44.2rem;
 }
 
 .right {
   width: 42rem;
-  height: 44.5rem;
+  height: 44.2rem;
   border-left: 1px solid rgba(137, 137, 137, 0.405);
 }
 
 .right img {
-  height: 44.6rem;
+  height: 44.2rem;
 }
 
 .logo img {
@@ -30,8 +31,8 @@
 }
 
 .logo-left img {
-  width: 10rem;
-  height: 10rem;
+  width: 9.5rem;
+  height: 9.5rem;
   padding-bottom: 0px;
   display: flex;
 }
@@ -562,14 +563,14 @@
 
 .form {
   overflow: hidden;
-  height: 43rem;
+  height: 44rem;
 }
 
 .right-text {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 44.5rem;
+  height: 44rem;
   font-size: 29px;
   margin: 0 70px;
 }
@@ -665,4 +666,12 @@
   100% {
     transform: translateX(0);
   }
+}
+
+.Mui-active circle{
+  color: #117b34;
+}
+
+.Mui-completed path {
+    color: #117b34;
 }

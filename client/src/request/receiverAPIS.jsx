@@ -5,7 +5,11 @@ import { ENDPOINTS } from './endpoints';
 
 // Create new Campagin
 export function CreateCampagin(payload) {
-  return Api.post(ENDPOINTS.CREATE_CAMPAIGN, payload)
+  return Api.post(ENDPOINTS.CREATE_CAMPAIGN, payload,{
+    headers: {
+      'Content-Type': 'multipart/form-data', // Important for handling FormData
+    }
+  })
     .then(response => {
       console.log(response,"CampaignsData")
       if (response?.data.success === true) {

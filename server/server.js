@@ -26,12 +26,14 @@ app.use(session({
   cookie: { secure: false },
 }));
 
+const commonRoutes = require("./routes/commonRoutes");
 const publicRoutes = require("./routes/publicRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const donorRoutes = require("./routes/donorRoutes");
 const receiverRoutes = require("./routes/receiverRoutes");
 
 
+app.use('/api/common', commonRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/donor', donorRoutes);
 app.use('/api/receiver', receiverRoutes);

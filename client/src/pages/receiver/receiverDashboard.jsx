@@ -13,8 +13,10 @@ import CommentBox from "../../components/comments/commentBox";
 import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GetCampagins } from "../../request/receiverAPIS";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+
 const data = [
   {
     name: "Home",
@@ -31,7 +33,7 @@ const ReciverDashboard = () => {
   const [activeCampaign , setActiveCampaign] = useState()
   const [comments , setComments] = useState()
 
-  useEffect(()=>{
+  useEffect(() => {
     GetCampagins('64b9837cc6fe1b7ee850ba6d')
     .then((response)=>{
       setActiveCampaign(response.data.activeCampaign)
@@ -40,9 +42,9 @@ const ReciverDashboard = () => {
     })
   },[])
   const navigate = useNavigate()
-  const campaignHandler = ()=>{
+  const campaignHandler = () => {
     navigate('/upload-campaign')
-}
+  }
 
   return (
     <div style={{ display: "flex" }}>

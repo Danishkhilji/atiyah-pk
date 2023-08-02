@@ -7,6 +7,7 @@ export const ENDPOINTS = {
     SEND_OTP_MAIL:"/SendOTPmail",
     VERIFY_OTP :'/verifyOTP',
     UPDATE_PASSWORD: '/resetPass',
+    GET_CAMAPIGN: 'common/campaign/',
 
 // Receiver
     CREATE_CAMPAIGN: "/receiver/createCampagin",

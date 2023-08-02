@@ -1,17 +1,7 @@
 const tryCatch = require("../utils/tryCatch");
 const campaignModel = require("../models/campaign");
-const multer = require('multer');
 const uuid = require('uuid');
 const { bucket } = require('../config/firebaseConfig');
-
-
-// Create a multer storage configuration
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
-
-
-
-
 
 exports.CreateCampaign = tryCatch(async (req, res) => {
   const {
@@ -24,6 +14,7 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
     amountNeeded,
     accountTitle,
     accountNumber,
+    fundraiseFor
   } = req.body;
 
   // Check if an active campaign already exists for the user
@@ -40,7 +31,6 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ success: false, message: "No image provided" });
   }
-  
   const filename = `${uuid.v4()}_${req.file.originalname}`;
 
   // Create a write stream to Firebase Storage
@@ -51,7 +41,6 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
   });
 
   fileStream.on('error', (error) => {
-    console.error('Error uploading image:', error);
     res.status(500).json({ success: false, error: 'An error occurred while uploading the image' });
   });
 
@@ -60,7 +49,6 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
     try {
       await bucket.file(filename).makePublic();
     } catch (error) {
-      console.error('Error making the image publicly accessible:', error);
       return res.status(500).json({ success: false, error: 'An error occurred while making the image publicly accessible' });
     }
 
@@ -77,13 +65,13 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
       amountNeeded,
       accountTitle,
       accountNumber,
+      fundraiseFor,
       ImageURL, // Save the image URL in the database
     });
 
     try {
       await newCampaign.save();
     } catch (error) {
-      console.error('Error saving the campaign data:', error);
       return res.status(500).json({ success: false, error: 'An error occurred while saving the campaign data' });
     }
 
@@ -106,7 +94,7 @@ exports.registerUserAndUploadImage = (req, res) => {
     return res.status(400).json({ error: 'No image provided' });
   }
   const filename = `${uuid.v4()}_${req.file.originalname}`;
-  console.log(filename)
+
 
   // Create a write stream to Firebase Storage
   const fileStream = bucket.file(filename).createWriteStream({
@@ -115,10 +103,8 @@ exports.registerUserAndUploadImage = (req, res) => {
     },
   });
 
-  console.log(fileStream)
 
   fileStream.on('error', (error) => {
-    console.error('Error uploading image:', error);
     res.status(500).json({ error: 'An error occurred while uploading the image' });
   });
 
@@ -129,7 +115,6 @@ exports.registerUserAndUploadImage = (req, res) => {
       const userData = { name, bio, imageUrl };
       res.json({ message: 'User registered successfully', user: userData });
     }).catch((error) => {
-      console.error('Error making the image publicly accessible:', error);
       res.status(500).json({ error: 'An error occurred while making the image publicly accessible' });
     });
   });

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import { FormControl, InputAdornment, InputLabel, OutlinedInput, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { CreateCampagin } from "../../request/receiverAPIS";
 import { useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify';
+import { FloatingLabel, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 // import Fundraising1 from "../../Assets/jpeg/fundraising1.jpg";
 // import Fundraising2 from "../../Assets/jpeg/fundraising2.jpg";
 
@@ -42,58 +42,97 @@ export default function UploadCampaign() {
     const [skipped, setSkipped] = React.useState(new Set());
     const [selectedOption, setSelectedOption] = useState(null);
     const [activeSection, setActiveSection] = useState(null);
-    const [selectedCity, setSelectedCity] = useState("Khi"); // Default city is Karachi
+    const [selectedCity, setSelectedCity] = useState("Khi");
+    const [error, setError] = useState(null);
+    const [postalCode, setPostalCode] = useState(null);
+    const [image, setImage] = useState(null);
     const [campaignData, setCampaignData] = useState({
-      postalCode: "",
-      amountRaised: "",
-      campaignName: "",
-      campaignDescription: "",
-      accountTitle: "",
-      accountNumber: "",
+        amountRaised: "",
+        campaignName: "",
+        campaignDescription: "",
+        accountTitle: "",
+        accountNumber: "",
     });
+    const navigate = useNavigate()
+    const fileInputRef = useRef(null);
+        
+  const handleFileChange = () => {
+    const file = fileInputRef.current?.files[0];
+    setImage(file);
+  };
+    
 
-    const user = useSelector((state) => state.user.user);
-
+    // eslint-disable-next-line
+    const user = useSelector((state) => state.user.user);   
     const handleFormInputChange = (name) => (event) => {
         const { value } = event.target;
+        console.log(name,value)
         setCampaignData((prevData) => ({
-          ...prevData,
-          [name]: value,
+            ...prevData,
+            [name]: value,
         }));
-      };  const handleCitySelect = (event) => {
-    setSelectedCity(event.target.value);
-  };
+        setError('');
+    };
 
-  const handleAmountChange = (event) => {
-    const amount = event.target.value;
-    setCampaignData((prevData) => ({
-      ...prevData,
-      amountRaised: amount,
-    }));
-  };
+    const handleCitySelect = (event) => {
+        setSelectedCity(event.target.value);
+    };
 
-  const handleSubmit = () => {
-    const payload={ 
-    "city": selectedCity,
-    "postalCode":campaignData.postalCode,
-    "category":activeSection,
-    "campaign" : campaignData.campaignName,
-    "description": campaignData.campaignDescription,
-    "amountNeeded": campaignData.amountRaised,
-    "accountTitle" :campaignData.accountTitle,
-    "accountNumber" :campaignData.accountNumber,
-    "user": "64b9837cc6fe1b7ee850ba6d" ,   
-}
-    CreateCampagin(payload)
-  };
+    const handleAmountChange = (event) => {
+        const amount = event.target.value;
+        setCampaignData((prevData) => ({
+            ...prevData,
+            amountRaised: amount,
+        }));
+        setError('');
+    };
+    const handleSubmit = () => {
 
-  const handleOptionSelect = (option) => {
+        const payload = {
+            "city": selectedCity,
+            "postalCode": postalCode,
+            "fundraiseFor": activeSection,
+            "category": selectedOption,
+            "campaign": campaignData.campaignName,
+            "description": campaignData.campaignDescription,
+            "amountNeeded": campaignData.amountRaised,
+            "accountTitle": campaignData.accountTitle,
+            "accountNumber": campaignData.accountNumber,
+            "user": user._id,
+            "image": image,
+        }
+        console.log(payload,"payload")
+        CreateCampagin(payload).then((response) => {
+            const campaignId =  response.data.data._id
+            setTimeout(() => {
+                navigate(`/campaign-details/${campaignId}`);
+              }, 1500);
+        })
+    };
+
+    const handleOptionSelect = (option) => {
         setSelectedOption((prevSelectedOption) =>
             prevSelectedOption === option ? null : option
         );
     };
 
-    // Function to check if an option is selected
+    const isSectionValid = (step) => {
+        switch (step) {
+            case 0:
+                return selectedCity && selectedOption && postalCode;
+            case 1:
+                return activeSection !== null;
+            case 2:
+                return campaignData.amountRaised !== "";
+            case 3:
+                return campaignData.campaignName && campaignData.campaignDescription;
+            case 4:
+                return campaignData.accountTitle && campaignData.accountNumber;
+            default:
+                return true;
+        }
+    };
+
     const isOptionSelected = (option) => {
         return selectedOption === option;
     };
@@ -102,20 +141,53 @@ export default function UploadCampaign() {
         return skipped.has(step);
     };
 
-      const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
+    const handleNext = () => {
+        setError('');
 
-    if (activeStep === steps.length - 1) {
-      handleSubmit(); // Call the handleSubmit function on the last step
-    } else {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setSkipped(newSkipped);
-    }
-  };
+        let newSkipped = skipped;
+        if (isStepSkipped(activeStep)) {
+            newSkipped = new Set(newSkipped.values());
+            newSkipped.delete(activeStep);
+        }
+
+        const isCurrentSectionValid = isSectionValid(activeStep);
+        if (!isCurrentSectionValid) {
+            setError("Please complete all fields in the current section.");
+            return;
+        }
+
+        if (activeStep === 3) {
+            const file = fileInputRef.current?.files[0];
+            if (file) {
+                const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+                if (!allowedFileTypes.includes(file.type)) {
+                    setError("Please upload a JPG, JPEG, or PNG image.");
+                    return;
+                }
+
+                const maxSize = 5 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    setError("The selected image exceeds the maximum allowed size of 5MB.");
+                    return;
+                }
+            }
+        }
+
+        if (activeStep === 4) {
+            if (!campaignData.accountNumber || campaignData.accountNumber.length !== 16) {
+                setError("Please enter a valid 16-digit account number.");
+                return;
+            }
+        }
+
+        if (activeStep === steps.length - 1) {
+            handleSubmit();
+        } else {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            setSkipped(newSkipped);
+        }
+    };
+
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -129,10 +201,14 @@ export default function UploadCampaign() {
         setActiveSection(sectionName);
     };
 
-    // Function to check if a section is active
     const isSectionActive = (sectionName) => {
         return activeSection === sectionName;
     };
+
+    const handlePostalCodeChange = (e) => {
+        setPostalCode(e.target.value);
+        setError('');
+    }
 
     const renderSection = (step) => {
         switch (step) {
@@ -144,35 +220,40 @@ export default function UploadCampaign() {
                                 <div className="City">
                                     <div className="section1-1">
                                         <h6>Where are you located?</h6>
-                                        <Box
-                                            component="form"
-                                            sx={{
-                                                '& .MuiTextField-root': { m: 1, width: '25rem' },
-                                            }}
-                                            noValidate
-                                            autoComplete="off"
-                                        >
-                                            <div>
-                                                <TextField
-                                                    id="outlined-select-currency"
-                                                    select
-                                                    label="Select"
-                                                    defaultValue="Khi"
-                                                    onChange={handleCitySelect}
-                                                    helperText="Please select your City"
-                                                >
-                                                    {CityName.map((option) => (
-                                                        <MenuItem key={option.value} value={option.value}>
-                                                            {option.label}
-                                                        </MenuItem>
-                                                    ))}
-                                                </TextField>
-                                            </div>
-                                        </Box>
-                                        <TextField id="outlined-basic" label="Postal Code"     onChange={handleFormInputChange("postalCode")}   variant="outlined" className="postal-code" style={{
-                                            marginLeft: '8px'
-                                        }} />
-
+                                        <Form>
+                                            <Box
+                                                component="form"
+                                                sx={{
+                                                    '& .MuiTextField-root': { m: 1, width: '25rem' },
+                                                }}
+                                                noValidate
+                                                autoComplete="off"
+                                            >
+                                                <div>
+                                                    <FloatingLabel controlId="outlined-select-currency" label="Select your City" className="mb-3" style={{ width: '25rem' }}>
+                                                        <Form.Select
+                                                            defaultValue="Khi"
+                                                            onChange={handleCitySelect}
+                                                        >
+                                                            {CityName.map((option) => (
+                                                                <option key={option.value} value={option.value}>
+                                                                    {option.label}
+                                                                </option>
+                                                            ))}
+                                                        </Form.Select>
+                                                    </FloatingLabel>
+                                                </div>
+                                            </Box>
+                                            <FloatingLabel className="mb-3" label="Postal Code" style={{ width: '25rem' }}>
+                                                <Form.Control
+                                                    autoComplete="off"
+                                                    placeholder="Postal Code"
+                                                    type="number"  
+                                                    required
+                                                    onChange={handlePostalCodeChange}
+                                                />
+                                            </FloatingLabel>
+                                        </Form>
                                     </div>
                                 </div>
                                 <div className="section1-2">
@@ -189,6 +270,7 @@ export default function UploadCampaign() {
                                         ))}
                                     </div>
                                 </div>
+                                {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
                             </section>
                         </div>
                     </CSSTransition>
@@ -209,11 +291,7 @@ export default function UploadCampaign() {
                                     <p>Someone else</p> <br />
                                     <p>You’ll invite a beneficiary to receive funds or distribute them yourself</p>
                                 </div>
-                                <div className={`section2-1 ${isSectionActive("Charity") ? "activeOption" : ""}`}
-                                    onClick={() => handleSectionActivation("Charity")} >
-                                    <p>Charity</p> <br />
-                                    <p>Funds are delivered to your chosen nonprofit for you</p>
-                                </div>
+                                {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
                             </section>
                         </div>
                     </CSSTransition>
@@ -224,15 +302,27 @@ export default function UploadCampaign() {
                         <div className="section3">
                             <section className="section3">
                                 <p>Amount to be Raised</p>
-                                <FormControl sx={{ m: 1 }}>
-                                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                                    <OutlinedInput
-                                        id="outlined-adornment-amount"
-                                        startAdornment={<InputAdornment position="start">Rs.</InputAdornment>}
+                                <FloatingLabel className="mb-3" label="Amount" style={{ width: '25rem' }}>
+                                    <Form.Control
+                                        id="outlined-basic"
+                                        placeholder="Amount"
                                         label="Amount"
                                         onChange={handleAmountChange}
+                                        variant="outlined"
+                                        type="number"
+                                        inputProps={{
+                                            inputMode: 'numeric',
+                                            pattern: "[0-9]*",
+                                            onInput: (event) => {
+                                                const value = event.target.value;
+                                                event.target.setCustomValidity(
+                                                    /^\d+$/.test(value) ? '' : 'Please enter a valid integer.'
+                                                );
+                                            },
+                                        }}
                                     />
-                                </FormControl>
+                                </FloatingLabel>
+                                {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
                             </section>
                         </div>
                     </CSSTransition>
@@ -243,18 +333,33 @@ export default function UploadCampaign() {
                         <div className="section4">
                             <section className="section4">
                                 <h6>Enter Details about Campaign</h6>
-                                <TextField id="outlined-basic" label="Campaign Name" 
-                                onChange={handleFormInputChange("campaignName")}
-                                variant="outlined" style={{
-                                    marginBottom: '2rem'
-                                }} />
-                                <TextField id="outlined-basic text" label="Campaign Description"
-                                onChange={handleFormInputChange("campaignDescription")}
-                                variant="outlined" />
-                                <p>Max 50 words</p>
+                                <FloatingLabel label="Campaign Name" style={{ width: '25rem' }}>
+                                    <Form.Control
+                                        id="outlined-basic"
+                                        placeholder="Canmpaign Name"
+                                        onChange={handleFormInputChange("campaignName")}
+                                        variant="outlined"
+                                        style={{ marginBottom: "1rem" }}
+                                    />
+                                </FloatingLabel>
+                                <FloatingLabel className="mb-3" label="Campaign Description" style={{ width: '25rem' }}>
+                                    <Form.Control
+                                        id="outlined-basic text"
+                                        placeholder="Campaign Description"
+                                        onChange={handleFormInputChange("campaignDescription")}
+                                        variant="outlined"
+                                        style={{ marginBottom: "1rem" }}
+                                    />
+                                    <p>Max 50 words</p>
+                                    <Form.Group controlId="formFile" className="mb-3">
+                                        <Form.Label>Select Image for your Campaign</Form.Label>
+                                        <Form.Control type="file" accept=".jpg, .jpeg, .png" ref={fileInputRef}  onChange={handleFileChange}  />
+                                    </Form.Group>
+                                </FloatingLabel>
+                                {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
                             </section>
                         </div>
-                    </CSSTransition>
+                    </CSSTransition >
                 );
             case 4:
                 return (
@@ -262,14 +367,25 @@ export default function UploadCampaign() {
                         <div className="section5">
                             <section className="section5">
                                 <h6>Please enter your Account Details</h6>
-                                <TextField id="outlined-basic" label="Acount Title" variant="outlined"
-                                onChange={handleFormInputChange("accountTitle")}
-                                style={{
-                                    marginBottom: '2rem'
-                                }} />
-                                <TextField id="outlined-basic" label="Acount Number" 
-                                onChange={handleFormInputChange("accountNumber")}
-                                variant="outlined" />
+                                <FloatingLabel label="Account Title" style={{ width: '25rem' }}>
+                                    <Form.Control
+                                        id="outlined-basic"
+                                        placeholder="Account Title"
+                                        variant="outlined"
+                                        onChange={handleFormInputChange("accountTitle")}
+                                        style={{ marginBottom: '1rem' }}
+                                    />
+                                </FloatingLabel>
+                                <FloatingLabel className="mb-3" label="Account Number" style={{ width: '25rem' }}>
+                                    <Form.Control
+                                        id="outlined-basic"
+                                        placeholder="Account Number"
+                                        onChange={handleFormInputChange("accountNumber")}
+                                        variant="outlined"
+                                        type="text"
+                                    />
+                                </FloatingLabel>
+                                {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
                             </section>
                         </div>
                     </CSSTransition>
@@ -278,6 +394,7 @@ export default function UploadCampaign() {
                 return null;
         }
     };
+
 
     return (
         <>
@@ -305,7 +422,7 @@ export default function UploadCampaign() {
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Typography sx={{ mt: 2, mb: 1 }}>
-                                    After clicking the finish button, will proceed to campaign page..
+                                    After clicking the finish button, will proceed to the campaign page.
                                 </Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                                     <Box sx={{ flex: '1 1 auto' }} />
@@ -324,7 +441,6 @@ export default function UploadCampaign() {
                                         Back
                                     </Button>
                                     <Box sx={{ flex: '1 1 auto' }} />
-
                                     <Button onClick={handleNext}>
                                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                                     </Button>

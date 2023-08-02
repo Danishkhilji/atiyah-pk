@@ -19,7 +19,7 @@ const Cards = ({ data }) => {
         <div className="cards">
             {data.map((item) => (
                 // <a href="campaign">
-                <Link key={item._id} to={`/details/${item._id}`}
+                <Link key={item._id} to={`/campaign-details/${item._id}`}
                 style={{ textDecoration: "none", color: "inherit" }}>
                <Card className="card" sx={{ maxWidth: 345 }}>
                     

@@ -19,6 +19,10 @@ const campaignSchema = new Schema({
     type: String,
     required: true,
   },
+  fundraiseFor: {
+    type: String,
+    required: true,
+  },
   campaign: {
     type: String,
     required: true,

@@ -10,7 +10,7 @@ const ForgetPassscreens = ({ heading, text, text2, content, value, onChange, onS
     <div className='main-forget-screens'>
       <div className='forget-screens'>
         <div className='forget-screen-content'>
-          <img className='logo' src={logo} alt="atiyah-logo" />
+          <img className='logo' src={logo} alt="atiyah-logo" style={{ height: '10rem' }} />
           <h3>{heading}</h3>
           <TextField
             className='input-field'
