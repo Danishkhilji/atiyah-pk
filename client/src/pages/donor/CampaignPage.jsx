@@ -11,21 +11,24 @@ import Footer from "../../components/Footer/Footer";
 import { Tab } from '@mui/material'
 import { useParams } from 'react-router-dom';
 import { GetCampagin } from "../../request/commonAPIs";
-
+import { useNavigate } from "react-router-dom";
 export default function CampaignPage() {
 
     const [campagin ,setCampaign] = useState()
     const { campaignId } = useParams();
-
+    const navigate =useNavigate()
 
 useEffect(()=>{
     GetCampagin(campaignId).then((response)=>{
         if (response?.data.success === true) {
-            console.log(response.data)
             setCampaign(response.data.data)
           }
     })
 },[campaignId])
+const handleDonateBtnClick = (campaignId, e) => {
+    e.stopPropagation(); // Stop the click event from propagating to the card
+    navigate(`/donation/${campaignId}`);
+};
 
     const progressPercentage = (campagin?.amountCollected / campagin?.amountNeeded) * 100;
 
@@ -76,7 +79,7 @@ useEffect(()=>{
                             </div>
                             <div className="endorsement-btn">
                                 <Button variant="contained" style={{ background: "#117b34" }}>Share</Button>
-                                <Button variant="contained" style={{ background: "#117b34" }}>Donate Now</Button>
+                                <Button variant="contained" style={{ background: "#117b34" }} onClick={(e) => handleDonateBtnClick(campagin?._id, e)} >Donate Now</Button>
                             </div>
                             <p className="a">{campagin?.donations.length} people just donated</p>
                             <div className="recent-donations">

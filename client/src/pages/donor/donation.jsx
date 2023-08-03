@@ -130,7 +130,6 @@ useEffect(()=>{
     setCardHolderNameError('');
   
     // Open the comment dialog after successful validation
-    handleOpenCommentDialog();
 
     const payload ={
       amount:donationAmount,
@@ -141,9 +140,7 @@ useEffect(()=>{
     }
     DonateNow(payload).then((response)=>{
       if (response?.data.success === true) {
-        setTimeout(() => {
-          navigate(`/success/${campaignId}`);
-        }, 1500);
+            handleOpenCommentDialog();
       }        
     })
 
@@ -177,13 +174,13 @@ useEffect(()=>{
   
   const handleCloseCommentDialog = (submitted) => {
     setShowCommentDialog(false);
-  
-    // If the user submitted the comment and rating, mark the donation as completed
-    if (submitted) {
-      setDonationCompleted(true);
-    } else {
-      setDonationCompleted(false);
-    }
+    setDonationCompleted(true);
+    
+    setTimeout(() => {
+      navigate(`/success/${campaignId}`);
+    }, 1500);
+
+    
   };
   
   
@@ -469,7 +466,7 @@ useEffect(()=>{
               />
             </DialogContent>
             <DialogActions>
-            <Button onClick={() => handleCloseCommentDialog(false)} color="primary">
+            <Button onClick={() => handleCloseCommentDialog(true)} color="primary">
               Skip
             </Button>
             <Button onClick={() => handleCloseCommentDialog(true)} color="primary" disabled={donationAmountValue === 0}>
