@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useEffect,useState} from 'react';
 import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
 import CardContent from '@mui/joy/CardContent';
@@ -20,16 +20,18 @@ import { styled } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";
-
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
-
-
 import InputAdornment from '@mui/material/InputAdornment';
+import { DonateNow } from '../../request/donorAPIs';
+import { useParams, useNavigate } from 'react-router-dom';
+import { GetCampagin } from '../../request/commonAPIs';
+import { useSelector } from 'react-redux'
+// import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 // Styled components for custom styles
 const DonationContainer = styled('div')(({ theme }) => ({
@@ -60,7 +62,22 @@ export default function CreditCardPage() {
   const [tipAmount, setTipAmount] = React.useState('');
   const [donationCompleted, setDonationCompleted] = React.useState(false);
   const [cardHolderNameError, setCardHolderNameError] = React.useState('');
+  const [campagin ,setCampaign] = useState()
+  const { campaignId } = useParams();
+  
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.user.user);   
 
+
+
+useEffect(()=>{
+  GetCampagin(campaignId).then((response)=>{
+      if (response?.data.success === true) {
+          console.log(response.data)
+          setCampaign(response.data.data)
+        }
+  })
+},[campaignId])
 
 
   const validateCardNumber = () => {
@@ -79,43 +96,58 @@ export default function CreditCardPage() {
   };
 
   const handleAddCard = () => {
-      if (!validateCardNumber()) {
-        alert('Please enter a valid 13-digit card number.');
-        return;
-      }
-    
-      if (!validateExpiryDate()) {
-        alert('Please enter a valid expiration date (MM/YY).');
-        return;
-      }
-    
-      if (!validateCvc()) {
-        alert('Please enter a valid 3-digit CVC.');
-        return;
-      }
-    
-      if (donationAmountValue <= 0) {
-        alert('Please enter a valid donation amount.');
-        return;
-      }
-    
-      if (!cardHolderName.trim()) {
-        setCardHolderNameError('Card holder name is required.');
-        return;
-      }
-    
-      if (!/^[A-Za-z\s]+$/.test(cardHolderName)) {
-        setCardHolderNameError('Card holder name can only contain alphabets.');
-        return;
-      }
-    
-      // Reset the cardHolderNameError when a valid name is entered
-      setCardHolderNameError('');
-    
-      // Open the comment dialog after successful validation
-      handleOpenCommentDialog();
-    
-    };
+    // Perform final validation checks before adding the card
+    if (!validateCardNumber()) {
+      alert('Please enter a valid 13-digit card number.');
+      return;
+    }
+
+    if (!validateExpiryDate()) {
+      alert('Please enter a valid expiration date (MM/YY).');
+      return;
+    }
+
+    if (!validateCvc()) {
+      alert('Please enter a valid 3-digit CVC.');
+      return;
+    }
+    if (donationAmountValue <= 0) {
+      alert('Please enter a valid donation amount.');
+      return;
+    }
+  
+    if (!cardHolderName.trim()) {
+      setCardHolderNameError('Card holder name is required.');
+      return;
+    }
+  
+    if (!/^[A-Za-z\s]+$/.test(cardHolderName)) {
+      setCardHolderNameError('Card holder name can only contain alphabets.');
+      return;
+    }
+  
+    // Reset the cardHolderNameError when a valid name is entered
+    setCardHolderNameError('');
+  
+    // Open the comment dialog after successful validation
+    handleOpenCommentDialog();
+
+    const payload ={
+      amount:donationAmount,
+      cardHolderName:cardHolderName,
+      cardToken:"tok_visa",
+      campaignId: campaignId,
+      userId: user._id
+    }
+    DonateNow(payload).then((response)=>{
+      if (response?.data.success === true) {
+        setTimeout(() => {
+          navigate(`/success/${campaignId}`);
+        }, 1500);
+      }        
+    })
+
+  };
 
   const formatCurrency = (amount) => {
     return `$${amount.toFixed(2)}`;
@@ -195,7 +227,7 @@ export default function CreditCardPage() {
   
   return (
     <>
-      <AppBar position="static" color="inherit">
+      <AppBar position="sticky" color="inherit">
         <Toolbar>
           <IconButton edge="start" color="info" aria-label="back" onClick={handleBackClick}>
             <ArrowBackIcon />
@@ -220,13 +252,13 @@ export default function CreditCardPage() {
             <Divider style={{ margin: '2rem 0' }} />
             {/* Image with title and subtitle */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src={img} alt="Campaign_description" style={{ marginRight: '30px', width: '200px' }} />
+              <img src={campagin?.ImageURL} alt="Campaign_description" style={{ marginRight: '30px', width: '200px' }} />
               <div>
                 <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
-                  You're supporting Faraz Ali
+                  You're supporting {campagin?.user.name}
                 </Typography>
                 <Typography variant="subtitle1" component="div" gutterBottom style={{ color: 'black' }}>
-                  Your donation will benefit Faraz Ali's Education
+                  Your donation will benefit {campagin?.user.name}'s {campagin?.category}
                 </Typography>
               </div>
             </div>

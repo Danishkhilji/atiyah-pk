@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: 'http://localhost:3000', 
   credentials: true,
-    }
+}
 ))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -20,18 +20,20 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-  secret: process.env.SESSION_KEY, // Replace with a secret key for session encryption
+  secret: process.env.SESSION_KEY, 
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }, // Set to true if using SSL
+  cookie: { secure: false },
 }));
 
+const commonRoutes = require("./routes/commonRoutes");
 const publicRoutes = require("./routes/publicRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const donorRoutes = require("./routes/donorRoutes");
 const receiverRoutes = require("./routes/receiverRoutes");
 
 
+app.use('/api/common', commonRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/donor', donorRoutes);
 app.use('/api/receiver', receiverRoutes);

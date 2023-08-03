@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Button = ({ color,BGcolor, onClick, children ,width,height}) => {
+const Button = ({ color,BGcolor, onClick, children,fontSize ,width,height}) => {
   const buttonStyle = {
     width: width,
     height:height,
+    fontSize:fontSize,
     backgroundColor: BGcolor,
     padding: '10px 20px',
     borderRadius: '5px',

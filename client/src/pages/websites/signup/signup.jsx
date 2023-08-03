@@ -1,8 +1,7 @@
-import {useState} from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -10,22 +9,67 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../../../Assets/transparent/1.png";
 import googleLogo from "../../../Assets/logos/google.png";
 import facebookLogo from "../../../Assets/logos/facebook.png";
-import appleLogo from "../../../Assets/logos/apple.png";
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { SignIn } from "../../../request/authAPIS";
 import { ToastContainer } from 'react-toastify';
+import { FloatingLabel, Form } from "react-bootstrap";
+
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [radioValue, setRadioValue] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(name ,email,password)
-    SignIn({name ,email,password})
+
+    if (!name || !email || !password || !radioValue) {
+      setError('Please fill in all fields.');
+      return;
+    }
+
+    setError('');
+
+    SignIn({ name, email, password }).then((response) => {
+      if (response?.data.success === true) {
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      }
+    });
+
+
   };
+
+  const handleUsernameChange = (e) => {
+    setName(e.target.value);
+    setError('');
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError('');
+  }
+
+  const handleEmailChange = (e) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+
+    if (!emailValue.includes('@')) {
+      setError('Invalid email address. Please enter a valid email.');
+    } else {
+      setError('');
+    }
+  }
+
+  const handleRadioChange = (e) => {
+    setRadioValue(e.target.value);
+    setError('');
+  }
 
   return (
     <>
@@ -43,7 +87,7 @@ export default function SignUp() {
                 </Grid>
               </Grid>
             </div>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" style={{ marginTop: '-30px' }}>
               <CssBaseline />
               <Box
                 sx={{
@@ -53,62 +97,63 @@ export default function SignUp() {
                   alignItems: "center",
                 }}
               >
-                <h2>Welcome to the Family</h2>
-                <Box
-                  component="form"
-                  noValidate
-                  onSubmit={handleSubmit}
-                  sx={{ mt: 3 }}
+                <h2 style={{
+                  marginBottom: '35px',
+                  marginTop: '-20px',
+                }}>Welcome to the Family</h2>
+              </Box>
+              <Form className="login-form" onSubmit={handleSubmit}>
+                <FloatingLabel className="mb-3" controlId="formBasicName" label="Full Name">
+                  <Form.Control
+                    autoComplete="off"
+                    placeholder="Full Name"
+                    required
+                    value={name}
+                    onChange={handleUsernameChange}
+                  />
+                </FloatingLabel>
+                <FloatingLabel className="mb-3" controlId="formBasicEmail" label="Email address">
+                  <Form.Control
+                    autoComplete="off"
+                    placeholder="name@example.com"
+                    required
+                    value={email}
+                    onChange={handleEmailChange}
+                  />
+                </FloatingLabel>
+                <FloatingLabel className="mb-3" controlId="formBasicPassword" label="Password">
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </FloatingLabel>
+                <div className="radio-input" onChange={handleRadioChange}>
+                  <input type="radio" id="value-1" name="value-radio" defaultValue="value-1" />
+                  <label htmlFor="value-1">Donor</label>
+                  <input type="radio" id="value-2" name="value-radio" defaultValue="value-2" />
+                  <label htmlFor="value-2">Reciever</label>
+                </div>
+                {error && <div className="error-message" style={{ position: 'fixed', color: 'red' }}>{error}</div>}
+                <Button style={{ background: "#117b34" }}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
                 >
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="fullName"
-                        label="Full Name"
-                        name="fullName"
-                        autoComplete="family-name"
-                        onChange={(e)=>{setName(e.target.value)}}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        onChange={(e)=>{setEmail(e.target.value)}}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="new-password"
-                        onChange={(e)=>{setPassword(e.target.value)}}
-
-                      />
-                    </Grid>
-                  </Grid>
-                  <Button
-                    style={{
-                      background: "#117b34",
-                    }}
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Sign Up
-                  </Button>
-                </Box>
+                  Sign Up
+                </Button>
+              </Form>
+              <Box
+                sx={{
+                  marginTop: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <p>Or sign up with</p>
                 <div className="third-party">
                   <div className="google">
@@ -117,13 +162,11 @@ export default function SignUp() {
                   <div className="facebook">
                     <img src={facebookLogo} alt="Facebook" />
                   </div>
-                  <div className="apple">
-                    <img src={appleLogo} alt="Apple" />
-                  </div>
                 </div>
               </Box>
             </Container>
           </ThemeProvider>
+
           <div className="ending">
             <p>By Signing up, you agree with the</p>
             <br />
@@ -137,7 +180,7 @@ export default function SignUp() {
         <div className="right">
           <img src={RightPic} alt='' />
         </div>
-      </div>
+      </div >
       <ToastContainer />
     </>
   );

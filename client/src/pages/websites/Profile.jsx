@@ -1,35 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from "../../components/Sidebar/drawer";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
+import User from '../../Assets/logos/user.png'
 import { useEffect } from 'react';
 
 
 
 const data = [
-  {
-    name: "Dashboard",
-    icon: <HomeOutlinedIcon />,
-    active: true,
-    color: "#fff",
-    path: "",
-  },
-  { name: "My Campaigns", icon: <InboxOutlinedIcon />, path: "" },
+  // { name: "Dashboard", icon: <HomeOutlinedIcon />, active: true, color: "#fff", path: "", },
+  { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
   { name: "My Profile", icon: <PersonOutlinedIcon />, path: "" },
   { name: "Analytics", icon: <BarChartOutlinedIcon />, path: "" },
-  { name: "Comments", icon: <CommentOutlinedIcon />, path: " " },
+  { name: "Comments", icon: <CommentOutlinedIcon /> },
 ];
 
-const ReceiverProfile = () => {
+
+const Profile = () => {
+  const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
+  const [previewProfilePicture, setPreviewProfilePicture] = useState(null);
+
   useEffect(() => {
     const metaTag = document.createElement('meta');
     metaTag.name = 'viewport';
     metaTag.content = 'width=device-width, initial-scale=1.0';
     document.head.appendChild(metaTag);
   }, []);
+
+  const handleProfilePictureChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedProfilePicture(file);
+    setPreviewProfilePicture(URL.createObjectURL(file));
+  };
+
+  const updateProfilePicture = () => {
+    if (!selectedProfilePicture) {
+      return; // No profile picture selected, do nothing
+    }
+
+    const formData = new FormData();
+    formData.append("profilePicture", selectedProfilePicture);
+
+    // Replace 'YOUR_API_ENDPOINT' with the actual endpoint where you handle profile picture updates on the server
+    fetch("YOUR_API_ENDPOINT", formData)
+      .then((response) => {
+        // Handle success response, e.g., show a success message
+        console.log("Profile picture updated successfully!");
+
+        // After the update is successful, you can update the profile picture on the frontend
+        // Assuming you have the URL to the updated profile picture
+        // Replace 'NEW_PROFILE_PICTURE_URL' with the actual URL of the updated profile picture
+        const newProfilePictureURL = "NEW_PROFILE_PICTURE_URL";
+        setSelectedProfilePicture(newProfilePictureURL);
+      })
+      .catch((error) => {
+        // Handle error, e.g., show an error message
+        console.error("Error updating profile picture:", error);
+      });
+  };
+
 
 
 
@@ -65,7 +97,7 @@ const ReceiverProfile = () => {
     containerStyle.width = '100%';
     containerStyle.top = '0';
     containerStyle.left = '0';
-  
+
     profileContainerStyle.position = 'static';
     profileContainerStyle.margin = '0 auto';
     profileContainerStyle.width = '100%';
@@ -254,8 +286,17 @@ const ReceiverProfile = () => {
         <h2 style={{ fontFamily: "Poppins", fontSize: "42px", color: "#171A1FFF", marginBottom: "10px", marginTop: "20px" }}>My Profile</h2>
         <div style={containerStyle} className="container">
           <div style={avatarStyle} className="avatar">
-            <img src={require('../../Assets/logos/user.png').default} alt="Avatar" style={avatarImgStyle} />
-            <div style={avatarBadgeStyle} className="badge"></div>
+            <label htmlFor="profilePictureInput">
+              <img src={previewProfilePicture || selectedProfilePicture || User} alt="Avatar" style={avatarImgStyle} />
+              <div style={avatarBadgeStyle} className="badge"></div>
+            </label>
+            <input
+              type="file"
+              id="profilePictureInput"
+              accept=".png, .jpg, .jpeg"
+              style={{ display: "none" }}
+              onChange={handleProfilePictureChange}
+            />
           </div>
 
           <div style={textStyle} className="text">
@@ -329,8 +370,7 @@ const ReceiverProfile = () => {
               <input type="checkbox" id="checkbox2" style={{ marginRight: '8px' }} />
               <label htmlFor="checkbox2">See info about people who viewed you profile </label>
             </div>
-            <button style={buttonStyle} className="button">Save Information</button>
-
+            <button style={buttonStyle} className="button" onClick={updateProfilePicture}>Save Information</button>
           </div>
         </div>
       </div>
@@ -338,4 +378,4 @@ const ReceiverProfile = () => {
   );
 };
 
-export default ReceiverProfile;
+export default Profile;

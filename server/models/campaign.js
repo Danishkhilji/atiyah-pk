@@ -1,11 +1,27 @@
 const mongoose = require("mongoose");
-
 const { Schema } = mongoose;
 
 const campaignSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
+    // required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  postalCode: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  fundraiseFor: {
+    type: String,
+    required: true,
   },
   campaign: {
     type: String,
@@ -19,17 +35,24 @@ const campaignSchema = new Schema({
     type: Number,
     required: true,
   },
-  endosment: {
-    type: Number,
-  },
   amountCollected: {
     type: Number,
+    default: 0
   },
-
-  donations: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Donation',
-  }],
+  accountTitle: {
+    type: String,
+    required: true,
+  },
+  accountNumber: {
+    type: String,
+    required: true,
+  },
+  donations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Donation",
+    },
+  ],
   startDate: {
     type: Date,
     default: Date.now,
@@ -39,18 +62,27 @@ const campaignSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['active', 'completed', 'block'],
+    enum: ["active", "completed", "block"],
     default: "active",
   },
   block: {
     type: Boolean,
     default: false,
   },
-  comments: [{
-    type: Schema.Types.ObjectId,
-    ref: "Comment",
-    default: [],
-  }],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+      default: [],
+    },
+  ],
+  endosment:{
+    type: Number,
+    default: 0,
+  },
+  ImageURL:{
+    type: String,
+  },
 });
 
 const campaignModel = mongoose.model("Campaigns", campaignSchema);
