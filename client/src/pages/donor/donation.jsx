@@ -118,7 +118,7 @@ console.log(payload)
   };
 
   const formatCurrency = (amount) => {
-    return `$${amount.toFixed(2)}`;
+    return `Rs.${amount.toFixed(2)}`;
   };
 
   const handleBackClick = () => {

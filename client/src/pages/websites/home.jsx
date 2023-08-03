@@ -103,7 +103,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link5={<div style={{
+      <Navbar link1={<a href='#home'><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold", marginTop: '10px' }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold", marginTop: '10px' }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold", marginTop: '10px' }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold", marginTop: '10px' }} /></a>} link5={<div style={{
         width: '12%',
         display: 'flex',
         alignItems: 'center',
@@ -113,14 +113,10 @@ const Home = () => {
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
 
-      <div
-        id='home'
-        className='main-landing-titles'
-      >
-
+      <div id='home' className='main-landing-titles'>
         <animated.div style={slideInFromLeftNew} className='landing-title' >
-          <h1 >ATIYAH PK</h1>
-          <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
+          <h1 style={{fontFamily: 'Tektur'}}>ATIYAH PK</h1>
+          <p style={{fontFamily: 'Libre Baskerville', marginRight: '5px'}}>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
 
         <div className='main-landing-head-btn'>

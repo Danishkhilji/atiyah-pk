@@ -38,8 +38,9 @@ const Sidebar = ({ data }) => {
               if (item.name === 'Dashboard' || item.name === 'Donors' || item.name === 'Client' || item.name === 'Profit') {
                 navigate(`/admin/${item.path}`)
               } else if (item.name === 'My Campaigns' || item.name === 'Home') {
-                navigate(`/receiverDashboard/${item.path}`)
+                navigate(`/receiver/${item.path}`)
               }
+              console.log(item.path)
             }}
           >
             <ListItemIcon style={{ color: item.color }}>

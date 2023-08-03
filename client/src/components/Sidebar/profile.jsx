@@ -23,6 +23,7 @@ const Profile = () => {
 
   const handleClosePopover = () => {
     setAnchorEl(null);
+    navigate('/receiver/profile')
   };
 
   const handleLogout = () => {
@@ -85,9 +86,7 @@ const Profile = () => {
       >
         <List>
           <ListItemButton onClick={handleClosePopover}>
-            <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
               <ListItemText primary="Profile" />
-            </Link>
           </ListItemButton>
           <ListItemButton onClick={handleLogout} style={{ color: 'red' }}>
             <ListItemText primary="Logout" />

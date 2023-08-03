@@ -1,24 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from "../../components/Sidebar/drawer";
-import Button from '../../components/button/button';
-import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
-import User from '../../Assets/logos/user.png'
+import Sidebar from "./Sidebar/drawer";
+import Button from './button/button';
+import User from '../Assets/logos/user.png'
 import { useEffect } from 'react';
-
-
-
-const data = [
-  // { name: "Dashboard", icon: <HomeOutlinedIcon />, active: true, color: "#fff", path: "", },
-  { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
-  { name: "My Profile", icon: <PersonOutlinedIcon /> },
-  { name: "Analytics", icon: <BarChartOutlinedIcon />, },
-  { name: "Comments", icon: <CommentOutlinedIcon /> },
-  { name: "Comment", icon: <CommentOutlinedIcon /> },
-];
-
 
 const Profile = () => {
   const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
@@ -65,7 +49,6 @@ const Profile = () => {
 
   const containerStyle = {
     position: 'absolute',
-    top: '100px',
     left: '261px',
     width: '312px',
     height: '300px',
@@ -167,14 +150,8 @@ const Profile = () => {
   };
 
   return (
-
-
     <div style={{ display: "flex" }}>
-      <div style={{ flex: "0 0 250px", marginRight: "30px" }}>
-        <Sidebar data={data} />
-      </div>
-      <div style={{ flex: 1, padding: "30px" }}>
-        <h2 style={{ fontFamily: "Poppins", fontSize: "42px", color: "#171A1FFF", marginBottom: "10px", marginTop: "20px" }}>My Profile</h2>
+      <div style={{ padding: "30px", margin: 'auto' }}>
         <div style={containerStyle} className="container">
           <div style={avatarStyle} className="avatar">
             <label htmlFor="profilePictureInput">

@@ -60,7 +60,7 @@ const DonorLandingPage = () => {
   // ]
   return (
     <div>
-      <Navbar link1={<a href='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
+      <Navbar link1={<Link to='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></Link>} link2={<Link to='my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></Link>} search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
         <animated.div style={slideInFromLeftNew} className='donor-landing-title' >
           <h1 >ATIYAH PK</h1>

@@ -7,51 +7,45 @@ import { GetAllCampagins } from "../../request/receiverAPIS";
 import DataTable from "../../components/table/table"
 
 const data = [
-  {
-    name: "Home",
-    icon: <HomeOutlinedIcon />,
-    path: "",
-  },
-  {
-    name: "My Campaigns",
-    icon: <InboxOutlinedIcon />,
-    active: true,
-    color: "#fff",
-    path: "myCampaigns"
-
-  },
+  { name: "Home", icon: <HomeOutlinedIcon />, path: "", },
+  { name: "My Campaigns", icon: <InboxOutlinedIcon />, active: true, color: "#fff", path: "myCampaigns" },
 ];
 
 const columns = [
-    { id: 'campaign', label: 'Campaigns', minWidth: 170 },
-    {
-      id: 'Endorsement',
-      label: 'Endorsement',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-      id: 'amountCollected',
-      label: 'Amount Collected',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-      id: 'startDate',
-      label: 'Campaign Start Date',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toFixed(2),
-    },{
-        id: 'status',
-        label: 'Status',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toFixed(2),
-      },
-  ];
+  {
+    id: 'campaign',
+    label: 'Campaigns',
+    minWidth: 170
+  },
+  {
+    id: 'Endorsement',
+    label: 'Endorsement',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'amountCollected',
+    label: 'Amount Collected',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'startDate',
+    label: 'Campaign Start Date',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: 'status',
+    label: 'Status',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+];
 const MyCampaigns = () => {
   const [campaigns, setCampaigns] = useState();
 

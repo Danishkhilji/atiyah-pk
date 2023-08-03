@@ -29,7 +29,7 @@ const Navbar = (props, to) => {
     <div className='navbar'>
 
       <div className='desk-tab'>
-        <Tabs className='tabs' >
+        <Tabs className='tabs' style={{marginTop: '-12px'}}>
           <img className='main-logo' src={logo} alt={logo} />
           {props.link1}
           {props.link4}
