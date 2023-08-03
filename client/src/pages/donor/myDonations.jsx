@@ -6,15 +6,9 @@ import profileIcon from "../../Assets/logos/user.png";
 import { Tab } from '@mui/material';
 import { GetDonatedCampaigns } from "../../request/donorAPIs";
 import { useSelector } from 'react-redux'
+import { formatDate } from "../../lib/dateFunc";
 const columns = [
     { id: 'campaign', label: 'Campaigns', minWidth: 170 },
-    {
-      id: 'Endorsement',
-      label: 'Endorsement',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toLocaleString('en-US'),
-    },
     {
         id: 'amountDonated',
         label: 'Amount Donated',
@@ -46,7 +40,7 @@ const columns = [
   ];
 
 const MyDonations = () => {
-  const [campaigns, setCampaigns] = useState();
+  const [donations, setDonations] = useState();
   const user = useSelector((state) => state.user.user);   
 
 
@@ -55,7 +49,7 @@ const MyDonations = () => {
     GetDonatedCampaigns(user._id,"GetDonatedCampaigns")
       .then((response) => {
         console.log(response?.data.donations, "activeCampaign");
-        setCampaigns(response?.data.donations);
+        setDonations(response?.data.donations);
       });
   }, []);
 
@@ -68,10 +62,17 @@ const MyDonations = () => {
       />
 
       <div style={{ margin: "30px" }}>
-        <h1 style={{ marginBottom: "30px" }}>Campaigns</h1>
-        {campaigns && campaigns.length > 0 ? (
-          <DataTable columns={columns} rows={campaigns} style={{ width: "100vw" }} />
-        ) : (
+        <h1 style={{ marginBottom: "30px" }}>Donations</h1>
+        {donations && donations.length > 0 ? (
+        //   <DataTable columns={columns} rows={donations} style={{ width: "100vw" }} />
+<DataTable columns={columns} rows={donations.map(item => ({
+  campaign: item.campaign?.campaign, // Assuming campaign.campaign is the name you want
+  amount: item.amount, // Add the amount property
+  amountDonated: item.amount,
+  amountCollected: item.campaign?.amountCollected, // If this is correct
+  startDate: formatDate(item.date),
+  status: item.campaign?.status // Check the property name
+}))} style={{ width: "100vw" }} />        ) : (
           <p>Loading...</p>
         )}
       </div>
