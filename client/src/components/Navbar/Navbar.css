@@ -104,4 +104,8 @@ a {
   .desk-tab {
     display: none;
   }
+
+  .responsive-signup-btns {
+    display: none;
+  }
 }

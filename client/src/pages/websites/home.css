@@ -94,6 +94,11 @@
   text-align: end;
 }
 
+.strt-btn {
+  width: 200px;
+  height: 40px;
+}
+
 .steps {
   display: flex;
   justify-content: space-around;
@@ -204,31 +209,37 @@
 }
 
 .sec1 p {
-  width: 37rem;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .sec2 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin: auto;
   padding: 70px;
   margin-top: 2rem;
-  width: 70rem;
+  width: 100%;
   align-items: center;
 
 }
 
 .sec2-1 {
+  width: 90%;
   display: flex;
-  width: 71rem;
-  margin-left: 6rem;
+
 }
 
 .sec2-2 {
+  width: 75%;
   display: flex;
-  margin-left: 8rem;
+
   margin-bottom: 3rem;
-  width: 46rem;
+
   margin-top: 1.5rem;
 }
 
@@ -273,4 +284,32 @@
     justify-content: center;
     align-items: center;
   }
+
+
+
+  .sec2-1 {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sec2-2 {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .strt-btn {
+    width: 100px;
+    font-size: x-small;
+  }
+
+  .sigup-btn {
+    height: 20px;
+  }
+
 }

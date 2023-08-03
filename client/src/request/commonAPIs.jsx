@@ -31,3 +31,19 @@ export function UpdateProfile(payload) {
         return;
     });
 }
+
+
+export function UpdatePassword(payload) {
+  console.log(payload)
+  return Api.post(ENDPOINTS.RESET_PASSWORD+payload.id,payload)
+    .then(response => {
+      if (response?.data.success === true) {
+        toast.success('Password has been Updated!');
+        return response;
+      }
+    })
+    .catch(error => {
+        toast.error(error?.response.data.message);
+        return;
+    });
+}
