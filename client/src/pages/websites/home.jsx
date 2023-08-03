@@ -7,7 +7,7 @@ import flower from "../../Assets/jpeg/fundraising2.jpg"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Tab from '@mui/material/Tab';
 import DownArrow from '../../Assets/png/DownArrow.png'
 import TickMark from '../../Assets/png/TickMark.png'
@@ -103,25 +103,25 @@ const Home = () => {
 
   return (
     <div className='main-container'>
-      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link5={<div className='sigin-signup' style={{
-        width: '12%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: "space-between"
-      }}>
-        <NavLink to="login">SignIn</NavLink>
-        <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
-      </div>} />
+      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></a>}
+        link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></a>}
+        link3={<a href="#about"><Tab label="About" style={{ color: ' #117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></a>}
+        link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></a>}
+        link5={<div className='sigin-signup' style={{ width: '12%', display: 'flex', alignItems: 'center', justifyContent: "space-between" }}>
+          <NavLink to="login" style={{fontFamily: 'Edu SA Beginner', fontSize: '17px', cursor: 'pointer'}}>SignIn</NavLink>
+          <NavLink className="sigup-btn" to="signup" style={{fontFamily: 'Edu SA Beginner', fontSize: '17px', cursor: 'pointer'}}>SignUp</NavLink>
+        </div>}
+      />
 
       <div id='home' className='main-landing-titles'>
         <animated.div style={slideInFromLeftNew} className='landing-title' >
-          <h1 style={{fontFamily: 'Tektur'}}>ATIYAH PK</h1>
-          <p style={{fontFamily: 'Libre Baskerville', marginRight: '5px'}}>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
+          <h1 style={{ fontFamily: 'Tektur' }}>ATIYAH PK</h1>
+          <p style={{ fontFamily: 'Libre Baskerville', marginRight: '5px' }}>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
 
         <div className='main-landing-head-btn'>
-          <a href="/signup"><button className='landing-head-btn'>Start Campaign</button></a >
-          <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
+          <a href="/signup"><button className='landing-head-btn' style={{ fontFamily: 'Edu SA Beginner' }}>Start Campaign</button></a >
+          <a href="/signup"><button className='landing-head-btn' style={{ fontFamily: 'Edu SA Beginner' }}>Donate Now</button></a>
         </div>
       </div>
 
@@ -132,8 +132,6 @@ const Home = () => {
 
         <div className="steps" ref={stepsRef}>
           <div className='left-steps'>
-
-
             <img src={DownArrow} alt="arrow" className='step-icon' />
             <img src={DownArrow} alt="arrow" className='step-icon' />
             <img src={DownArrow} alt="arrow" className='step-icon' />
@@ -141,24 +139,22 @@ const Home = () => {
           </div>
           <div className='center-steps'>
             <div>
-              <animated.h6 style={slideInFromRight}>Fundraising</animated.h6>
-              <animated.p style={slideInFromLeft}>Atiyah is all about fundrising platform similar to gofund me where any one can create their campaign accoridng to their need and raise fund it is basically for paksitani people.</animated.p>
+              <animated.h6 style={{ ...slideInFromRight, fontFamily: 'Zilla Slab' }}>Fundraising</animated.h6>
+              <animated.p style={{ ...slideInFromLeft, fontFamily: 'Libre Baskerville' }}>Atiyah is all about fundrising platform similar to gofund me where any one can create their campaign accoridng to their need and raise fund it is basically for paksitani people.</animated.p>
             </div>
             <div>
-              <animated.h6 style={slideInFromRight}>Create a Campaign</animated.h6>
-              <animated.p style={slideInFromLeft}>Just select the purpose of your campaign, write a short description and upload photos. Your campaign will be live within seconds!</animated.p>
+              <animated.h6 style={{ ...slideInFromRight, fontFamily: 'Zilla Slab' }}>Create a Campaign</animated.h6>
+              <animated.p style={{ ...slideInFromLeft, fontFamily: 'Libre Baskerville' }}>Just select the purpose of your campaign, write a short description and upload photos. Your campaign will be live within seconds!</animated.p>
             </div>
             <div>
-              <animated.h6 style={slideInFromRight}>Fundraise</animated.h6>
-              <animated.p style={slideInFromLeft}>You can fundraise as an individual or you can get family and friends involved too. Share with them via email, Facebook or Twitter. They don't even need an account!</animated.p>
+              <animated.h6 style={{ ...slideInFromRight, fontFamily: 'Zilla Slab' }}>Fundraise</animated.h6>
+              <animated.p style={{ ...slideInFromLeft, fontFamily: 'Libre Baskerville' }}>You can fundraise as an individual or you can get family and friends involved too. Share with them via email, Facebook or Twitter. They don't even need an account!</animated.p>
             </div>
             <div>
-              <animated.h6 style={slideInFromRight}>Get Help from our Team</animated.h6>
-              <animated.p style={slideInFromLeft}>We'll take care of everything - we'll support you every step of the way on your fundraising journey</animated.p>
+              <animated.h6 style={{ ...slideInFromRight, fontFamily: 'Zilla Slab' }}>Get Help from our Team</animated.h6>
+              <animated.p style={{ ...slideInFromLeft, fontFamily: 'Libre Baskerville' }}>We'll take care of everything - we'll support you every step of the way on your fundraising journey</animated.p>
             </div>
-
           </div>
-
           <div className="right-steps">
             <img className='flower-image' src={flower} alt="flowerimage" />
           </div>
@@ -167,11 +163,11 @@ const Home = () => {
 
       <div className="trust-security">
         <div className="sec1">
-          <h5 style={{ marginBottom: '2rem', fontSize: '1.4rem' }}>Trust & Security</h5>
-          <p>We have your back. <br /> With a team dedicated to trust and safety, we've successfully managed fundraisers worldwide for more than a decade. Don't worry about a thing, we've you covered</p>
+          <h5 style={{ marginBottom: '2rem', fontSize: '30px', fontFamily: 'Tektur' }}>Trust & Security</h5>
+          <p style={{ fontFamily: 'Libre Baskerville' }}>We have your back. <br /> With a team dedicated to trust and safety, we've successfully managed fundraisers worldwide for more than a decade. Don't worry about a thing, we've you covered</p>
         </div>
         <div className="sec2">
-          <h5 style={{ marginBottom: '2rem', fontSize: '1.4rem' }}>Atiyah Pk has everything you need</h5>
+          <h5 style={{ marginBottom: '2rem', fontSize: '30px', fontFamily: 'Tektur' }}>Atiyah Pk has everything you need</h5>
           <div className="sec2-1">
             <div style={{ margin: '25px' }}>
               <div style={{ display: 'flex' }}>
@@ -180,9 +176,9 @@ const Home = () => {
                   marginRight: '10px',
                   marginLeft: '-37px'
                 }} />
-                <h6>Donor Protection Guarantee</h6>
+                <h6 style={{ fontFamily: 'Zilla Slab', fontSize: '20px' }}>Donor Protection Guarantee</h6>
               </div>
-              <p>Atiyah Pk has the first and only donor guarantee in the industry</p>
+              <p style={{ fontFamily: 'Libre Baskerville' }}>Atiyah Pk has the first and only donor guarantee in the industry</p>
             </div>
 
             <div style={{ margin: '25px' }}>
@@ -192,9 +188,9 @@ const Home = () => {
                   marginRight: '10px',
                   marginLeft: '-37px'
                 }} />
-                <h6>Simple Setup</h6>
+                <h6 style={{ fontFamily: 'Zilla Slab', fontSize: '20px' }}>Simple Setup</h6>
               </div>
-              <p>You can personlize and share your Campaign in just a few minutes</p>
+              <p style={{ fontFamily: 'Libre Baskerville' }}>You can personlize and share your Campaign in just a few minutes</p>
             </div>
 
             <div style={{ margin: '25px' }}>
@@ -204,9 +200,9 @@ const Home = () => {
                   marginRight: '10px',
                   marginLeft: '-37px'
                 }} />
-                <h6>Secure</h6>
+                <h6 style={{ fontFamily: 'Zilla Slab', fontSize: '20px' }}>Secure</h6>
               </div>
-              <p>Out Trust & Safety works around the clock to protect against fraud</p>
+              <p style={{ fontFamily: 'Libre Baskerville' }}>Out Trust & Safety works around the clock to protect against fraud</p>
             </div>
           </div>
 
@@ -218,9 +214,9 @@ const Home = () => {
                   marginRight: '10px',
                   marginLeft: '-37px'
                 }} />
-                <h6>Social Reach</h6>
+                <h6 style={{ fontFamily: 'Zilla Slab', fontSize: '20px' }}>Social Reach</h6>
               </div>
-              <p>Harness the power of social media to spread your story and get more support</p>
+              <p style={{ fontFamily: 'Libre Baskerville' }}>Harness the power of social media to spread your story and get more support</p>
             </div>
 
             <div style={{ margin: '25px' }}>
@@ -230,13 +226,13 @@ const Home = () => {
                   marginRight: '10px',
                   marginLeft: '-37px'
                 }} />
-                <h6>Expert Advice</h6>
+                <h6 style={{ fontFamily: 'Zilla Slab', fontSize: '20px' }}>Expert Advice</h6>
               </div>
-              <p>Our best in class Customer Care Specialists will answer your questions, day or night</p>
+              <p style={{ fontFamily: 'Libre Baskerville' }}>Our best in class Customer Care Specialists will answer your questions, day or night</p>
             </div>
           </div>
 
-          <Button onClick={clickBtn} variant="contained" style={{ background: '#117b34' }}>Start a Campaign</Button>
+          <Button onClick={clickBtn} variant="contained" style={{ background: '#117b34', fontFamily: 'Edu SA Beginner' }}>Start a Campaign</Button>
 
         </div>
       </div>
@@ -247,8 +243,8 @@ const Home = () => {
           justifyContent: 'space-between',
           marginRight: '2rem'
         }}>
-          <h5>Popular Campaigns</h5>
-          <a className='view-all' href="detail"><p>view all</p></a>
+          <h5 style={{ fontFamily: 'Libre Baskerville' }}>Popular Campaigns</h5>
+          <Link to='all-campaigns' className='view-all' style={{ fontFamily: 'Libre Baskerville' }}><p>view all</p></Link>
         </div>
         <div >
           <Cards data={data} />
@@ -262,8 +258,8 @@ const Home = () => {
           justifyContent: 'space-between',
           marginRight: '2rem'
         }}>
-          <h5>Latest Campaigns</h5>
-          <a className='view-all' href="detail"><p>view all</p></a>
+          <h5 style={{ fontFamily: 'Libre Baskerville' }}>Latest Campaigns</h5>
+          <Link to='all-campaigns' className='view-all' style={{ fontFamily: 'Libre Baskerville' }}><p>view all</p></Link>
         </div>
         <div >
           <Cards data={data} />
