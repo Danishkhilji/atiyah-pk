@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import Cards from '../../components/Cards/Card'
@@ -14,19 +14,35 @@ import { Link } from 'react-router-dom'
 import "./donorLanding.css"
 import { useSpring, animated } from 'react-spring';
 import { GetAllActiveCampagins } from '../../request/donorAPIs'
-
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+import logo from "../../Assets/logos/1.png"
+import menuIcon from "../../Assets/logos/menu.png"
 const DonorLandingPage = () => {
-  
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
   const slideInFromLeftNew = useSpring({ opacity: 1, transform: 'translateX(0)', from: { opacity: 0, transform: 'translateX(-100%)' }, config: { duration: 1000 } });
-  const [newCampaigns ,setNewCampaigns] = useState()
-  const [popularCampaigns ,setPopularCampaigns] = useState()
-  useEffect(()=>{
-    GetAllActiveCampagins().then((response)=>{
-      console.log(response,"response")
+  const [newCampaigns, setNewCampaigns] = useState()
+  const [popularCampaigns, setPopularCampaigns] = useState()
+  useEffect(() => {
+    GetAllActiveCampagins().then((response) => {
+      console.log(response, "response")
       setNewCampaigns(response.data.newCampaigns)
       setPopularCampaigns(response.data.popularCampaigns)
     })
-  },[])
+  }, [])
   // const data = [
   //   {
   //     images: cardImg,
@@ -60,13 +76,40 @@ const DonorLandingPage = () => {
   // ]
   return (
     <div>
-      <Navbar link1={<Link to='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></Link>} link2={<Link to='my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></Link>} search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
+      <Navbar link1={<a href='/donor'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<div><Button
+        id="fade-button"
+        aria-controls={open ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+
+      ><img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" /></Button>
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            'aria-labelledby': 'fade-button',
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+        >
+          <NavLink to="/donor/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+          </NavLink>
+
+          <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem style={{ color: "red" }} onClick={handleClose}>ogout</MenuItem>
+          </NavLink>
+
+
+        </Menu></div>} />
+      < div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
         <animated.div style={slideInFromLeftNew} className='donor-landing-title' >
           <h1 >ATIYAH PK</h1>
           <p>Welcome to our Atiyah PK, where you can explore and support a diverse range of impactful campaigns. On our website, you will find two compelling sections: "Popular Campaigns" and "Latest Campaigns."</p>
         </animated.div>
-      </div>
+      </div >
       <div className='new-campaigns'>
         <h4>New Campaigns</h4>
         <p>For those who crave fresh opportunities to make a positive impact, our "Latest Campaigns" section is the perfect destination. Here, you'll find a stream of brand-new campaigns, each with a unique mission and story to tell. From empowering individuals in need to fostering innovation and creativity, these campaigns represent the ever-growing tapestry of causes that our community champions. Be among the first to lend your support and witness the incredible potential of these emerging initiatives.</p>
@@ -83,7 +126,7 @@ const DonorLandingPage = () => {
 
       </div>
       <Footer />
-    </div>
+    </div >
   )
 }
 

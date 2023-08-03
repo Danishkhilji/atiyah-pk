@@ -168,12 +168,14 @@ const Home = () => {
       <div className="trust-security">
         <div className="sec1">
           <h5 style={{ marginBottom: '2rem', fontSize: '1.4rem' }}>Trust & Security</h5>
-          <p>We have your back. <br /> With a team dedicated to trust and safety, we've successfully managed fundraisers worldwide for more than a decade. Don't worry about a thing, we've you covered</p>
+          <p>We have your back. With a team dedicated to trust and safety, we've successfully managed fundraisers worldwide for more than a decade. Don't worry about a thing, we've you covered</p>
         </div>
+      </div>
+      <div >
         <div className="sec2">
           <h5 style={{ marginBottom: '2rem', fontSize: '1.4rem' }}>Atiyah Pk has everything you need</h5>
           <div className="sec2-1">
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Shield} alt="shield" style={{
                   height: '28px',
@@ -185,7 +187,7 @@ const Home = () => {
               <p>Atiyah Pk has the first and only donor guarantee in the industry</p>
             </div>
 
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Setup} alt="Setup" style={{
                   height: '28px',
@@ -197,7 +199,7 @@ const Home = () => {
               <p>You can personlize and share your Campaign in just a few minutes</p>
             </div>
 
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Shield1} alt="shield1" style={{
                   height: '28px',
@@ -211,7 +213,7 @@ const Home = () => {
           </div>
 
           <div className="sec2-2">
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Social} alt="social" style={{
                   height: '28px',
@@ -223,7 +225,7 @@ const Home = () => {
               <p>Harness the power of social media to spread your story and get more support</p>
             </div>
 
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Consultancy} alt="consultancy" style={{
                   height: '28px',
@@ -236,7 +238,7 @@ const Home = () => {
             </div>
           </div>
 
-          <Button onClick={clickBtn} variant="contained" style={{ background: '#117b34' }}>Start a Campaign</Button>
+          <Button className='strt-btn' onClick={clickBtn} variant="contained" style={{ background: '#117b34' }}>Start a Campaign</Button>
 
         </div>
       </div>
