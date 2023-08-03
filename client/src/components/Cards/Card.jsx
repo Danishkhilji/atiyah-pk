@@ -41,8 +41,8 @@ const Cards = ({ data }) => {
                             {`${item.description.split(" ").slice(0, 10).join(" ")} ...`}
                         </Typography>
                         <div className="card-btn">
-                            <Button onClick={(e) => handleDonateBtnClick(item._id, e)} BGcolor="#117b34" color="#ffffff" children="Donate Now" width="150px" height="30px" />
-                            <Button onClick={(e) => handleViewDetailsBtnClick(item._id, e)} children="View Details" width="150px" height="30px" />
+                            <Button onClick={(e) => handleDonateBtnClick(item._id, e)} BGcolor="#117b34" color="#ffffff" children="Donate Now" fontSize="10px" width="100px" height="30px" />
+                            <Button onClick={(e) => handleViewDetailsBtnClick(item._id, e)} children="View Details" fontSize="10px" width="100px" height="30px" />
                         </div>
                     </CardContent>
                     <CardActions>
