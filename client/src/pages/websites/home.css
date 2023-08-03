@@ -305,6 +305,11 @@
 
   .strt-btn {
     width: 100px;
+    font-size: x-small;
+  }
+
+  .sigup-btn {
+    height: 20px;
   }
 
 }

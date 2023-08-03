@@ -16,7 +16,7 @@ import Shield1 from '../../Assets/png/shield1.png'
 import Consultancy from '../../Assets/png/consultancy.png'
 import Setup from '../../Assets/png/setup.png'
 import Social from '../../Assets/png/social-network.png'
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, a } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -103,7 +103,7 @@ const Home = () => {
 
   return (
     <div className='main-container'>
-      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117B34FF', fontWeight: "bold" }} /></a>} link5={<div className='sigin-signup' style={{
+      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: 'black', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: 'black', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: 'black', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: 'black', fontWeight: "bold" }} /></a>} link5={<div className='sigin-signup' style={{
         width: '12%',
         display: 'flex',
         alignItems: 'center',
@@ -111,12 +111,12 @@ const Home = () => {
       }}>
         <NavLink to="login">SignIn</NavLink>
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
-      </div>} />
+      </div>} login={<a href='/login'>Login</a>} signup={<a href='signup'>Signup</a>} />
 
       <div id='home' className='main-landing-titles'>
         <animated.div style={slideInFromLeftNew} className='landing-title' >
-          <h1 style={{fontFamily: 'Tektur'}}>ATIYAH PK</h1>
-          <p style={{fontFamily: 'Libre Baskerville', marginRight: '5px'}}>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
+          <h1 style={{ fontFamily: 'Tektur' }}>ATIYAH PK</h1>
+          <p style={{ fontFamily: 'Libre Baskerville', marginRight: '5px' }}>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
 
         <div className='main-landing-head-btn'>

@@ -12,7 +12,7 @@ import bookImg from "../../Assets/card_image/book.jpg"
 import { Tab } from '@mui/material'
 import { Link } from 'react-router-dom'
 import "./donorLanding.css"
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, a } from 'react-spring';
 import { GetAllActiveCampagins } from '../../request/donorAPIs'
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -76,7 +76,7 @@ const DonorLandingPage = () => {
   // ]
   return (
     <div>
-      <Navbar link1={<a href='/donor'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<div><Button
+      <Navbar link1={<a href='/donor'><Tab label="Home" style={{ color: 'black', fontWeight: "bold" }} /></a>} link2={<a href='donor/my-donation'><Tab label="My Donation" style={{ color: 'black', fontWeight: "bold" }} /></a>} search={<div><Button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
@@ -95,15 +95,15 @@ const DonorLandingPage = () => {
           TransitionComponent={Fade}
         >
           <NavLink to="/donor/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem style={{ position: "relative", bottom: "20px" }} onClick={handleClose}>Profile</MenuItem>
           </NavLink>
 
           <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem style={{ color: "red" }} onClick={handleClose}>ogout</MenuItem>
+            <MenuItem style={{ color: "red" }} onClick={handleClose}>Logout</MenuItem>
           </NavLink>
 
 
-        </Menu></div>} />
+        </Menu></div>} login={<a href="/donor-profile">Profile</a>} signup={<a href='/'>Logout</a>} />
       < div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
         <animated.div style={slideInFromLeftNew} className='donor-landing-title' >
           <h1 >ATIYAH PK</h1>
