@@ -20,6 +20,7 @@ import { useSpring, animated, a } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { GetAllActiveCampagins } from '../../request/donorAPIs'
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 
@@ -71,35 +72,15 @@ const Home = () => {
     navigate('/login')
   }
 
-  const data = [
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.9",
-      price: "5000 PKR"
-    },
-    {
-      images: eduImg,
-      title: "Aslam",
-      description: "Request for Education",
-      rating: "4.8",
-      price: "4000 PKR"
-    },
-    {
-      images: bookImg,
-      title: "Shaheen",
-      description: "Request for book",
-      rating: "4.9",
-    },
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.5",
-      price: "10000 PKR"
-    }
-  ]
+  const [newCampaigns, setNewCampaigns] = useState()
+  const [popularCampaigns, setPopularCampaigns] = useState()
+  useEffect(() => {
+    GetAllActiveCampagins().then((response) => {
+      console.log(response, "response")
+      setNewCampaigns(response.data.newCampaigns)
+      setPopularCampaigns(response.data.popularCampaigns)
+    })
+  }, [])
 
   return (
     <div className='main-container'>
@@ -253,7 +234,7 @@ const Home = () => {
           <a className='view-all' href="detail"><p>view all</p></a>
         </div>
         <div >
-          <Cards data={data} />
+          <Cards data={popularCampaigns} />
         </div>
 
         <br />
@@ -268,7 +249,7 @@ const Home = () => {
           <a className='view-all' href="detail"><p>view all</p></a>
         </div>
         <div >
-          <Cards data={data} />
+          <Cards data={newCampaigns} />
         </div>
       </div>
 
