@@ -8,6 +8,7 @@ router.post("/SendOTPmail",authController.SendOTPmail)
 router.post("/verifyOTP",authController.VerifyOTP)
 router.post("/resetPass",authController.UpdatePassword)
 router.get("/logout",authController.LogOut)
+
 // router.get("/",authController.Home)
 
 module.exports = router

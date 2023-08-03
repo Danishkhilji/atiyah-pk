@@ -21,7 +21,7 @@ const comments = [{
 }
 ]
 
-const CommentBox = () => {
+const CommentBox = ({comments}) => {
   return (
     <>
       <Box

@@ -12,6 +12,7 @@ import Diversity1Icon from "@mui/icons-material/Diversity1";
 import CommentBox from "../../components/comments/commentBox";
 import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from '@mui/icons-material/Remove';
 import ShareIcon from "@mui/icons-material/Share";
 import { useNavigate } from 'react-router-dom';
 import { GetCampagins } from "../../request/receiverAPIS";
@@ -56,13 +57,21 @@ const ReciverDashboard = () => {
             >
               <h1>Analytics Overview</h1>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
-              <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px" onClick={campaignHandler}>
-                <AddIcon /> Create new campaign
-              </Button>
-              <Button BGcolor="#117b34" color="#FFFFFFFF" height="36px" style={{ marginLeft: '10px' }}>
-                <ShareIcon /> Share Campaign
-              </Button>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
+                <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px" onClick={campaignHandler}>
+                  <AddIcon /> Create new campaign
+                </Button>
+                <Button BGcolor="#117b34" color="#FFFFFFFF" height="36px" style={{ marginLeft: '10px' }}>
+                  <ShareIcon /> Share Campaign
+                </Button>
+              </div>
+              <br />
+              <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <Button BGcolor="#F3F4F6FF" color="#565E6CFF" height="33px" onClick={campaignHandler} style={{ margin: 'auto' }}>
+                  <RemoveIcon /> Delete campaign
+                </Button>
+              </div>
             </div>
           </div>
         </div>

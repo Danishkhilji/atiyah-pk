@@ -55,7 +55,7 @@ const Comment = ({ comments }) => {
                   margin: "0px",
                 }}
               >
-                {item.comment}
+                {item.text}
               </p>
             </div>
           </div>
