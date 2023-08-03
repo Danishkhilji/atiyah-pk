@@ -72,7 +72,7 @@ const MyDonations = () => {
 
   return (
     <div>
-      <Navbar link1={<a href='/donor'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='donor/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<div><Button
+      <Navbar link1={<a href='/d-landing'><Tab label="Home" style={{ color: 'black', fontWeight: "bold" }} /></a>} link2={<a href='d-my-donation'><Tab label="My Donation" style={{ color: 'black', fontWeight: "bold" }} /></a>} search={<div><Button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
@@ -90,7 +90,7 @@ const MyDonations = () => {
           onClose={handleClose}
           TransitionComponent={Fade}
         >
-          <NavLink to="/donor/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <NavLink to="/d-profile" style={{ textDecoration: 'none', color: 'inherit' }}>
             <MenuItem onClick={handleClose}>Profile</MenuItem>
           </NavLink>
 
@@ -99,7 +99,8 @@ const MyDonations = () => {
           </NavLink>
 
 
-        </Menu></div>} />
+        </Menu></div>} login={<a style={{ position: "relative", bottom: "80px", color: "black" }} href="/d-profile">Profile</a>} signup={<a style={{ position: "relative", bottom: "80px" }} href='/'>Logout</a>} />
+      < div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}></div>
 
       <div style={{ margin: "30px" }}>
         <h1 style={{ marginBottom: "30px" }}>Donations</h1>
