@@ -5,8 +5,9 @@ const Comment = ({ comments }) => {
   return (
     <>
       {comments.map((item, index) => {
+        console.log(item.userName + " " + item.userImg + " " + "Jello")
         return (
-          <div
+          <div div
             key={index}
             style={{
               display: "flex",
@@ -34,7 +35,7 @@ const Comment = ({ comments }) => {
               // onClick={handleNameClick}
               />
             </div>
-            <div            key={item._id}>
+            <div key={item._id}>
               <h6
                 style={{
                   fontSize: "14px",

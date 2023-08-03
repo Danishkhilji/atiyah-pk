@@ -113,14 +113,10 @@ const Home = () => {
         <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
       </div>} />
 
-      <div
-        id='home'
-        className='main-landing-titles'
-      >
-
+      <div id='home' className='main-landing-titles'>
         <animated.div style={slideInFromLeftNew} className='landing-title' >
-          <h1 >ATIYAH PK</h1>
-          <p>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
+          <h1 style={{fontFamily: 'Tektur'}}>ATIYAH PK</h1>
+          <p style={{fontFamily: 'Libre Baskerville', marginRight: '5px'}}>"Empowering individuals and communities in pakistan through a dedicated crowdfunding platform, to bridge the financial gap, faster collaboration, and address pressing social causes"</p>
         </animated.div>
 
         <div className='main-landing-head-btn'>

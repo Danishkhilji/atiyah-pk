@@ -13,11 +13,8 @@ import DonorList from '../pages/admin/donorList';
 import ClientList from "../pages/admin/clientList"
 import DonorLandingPage from '../pages/donor/DonorLandingPage';
 import ViewAll from '../pages/websites/ViewAll';
-// import Test from '../pages/receiver/testFile';
-// import RecieverProfile from '../pages/reciver/RecieverProfile';
-// import UploadCampaign from '../pages/reciver/UploadCampaign'
+import ReceiverProfile from '../pages/receiver/ReceiverProfile';
 import ReciverDashboard from '../pages/receiver/receiverDashboard';
-import Profile from '../pages/websites/Profile';
 import UploadCampaign from '../pages/receiver/UploadCampaign';
 import ForgetPass from '../pages/websites/login/ForgetScreens/ForgetPass';
 import OTP from '../pages/websites/login/ForgetScreens/OTP';
@@ -25,6 +22,8 @@ import NewPass from '../pages/websites/login/ForgetScreens/NewPass';
 import Updated from '../pages/websites/login/ForgetScreens/Updated';
 import Page404 from '../pages/page404/Page404';
 import MyCampaigns from '../pages/receiver/myCampaigns';
+import DonorProfile from '../pages/donor/DonorProfile';
+import AdminProfile from '../pages/admin/AdminProfile';
 import MyDonations from '../pages/donor/myDonations';
 import { PublicRoute, PrivateRoute } from './authRoutes';
 const AppRoutes = () => {
@@ -45,20 +44,20 @@ const AppRoutes = () => {
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="admin/donor-list" element={<DonorList />} />
           <Route path="admin/client-list" element={<ClientList />} />
+          <Route path="admin/profile" element={<AdminProfile />} />
 
           <Route path="upload-campaign" element={<UploadCampaign />} />
           <Route path="campaign-details/:campaignId" element={<CampaignPage />} />
           <Route path="all-campaigns" element={<ViewAll />} />
           <Route path="donor" element={<DonorLandingPage />} />
-          <Route path="donor/profile" element={<Profile />} />
+          <Route path="donor/profile" element={<DonorProfile />} />
           <Route path="donor/my-donation" element={<MyDonations />} />
-          
           <Route path="donation/:campaignId" element={<Donation />} />
           <Route path="success/:campaignId" element={<Success />} />
 
           <Route path="receiver" element={<ReciverDashboard />} />
-          <Route path="receiverDashboard/myCampaigns" element={<MyCampaigns />} />
-          <Route path="receiver/profile" element={<Profile />} />
+          <Route path="receiver/myCampaigns" element={<MyCampaigns />} />
+          <Route path="receiver/profile" element={<ReceiverProfile />} />
           
       {/* </Route> */}
     </Routes>

@@ -6,7 +6,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 // import { Block } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './profile.css';
 import { Logout } from '../../request/authAPIS';
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,7 @@ const Profile = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate()
-  const dispatch =useDispatch()
+  const dispatch = useDispatch()
 
   const handleNameClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,10 +23,11 @@ const Profile = () => {
 
   const handleClosePopover = () => {
     setAnchorEl(null);
+    navigate('/receiver/profile')
   };
 
   const handleLogout = () => {
-    Logout().then(()=>{
+    Logout().then(() => {
       dispatch(logout());
       localStorage.removeItem('persist:root');
       navigate("/login")
@@ -80,12 +81,12 @@ const Profile = () => {
           vertical: 'top',
           horizontal: 'center',
         }}
-        style={{ bottom: '85px !important;'}}
+        style={{ bottom: '85px !important;' }}
         className='profile-popover'
       >
         <List>
           <ListItemButton onClick={handleClosePopover}>
-            <ListItemText primary="Profile" />
+              <ListItemText primary="Profile" />
           </ListItemButton>
           <ListItemButton onClick={handleLogout} style={{ color: 'red' }}>
             <ListItemText primary="Logout" />

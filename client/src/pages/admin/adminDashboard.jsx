@@ -1,12 +1,11 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/drawer";
 import CampaignTable from "../../components/AdminTables/CampaignTable";
-import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined";
-import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-// import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
+import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined";
 import AdminBarChart from "../../components/adminGraph/BarChart";
 import AdminLineChart from "../../components/adminGraph/LineChart";
 
@@ -15,7 +14,6 @@ const data = [
   { name: "Donors", icon: <InboxOutlinedIcon />, path: "donor-list" },
   { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list" },
   { name: "Profit", icon: <MailOutlineIcon /> },
-  { name: "Setting", icon: <DraftsOutlinedIcon /> },
 ];
 const AdminDashboard = () => {
   return (

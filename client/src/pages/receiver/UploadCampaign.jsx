@@ -64,7 +64,17 @@ export default function UploadCampaign() {
     const user = useSelector((state) => state.user.user);   
     const handleFormInputChange = (name) => (event) => {
         const { value } = event.target;
-        console.log(name,value)
+
+        // Check word count for campaign description
+        if (name === "campaignDescription") {
+            const wordCount = value.trim().split(/\s+/).length;
+            if (wordCount > 50) {
+                setError("Campaign description should not exceed 50 words.");
+                return;
+            }
+        }
+
+        console.log(name, value)
         setCampaignData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -99,12 +109,12 @@ export default function UploadCampaign() {
             "user": user._id,
             "image": image,
         }
-        console.log(payload,"payload")
+        console.log(payload, "payload")
         CreateCampagin(payload).then((response) => {
-            const campaignId =  response.data.data._id
+            const campaignId = response.data.data._id
             setTimeout(() => {
                 navigate(`/campaign-details/${campaignId}`);
-              }, 1500);
+            }, 1500);
         })
     };
 
@@ -172,8 +182,8 @@ export default function UploadCampaign() {
         }
 
         if (activeStep === 4) {
-            if (!campaignData.accountNumber || campaignData.accountNumber.length !== 16) {
-                setError("Please enter a valid 16-digit account number.");
+            if (!campaignData.accountNumber || campaignData.accountNumber.length < 8 || campaignData.accountNumber.length > 17) {
+                setError("Please enter a valid account number.");
                 return;
             }
         }
@@ -228,7 +238,7 @@ export default function UploadCampaign() {
                                                 autoComplete="off"
                                             >
                                                 <div>
-                                                    <FloatingLabel controlId="outlined-select-currency" label="Select your City" className="mb-3" style={{ width: '25rem' }}>
+                                                    <FloatingLabel controlId="outlined-select-city" label="Select your City" className="mb-3" style={{ width: '25rem' }}>
                                                         <Form.Select
                                                             defaultValue="Khi"
                                                             onChange={handleCitySelect}
@@ -246,7 +256,7 @@ export default function UploadCampaign() {
                                                 <Form.Control
                                                     autoComplete="off"
                                                     placeholder="Postal Code"
-                                                    type="number"  
+                                                    type="number"
                                                     required
                                                     onChange={handlePostalCodeChange}
                                                 />
@@ -351,7 +361,7 @@ export default function UploadCampaign() {
                                     <p>Max 50 words</p>
                                     <Form.Group controlId="formFile" className="mb-3">
                                         <Form.Label>Select Image for your Campaign</Form.Label>
-                                        <Form.Control type="file" accept=".jpg, .jpeg, .png" ref={fileInputRef}  onChange={handleFileChange}  />
+                                        <Form.Control type="file" accept=".jpg, .jpeg, .png" ref={fileInputRef} onChange={handleFileChange} />
                                     </Form.Group>
                                 </FloatingLabel>
                                 {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}

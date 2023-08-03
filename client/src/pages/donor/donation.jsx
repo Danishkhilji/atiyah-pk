@@ -79,7 +79,6 @@ useEffect(()=>{
   })
 },[campaignId])
 
-
   const validateCardNumber = () => {
     const cardNumberRegex = /^\d{13}$/;
     return cardNumberRegex.test(cardNumber);
@@ -147,7 +146,7 @@ useEffect(()=>{
   };
 
   const formatCurrency = (amount) => {
-    return `$${amount.toFixed(2)}`;
+    return `Rs.${amount.toFixed(2)}`;
   };
 
   const handleBackClick = () => {
