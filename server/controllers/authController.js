@@ -43,6 +43,10 @@ exports.LogIn = tryCatch(async (req, res) => {
         name: user.name,
         _id: user._id,
         role: user.role,
+        location:user.location,
+        bio: user.bio,
+        profession:user.profession
+
       },
     });
 });
@@ -84,17 +88,23 @@ exports.LogOut = tryCatch(async (req, res) => {
 exports.UpdateProfile = tryCatch(async (req, res) => {
   const { id } = req.params;
   const { name, profession, location, bio } = req.body;
+ if (!name && !profession && !location && !bio) {
+    res.status(400).json({ success: false, message: "Nothing to update." });
+    return;
+  }
+
   const updatedProfile = await userModel.findByIdAndUpdate(
     id,
     { name: name, profession: profession, location: location, bio: bio },
     { new: true }
   );
+  
   if (!updatedProfile) {
-    res.status(404).send("User not found");
+    res.status(404).json({ success: false, message: "User not found" });
     return;
   }
 
-  res.status(200).json(updatedProfile);
+  res.status(200).json({ success: true, updatedProfile: updatedProfile });
 });
 
 exports.SendOTPmail = tryCatch(async (req, res) => {

@@ -7,7 +7,6 @@ const commentController= require("../controllers/commentController")
 router.get("/campaigns",donorController.GetCampaigns)
 router.get("/donatedcampaign/:userId",donorController.GetDonatedCampaigns)
 router.post('/donate/:campaignId/:userId',donorController.DonateNow)
-router.put("/updateProfile/:id",authController.UpdateProfile)
 // router.put("/share",donorController)
 router.post("/comment/:campaignId",commentController.createComment)
 

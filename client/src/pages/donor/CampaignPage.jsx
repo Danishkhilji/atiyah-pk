@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from '../../components/Navbar/Navbar'
-import Food from '../../Assets/jpeg/ReqForFood.jpg'
 import Button from '@mui/material/Button';
 import User from '../../Assets/logos/user.png'
 import profileIcon from "../../Assets/logos/user.png"
-import searchIcon from "../../Assets/logos/search.png"
 import notiIcon from "../../Assets/logos/notification.png"
 import { ProgressBar } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";

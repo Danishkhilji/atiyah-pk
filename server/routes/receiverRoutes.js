@@ -11,9 +11,7 @@ const upload = multer({ storage });
 router.post("/createCampagin",upload.single('image'),receiverController.CreateCampaign)
 router.get("/dashbaord/:id",receiverController.RetrieveData)
 router.get("/dashbaord/myCampaigns/:id",receiverController.RetrieveAllCampaigns)
-
 router.post("/dashbaord/myCampaigns/:id",receiverController.EndCampaign)
-router.put("/updateProfile/:id",authController.UpdateProfile)
 // router.post("/share",receiverController.ResetPass)
 router.post("/comment/:campaignId",commentController.createComment)
 

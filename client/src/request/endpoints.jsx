@@ -8,7 +8,7 @@ export const ENDPOINTS = {
     VERIFY_OTP :'/verifyOTP',
     UPDATE_PASSWORD: '/resetPass',
     GET_CAMAPIGN: 'common/campaign/',
-
+    UPDATE_PROFILE: "common/updateProfile/",
 // Receiver
     CREATE_CAMPAIGN: "/receiver/createCampagin",
     GET_USER_CAMPAIGNS: 'receiver/dashbaord/',

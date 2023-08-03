@@ -53,6 +53,7 @@ export default function SignIn() {
         Login({ email, password }).then((response) => {
             if (response?.data.success === true) {
                 let user = response.data.user;
+                console.log(user,"user")
                 dispatch(setUser(user));
                 dispatch(loginSuccess());
                 setError('');

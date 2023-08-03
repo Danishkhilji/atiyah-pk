@@ -1,25 +1,71 @@
 import React, { useState } from 'react';
-import Sidebar from "./Sidebar/drawer";
 import Button from './button/button';
 import User from '../Assets/logos/user.png'
 import { useEffect } from 'react';
-
-const Profile = () => {
+import { UpdateProfile } from '../request/commonAPIs';
+import { setUser } from '../store/userSlice';
+import { useDispatch ,useSelector} from 'react-redux';
+const Profile = ({user}) => {
   const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
   const [previewProfilePicture, setPreviewProfilePicture] = useState(null);
-
+  const [userData, setUserData] = useState({
+    name: "",
+    profession: "",
+    location: "",
+    bio: "",
+});
+const GetUser = useSelector((state) => state.user.user);   
   useEffect(() => {
+    
     const metaTag = document.createElement('meta');
     metaTag.name = 'viewport';
     metaTag.content = 'width=device-width, initial-scale=1.0';
     document.head.appendChild(metaTag);
+
+    setUserData({  
+    name: GetUser.name,
+    profession: GetUser.profession,
+    location: GetUser.location,
+    bio: GetUser.bio
+    ,})
   }, []);
+
+  const dispatch = useDispatch()
+  const handleInputChange = (name) => (event) => {
+    const { value } = event.target;
+    console.log(name, value)
+    setUserData((prevData) => ({
+        ...prevData,
+        [name]: value,
+    }));
+};
+
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
     setSelectedProfilePicture(file);
     setPreviewProfilePicture(URL.createObjectURL(file));
   };
+  const updateProfile =()=>{
+    const payload={
+      name: userData.name,
+      profession: userData.profession,
+      location: userData.location,
+      bio: userData.bio,
+      id : user._id
+    }
+    UpdateProfile(payload).then((resposne)=>{
+      dispatch(setUser(resposne.data.updatedProfile))
+      setUserData(
+{
+          name:resposne.data.updatedProfile.name,
+        profession:resposne.data.updatedProfile.profession,
+        location :resposne.data.updatedProfile.location,
+        bio: resposne.data.updatedProfile.bio
+}      )
+      console.log(resposne.data.updatedProfile)
+    })
+  }
 
   const updateProfilePicture = () => {
     if (!selectedProfilePicture) {
@@ -119,6 +165,16 @@ const Profile = () => {
     color: '#EB6769FF',
   };
 
+  const textPro = {
+    position: 'absolute',
+    top: '210px',
+    left: '102px',
+    fontFamily: 'Poppins',
+    fontSize: '15px',
+    lineHeight: '30px',
+    color: '#EB6769FF',
+  };
+
   const infoTextStyle = {
     position: 'absolute',
     top: '256px',
@@ -128,6 +184,7 @@ const Profile = () => {
     fontSize: '14px',
     lineHeight: '22px',
     color: '#9095A0FF',
+    textAlign: "center"
   };
 
   const textboxInputStyle = {
@@ -168,11 +225,14 @@ const Profile = () => {
           </div>
 
           <div style={textStyle} className="text">
-            Laiba Khan
+            {user?.name}
+          </div>
+          <div style={textPro} className="text">
+            {user?.profession}
           </div>
 
           <div style={infoTextStyle} className="text">
-            My name is Laiba and I am a student
+            {user?.bio}
           </div>
 
           <div style={profileContainerStyle} className="container">
@@ -180,28 +240,28 @@ const Profile = () => {
             <div style={{ display: 'flex' }}>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <h5>Full Name</h5>
-                <input type="text" id="fullName" style={{ ...textboxInputStyle, width: '800px' }} />
+                <input type="text" id="fullName"   value={userData.name} handleInputChange onChange={handleInputChange("name")} style={{ ...textboxInputStyle, width: '800px' }} />
               </div>
             </div>
 
             <h5 style={{ marginTop: '1rem' }}>Profession</h5>
             <div>
-              <input type="text" style={{ ...textboxInputStyle, width: '800px' }} />
+              <input type="text" style={{ ...textboxInputStyle, width: '800px' }}   value={userData.profession} onChange={handleInputChange("profession")}/>
             </div>
 
 
             <h5 style={{ marginTop: '1rem' }}>Location</h5>
             <div>
-              <input type="text" style={{ ...textboxInputStyle, width: '800px' }} />
+              <input type="text"   value={userData.location} onChange={handleInputChange("location")} style={{ ...textboxInputStyle, width: '800px' }} />
             </div>
 
             <h5 style={{ marginTop: '1rem' }}>Bio</h5>
             <div>
-              <textarea style={{ ...textboxInputStyle, height: '100px', paddingTop: '7px', paddingBottom: '7px', width: '800px' }}></textarea>
+              <textarea   value={userData.bio} onChange={handleInputChange("bio")} style={{ ...textboxInputStyle, height: '100px', paddingTop: '7px', paddingBottom: '7px', width: '800px' }}></textarea>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem', marginTop: '1rem' }}>
-              <Button BGcolor="#117b34" color="#ffffff" className="button" onClick={updateProfilePicture}>Save Information</Button>
+              <Button BGcolor="#117b34" color="#ffffff" className="button" onClick={updateProfile}>Save Information</Button>
             </div>
 
             <hr />
