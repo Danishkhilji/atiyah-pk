@@ -95,7 +95,7 @@ const DonorLandingPage = () => {
           TransitionComponent={Fade}
         >
           <NavLink to="/donor/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem style={{ position: "relative", bottom: "20px" }} onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
           </NavLink>
 
           <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>

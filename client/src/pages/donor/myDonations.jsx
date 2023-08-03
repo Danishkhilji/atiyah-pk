@@ -95,7 +95,7 @@ const MyDonations = () => {
           </NavLink>
 
           <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <MenuItem style={{ color: "red" }} onClick={handleClose}>ogout</MenuItem>
+            <MenuItem style={{ color: "red" }} onClick={handleClose}>Logout</MenuItem>
           </NavLink>
 
 
