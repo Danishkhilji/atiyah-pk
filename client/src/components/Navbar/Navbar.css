@@ -108,4 +108,8 @@ a {
   .responsive-signup-btns {
     display: none;
   }
+
+  #profile-icon-hide {
+    display: none;
+  }
 }

@@ -14,6 +14,7 @@ import Fade from '@mui/material/Fade';
 import logo from "../../Assets/logos/1.png"
 import menuIcon from "../../Assets/logos/menu.png"
 import { NavLink } from "react-router-dom";
+import "../../components/Navbar/Navbar.css"
 const columns = [
   { id: 'campaign', label: 'Campaigns', minWidth: 170 },
   {
@@ -73,7 +74,7 @@ const MyDonations = () => {
   return (
     <div>
       <Navbar link1={<a href='/d-landing'><Tab label="Home" style={{ color: 'black', fontWeight: "bold" }} /></a>} link2={<a href='d-my-donation'><Tab label="My Donation" style={{ color: 'black', fontWeight: "bold" }} /></a>} search={<div><Button
-        id="fade-button"
+        id="profile-icon-hide"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
