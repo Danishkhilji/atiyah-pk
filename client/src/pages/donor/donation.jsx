@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
 import CardContent from '@mui/joy/CardContent';
@@ -62,22 +62,22 @@ export default function CreditCardPage() {
   const [tipAmount, setTipAmount] = React.useState('');
   const [donationCompleted, setDonationCompleted] = React.useState(false);
   const [cardHolderNameError, setCardHolderNameError] = React.useState('');
-  const [campagin ,setCampaign] = useState()
+  const [campagin, setCampaign] = useState()
   const { campaignId } = useParams();
-  
+
   const navigate = useNavigate()
-  const user = useSelector((state) => state.user.user);   
+  const user = useSelector((state) => state.user.user);
 
 
 
-useEffect(()=>{
-  GetCampagin(campaignId).then((response)=>{
+  useEffect(() => {
+    GetCampagin(campaignId).then((response) => {
       if (response?.data.success === true) {
-          console.log(response.data)
-          setCampaign(response.data.data)
-        }
-  })
-},[campaignId])
+        console.log(response.data)
+        setCampaign(response.data.data)
+      }
+    })
+  }, [campaignId])
 
   const validateCardNumber = () => {
     const cardNumberRegex = /^\d{13}$/;
@@ -114,33 +114,33 @@ useEffect(()=>{
       alert('Please enter a valid donation amount.');
       return;
     }
-  
+
     if (!cardHolderName.trim()) {
       setCardHolderNameError('Card holder name is required.');
       return;
     }
-  
+
     if (!/^[A-Za-z\s]+$/.test(cardHolderName)) {
       setCardHolderNameError('Card holder name can only contain alphabets.');
       return;
     }
-  
+
     // Reset the cardHolderNameError when a valid name is entered
     setCardHolderNameError('');
-  
+
     // Open the comment dialog after successful validation
 
-    const payload ={
-      amount:donationAmount,
-      cardHolderName:cardHolderName,
-      cardToken:"tok_visa",
+    const payload = {
+      amount: donationAmount,
+      cardHolderName: cardHolderName,
+      cardToken: "tok_visa",
       campaignId: campaignId,
       userId: user._id
     }
-    DonateNow(payload).then((response)=>{
+    DonateNow(payload).then((response) => {
       if (response?.data.success === true) {
-            handleOpenCommentDialog();
-      }        
+        handleOpenCommentDialog();
+      }
     })
 
   };
@@ -150,7 +150,8 @@ useEffect(()=>{
   };
 
   const handleBackClick = () => {
-    // Implement the functionality for the back button click here
+    navigate(-1)
+
   };
 
   const donationAmountValue = parseFloat(donationAmount) || 0;
@@ -170,47 +171,47 @@ useEffect(()=>{
   const handleOpenCommentDialog = () => {
     setShowCommentDialog(true);
   };
-  
+
   const handleCloseCommentDialog = (submitted) => {
     setShowCommentDialog(false);
     setDonationCompleted(true);
-    
+
     setTimeout(() => {
       navigate(`/success/${campaignId}`);
     }, 1500);
 
-    
+
   };
-  
-  
+
+
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
-  
+
   const handleEndorsementRatingChange = (newValue) => {
     setEndorsementRating(newValue);
   };
-  
+
   const handleDonationAmountChange = (e) => {
     let value = e.target.value.replace(/[^0-9.]/g, '');
     const donationAmountValue = parseFloat(value) || 0;
-  
+
     if (donationAmountValue > MAX_DONATION_AMOUNT) {
       value = MAX_DONATION_AMOUNT.toString();
       setDonationError(`Donation amount cannot exceed PKR ${MAX_DONATION_AMOUNT}.`);
     } else {
       setDonationError('');
     }
-  
+
     setDonationAmount(value);
   };
-  
+
   const handleTipAmountChange = (e) => {
     const value = e.target.value.replace(/[^0-9.]/g, '');
     const tipAmountValue = parseFloat(value) || 0;
     const donationAmountValue = parseFloat(donationAmount) || 0;
     const maxTipAmount = donationAmountValue * MAX_TIP_PERCENTAGE;
-  
+
     if (tipAmountValue > maxTipAmount) {
       setTipError(`Optional tip cannot exceed 30% of donation amount.`);
       setTipAmount(maxTipAmount.toString()); // Set the input to the maximum allowed tip amount
@@ -219,8 +220,8 @@ useEffect(()=>{
       setTipAmount(value);
     }
   };
-  
-  
+
+
   return (
     <>
       <AppBar position="sticky" color="inherit">
@@ -262,7 +263,7 @@ useEffect(()=>{
             {/* Divider */}
             <Divider style={{ margin: '2rem 0' }} />
 
-            {/* Donation Tip Conatiner */} 
+            {/* Donation Tip Conatiner */}
             <DonationContainer>
               <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
                 Enter Your Donation
@@ -288,11 +289,11 @@ useEffect(()=>{
                   },
                 }}
               />
-            {donationError && (
-              <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
-                {donationError}
-              </Typography>
-            )}
+              {donationError && (
+                <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
+                  {donationError}
+                </Typography>
+              )}
             </DonationContainer>
 
             {/* Additional text */}
@@ -303,35 +304,35 @@ useEffect(()=>{
 
             {/* Optional tip container */}
             <OptionalTipContainer>
-  {/* Tip amount */}
-  <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
-    Support AtiyahPK
-  </Typography>
-  <OutlinedInput
-    value={tipAmount}
-    onChange={handleTipAmountChange}
-    type="text"
-    startAdornment={
-      <Typography variant="body1" style={{ color: 'black', fontSize: '1.1rem', fontWeight: 'bold' }}>
-        PKR
-      </Typography>
-    }
-    sx={{ fontWeight: 'bold', borderRadius: '20px', width: '100%' }}
-    inputProps={{
-      style: {
-        textAlign: 'right', // Cursor will be on the right-most side
-        color: 'black',       // Added color: 'black'
-        fontSize: '1.2rem',   // Added fontSize: '1.2rem'
-        fontWeight: 'bold',   // Added fontWeight: 'bold'
-      },
-    }}
-  />
-  {tipError && (
-    <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
-      {tipError}
-    </Typography>
-  )}
-</OptionalTipContainer>          
+              {/* Tip amount */}
+              <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
+                Support AtiyahPK
+              </Typography>
+              <OutlinedInput
+                value={tipAmount}
+                onChange={handleTipAmountChange}
+                type="text"
+                startAdornment={
+                  <Typography variant="body1" style={{ color: 'black', fontSize: '1.1rem', fontWeight: 'bold' }}>
+                    PKR
+                  </Typography>
+                }
+                sx={{ fontWeight: 'bold', borderRadius: '20px', width: '100%' }}
+                inputProps={{
+                  style: {
+                    textAlign: 'right', // Cursor will be on the right-most side
+                    color: 'black',       // Added color: 'black'
+                    fontSize: '1.2rem',   // Added fontSize: '1.2rem'
+                    fontWeight: 'bold',   // Added fontWeight: 'bold'
+                  },
+                }}
+              />
+              {tipError && (
+                <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
+                  {tipError}
+                </Typography>
+              )}
+            </OptionalTipContainer>
 
             {/* Additional text */}
             <Typography variant="subtitle1" component="div" gutterBottom style={{ color: 'black', fontSize: '1rem' }}>
@@ -379,19 +380,19 @@ useEffect(()=>{
                 />
               </FormControl>
               <FormControl sx={{ width: '50%', margin: '0 auto' }}>
-              <FormLabel>Card holder name</FormLabel>
-              <Input
-                placeholder="Enter cardholder's full name"
-                value={cardHolderName}
-                onChange={(e) => setCardHolderName(e.target.value)}
-                error={cardHolderNameError !== ''}
-              />
-              {cardHolderNameError && (
-                <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
-                  {cardHolderNameError}
-                </Typography>
-              )}
-            </FormControl>
+                <FormLabel>Card holder name</FormLabel>
+                <Input
+                  placeholder="Enter cardholder's full name"
+                  value={cardHolderName}
+                  onChange={(e) => setCardHolderName(e.target.value)}
+                  error={cardHolderNameError !== ''}
+                />
+                {cardHolderNameError && (
+                  <Typography variant="subtitle2" component="div" style={{ color: 'red', fontSize: '0.9rem' }}>
+                    {cardHolderNameError}
+                  </Typography>
+                )}
+              </FormControl>
 
 
               <Checkbox
@@ -401,7 +402,7 @@ useEffect(()=>{
                 onChange={(e) => setSaveCard(e.target.checked)}
               />
             </div>
-            <br/>
+            <br />
             {/* Donation summary */}
             <div>
               <Typography variant="h6" component="div" gutterBottom style={{ color: 'black', fontSize: '1.2rem', fontWeight: 'bold' }}>
@@ -441,7 +442,7 @@ useEffect(()=>{
               Donate
             </Button>
           </CardActions>
-          
+
           {/* Comment and Endorsement Dialog */}
           <Dialog open={showCommentDialog} onClose={() => handleCloseCommentDialog(false)}>
             <DialogTitle>Thank you for your donation!</DialogTitle>
@@ -465,17 +466,17 @@ useEffect(()=>{
               />
             </DialogContent>
             <DialogActions>
-            <Button onClick={() => handleCloseCommentDialog(true)} color="primary">
-              Skip
-            </Button>
-            <Button onClick={() => handleCloseCommentDialog(true)} color="primary" disabled={donationAmountValue === 0}>
-              Submit
-            </Button>
-          </DialogActions>
+              <Button onClick={() => handleCloseCommentDialog(true)} color="primary">
+                Skip
+              </Button>
+              <Button onClick={() => handleCloseCommentDialog(true)} color="primary" disabled={donationAmountValue === 0}>
+                Submit
+              </Button>
+            </DialogActions>
 
           </Dialog>
 
-          <br/>
+          <br />
           {/* Additional text */}
           <Typography variant="subtitle6" component="div" gutterBottom style={{ color: 'black', fontSize: '0.8rem' }}>
             By continuing, you agree with AtyiahPK terms and privacy notice.
@@ -497,22 +498,22 @@ useEffect(()=>{
               We guarantee you a full refund for up to a year in the rare case that fraud occurs.
             </Typography>
           </RefundContainer>
-        
 
 
-        {/* Footer */}
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <Typography variant="subtitle1" component="div" style={{ fontSize: '0.9rem' }}>
-            &copy; {new Date().getFullYear()} AtiyahPK. All rights reserved.
-          </Typography>
-          <Typography variant="subtitle1" component="div" style={{ fontSize: '0.9rem' }}>
-            Company Address, Karachi, Pakistan
-          </Typography>
-        </div>
+
+          {/* Footer */}
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <Typography variant="subtitle1" component="div" style={{ fontSize: '0.9rem' }}>
+              &copy; {new Date().getFullYear()} AtiyahPK. All rights reserved.
+            </Typography>
+            <Typography variant="subtitle1" component="div" style={{ fontSize: '0.9rem' }}>
+              Company Address, Karachi, Pakistan
+            </Typography>
+          </div>
         </Card>
-        
-        </Container>      
-      <br/>
+
+      </Container>
+      <br />
     </>
   );
 }
