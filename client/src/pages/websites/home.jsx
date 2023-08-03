@@ -4,10 +4,9 @@ import cardImg from "../../Assets/card_image/card-img.jpg"
 import eduImg from "../../Assets/card_image/education.jpg"
 import bookImg from "../../Assets/card_image/book.jpg"
 import flower from "../../Assets/jpeg/fundraising2.jpg"
-import Cards from "../../components/Cards/Card"
 import "./home.css"
 import Footer from '../../components/Footer/Footer'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Tab from '@mui/material/Tab';
 import DownArrow from '../../Assets/png/DownArrow.png'
 import TickMark from '../../Assets/png/TickMark.png'
@@ -20,6 +19,7 @@ import { useSpring, animated } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import Cards from '../../components/Cards/Card'
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 
@@ -124,14 +124,22 @@ const Home = () => {
         </animated.div>
 
         <div className='main-landing-head-btn'>
-          <a href="/signup"><button className='landing-head-btn'>Start Campaign</button></a >
-          <a href="/signup"><button className='landing-head-btn'>Donate Now</button></a>
+          <Link to='/login'>
+            <button className='landing-head-btn'>
+              Start Campaign
+            </button>
+          </Link>
+          <Link to='/login'>
+            <button className='landing-head-btn'>
+              Donate Now
+            </button>
+          </Link>
         </div>
       </div>
 
       <div id='how-it-works'>
-        <br />
-        <br />
+
+        <div style={{ height: '9rem' }} />
 
 
         <div className="steps" ref={stepsRef}>
@@ -251,7 +259,7 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Popular Campaigns</h5>
-          <a className='view-all' href="detail"><p>view all</p></a>
+          <Link to='/all-campaigns' className='view-all'><p>view all</p></Link>
         </div>
         <div >
           <Cards data={data} />
@@ -266,7 +274,7 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Latest Campaigns</h5>
-          <a className='view-all' href="detail"><p>view all</p></a>
+          <Link to='/all-campaigns' className='view-all'><p>view all</p></Link>
         </div>
         <div >
           <Cards data={data} />

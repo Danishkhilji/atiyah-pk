@@ -35,10 +35,9 @@ const Navbar = (props, to) => {
           {props.link4}
           {props.link2}
           {props.link3}
-
-
         </Tabs>
       </div>
+
       <div className='responsive-tab'>
         <Button
           id="fade-button"

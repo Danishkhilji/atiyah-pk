@@ -6,7 +6,7 @@
 .card {
   width: 95%;
   height: 380px;
-  background: #FFFFFFFF;
+  background: #ffffffff;
   border-radius: 6px;
 }
 
@@ -22,9 +22,10 @@
 }
 
 .card-btn {
-  width: 100%;
+  margin: 10px;
+  width: 95%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .star-icon {
@@ -34,7 +35,6 @@
 
 .card-rating {
   display: flex;
-
 }
 
 .card-rating-request {

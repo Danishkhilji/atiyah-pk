@@ -13,36 +13,31 @@ import CommentBox from "../../components/comments/commentBox";
 import Button from "../../components/button/button";
 import AddIcon from "@mui/icons-material/Add";
 import ShareIcon from "@mui/icons-material/Share";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GetCampagins } from "../../request/receiverAPIS";
+// import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+
 const data = [
-  {
-    name: "Dashboard",
-    icon: <HomeOutlinedIcon />,
-    active: true,
-    color: "#fff",
-    path: "",
-  },
-  { name: "My Campaigns", icon: <InboxOutlinedIcon /> },
+  { name: "Home", icon: <HomeOutlinedIcon />, active: true, color: "#fff", path: "" },
+  { name: "My Campaigns", icon: <InboxOutlinedIcon />, path: "myCampaigns", },
 ];
 
 const ReciverDashboard = () => {
-  const [campaigns , setCampaigns] = useState()
-  const [activeCampaign , setActiveCampaign] = useState()
+  const [activeCampaign, setActiveCampaign] = useState()
+  const [comments, setComments] = useState()
 
-  useEffect(()=>{
+  useEffect(() => {
     GetCampagins('64b9837cc6fe1b7ee850ba6d')
-    .then((response)=>{
-      setActiveCampaign(response.data.activeCampaign)
-      setCampaigns(response.data.allCampaigns)
-      
-      console.log(response.data.activeCampaign,response.data.allCampaigns,"CampaignsData")
-    })
-  },[])
+      .then((response) => {
+        setActiveCampaign(response.data.activeCampaign)
+        setComments(response.data.activeCampaign.comments)
+        console.log(response.data.activeCampaign.comments, "comments")
+      })
+  }, [])
   const navigate = useNavigate()
-  const campaignHandler = ()=>{
+  const campaignHandler = () => {
     navigate('/upload-campaign')
-}
+  }
 
   return (
     <div style={{ display: "flex" }}>
@@ -109,7 +104,7 @@ const ReciverDashboard = () => {
                 >
                   <StatCard
                     title="Amount Collected"
-                    count="5,000/-"
+                    count={activeCampaign?.amountCollected ? activeCampaign?.amountCollected : 0}
                     icon={
                       <VolunteerActivismIcon
                         fontSize="large"
@@ -134,7 +129,7 @@ const ReciverDashboard = () => {
                 >
                   <StatCard
                     title="Donors"
-                    count=" 6"
+                    count={activeCampaign?.donations ? activeCampaign?.donations.length : 0}
                     icon={
                       <Diversity1Icon
                         fontSize="large"
@@ -149,7 +144,7 @@ const ReciverDashboard = () => {
               <AdminBarChart />
             </div>
           </div>
-          <div style={{ margin: '20px', flex: '1' }}> <CommentBox /> </div>
+          <div style={{ margin: '20px', flex: '1' }}> <CommentBox comments={comments} /> </div>
         </div>
         <div style={{ flex: 1 }}>
           <h1 style={{ marginBottom: "30px" }}>Recent Donation</h1>

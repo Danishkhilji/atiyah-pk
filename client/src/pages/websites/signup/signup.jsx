@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import { NavLink, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -13,6 +12,7 @@ import facebookLogo from "../../../Assets/logos/facebook.png";
 import RightPic from '../../../Assets/png/rightpic.jpg'
 import { SignIn } from "../../../request/authAPIS";
 import { ToastContainer } from 'react-toastify';
+import { FloatingLabel, Form } from "react-bootstrap";
 
 const defaultTheme = createTheme();
 
@@ -36,11 +36,11 @@ export default function SignUp() {
 
     SignIn({ name, email, password }).then((response) => {
       if (response?.data.success === true) {
-          setTimeout(() => {
-              navigate("/login");
-            }, 1500);
-            }
-  });
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      }
+    });
 
 
   };
@@ -56,8 +56,14 @@ export default function SignUp() {
   }
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setError('');
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+
+    if (!emailValue.includes('@')) {
+      setError('Invalid email address. Please enter a valid email.');
+    } else {
+      setError('');
+    }
   }
 
   const handleRadioChange = (e) => {
@@ -91,72 +97,63 @@ export default function SignUp() {
                   alignItems: "center",
                 }}
               >
-                <h2>Welcome to the Family</h2>
-                <Box
-                  component="form"
-                  noValidate
-                  onSubmit={handleSubmit}
-                  sx={{ mt: 3 }}
+                <h2 style={{
+                  marginBottom: '35px',
+                  marginTop: '-20px',
+                }}>Welcome to the Family</h2>
+              </Box>
+              <Form className="login-form" onSubmit={handleSubmit}>
+                <FloatingLabel className="mb-3" controlId="formBasicName" label="Full Name">
+                  <Form.Control
+                    autoComplete="off"
+                    placeholder="Full Name"
+                    required
+                    value={name}
+                    onChange={handleUsernameChange}
+                  />
+                </FloatingLabel>
+                <FloatingLabel className="mb-3" controlId="formBasicEmail" label="Email address">
+                  <Form.Control
+                    autoComplete="off"
+                    placeholder="name@example.com"
+                    required
+                    value={email}
+                    onChange={handleEmailChange}
+                  />
+                </FloatingLabel>
+                <FloatingLabel className="mb-3" controlId="formBasicPassword" label="Password">
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </FloatingLabel>
+                <div className="radio-input" onChange={handleRadioChange}>
+                  <input type="radio" id="value-1" name="value-radio" defaultValue="value-1" />
+                  <label htmlFor="value-1">Donor</label>
+                  <input type="radio" id="value-2" name="value-radio" defaultValue="value-2" />
+                  <label htmlFor="value-2">Reciever</label>
+                </div>
+                {error && <div className="error-message" style={{ position: 'fixed', color: 'red' }}>{error}</div>}
+                <Button style={{ background: "#117b34" }}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
                 >
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="fullName"
-                        label="Full Name"
-                        name="fullName"
-                        autoComplete="family-name"
-                        onChange={handleUsernameChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        onChange={handleEmailChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="new-password"
-                        onChange={handlePasswordChange}
-
-                      />
-                    </Grid>
-                  </Grid>
-                  <div className="radio-input" onChange={handleRadioChange}>
-                    <input type="radio" id="value-1" name="value-radio" defaultValue="value-1" />
-                    <label htmlFor="value-1">Donor</label>
-                    <input type="radio" id="value-2" name="value-radio" defaultValue="value-2" />
-                    <label htmlFor="value-2">Reciever</label>
-                  </div>
-                  {error && <div className="error-message" style={{
-                    position: 'fixed',
-                    color: 'red',
-                  }}>{error}</div>}
-                  <Button
-                    style={{
-                      background: "#117b34",
-                    }}
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Sign Up
-                  </Button>
-                </Box>
+                  Sign Up
+                </Button>
+              </Form>
+              <Box
+                sx={{
+                  marginTop: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <p>Or sign up with</p>
                 <div className="third-party">
                   <div className="google">
@@ -183,7 +180,7 @@ export default function SignUp() {
         <div className="right">
           <img src={RightPic} alt='' />
         </div>
-      </div>
+      </div >
       <ToastContainer />
     </>
   );
