@@ -1,5 +1,7 @@
 const Campaign = require('../models/campaign');
 const Donation = require('../models/donation');
+const campaignModel = require('../models/campaign');
+
 const  tryCatch  = require('../utils/tryCatch');
 
 
@@ -68,9 +70,95 @@ exports.GetActiveCampaigns = tryCatch(async (req, res) => {
   }
 });
 
-// exports.GetAllCampagins = tryCatch(async (req, res) => {
+exports.GetDonors = tryCatch(async (req, res) => {
+  try {
+    const donorDetails = await Donation.aggregate([
+      {
+        $group: {
+          _id: "$donor",
+          totalAmountDonated: { $sum: "$amount" },
+          uniqueCampaigns: { $addToSet: "$campaign" },
+          lastDonationDate: { $max: "$date" }, // Calculate the max date as last donation date
+          lastDonationAmount: { $last: "$amount" } // Get the last donation amount
+        }
+      },
+      {
+        $lookup: {
+          from: "users", // Assuming your user collection is named "users"
+          localField: "_id",
+          foreignField: "_id",
+          as: "user"
+        }
+      },
+      {
+        $unwind: "$user"
+      },
+      {
+        $project: {
+          _id: 0,
+          userId: "$user._id",
+          userName: "$user.name",
+          totalAmountDonated: 1,
+          totalUniqueCampaigns: { $size: { $ifNull: ["$uniqueCampaigns", []] } }, // Calculate size of uniqueCampaigns array
+          lastDonationDate: 1,
+          lastDonationAmount: 1
+        }
+      }
+    ]);
 
-//   const campaigns = await Campaign.find().populate("user").populate("Donation").populate("comments")
+    res.status(200).json({ success: true, donorDetails: donorDetails });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error retrieving donor details" });
+  }
+});
 
-//   res.status(200).json(campaigns);
-// });
+exports.GetCampaignCreators = tryCatch(async (req, res) => {
+  try {
+    const campaignDetails = await campaignModel.aggregate([
+      {
+        $lookup: {
+          from: "users", // Assuming your user collection is named "users"
+          localField: "user",
+          foreignField: "_id",
+          as: "user"
+        }
+      },
+      {
+        $unwind: "$user"
+      },
+      {
+        $lookup: {
+          from: "donations", // Assuming your donation collection is named "donations"
+          localField: "_id",
+          foreignField: "campaign",
+          as: "donations"
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          userId: "$user._id",
+          userName: "$user.name",
+          totalCampaigns: 1,
+          totalAmountRaised: { $sum: "$donations.amount" },
+          totalCampaignsCreated: { $sum: 1 } // Calculate total campaigns created
+        }
+      },
+      {
+        $group: {
+          _id: "$userId",
+          userName: { $first: "$userName" },
+          totalAmountRaised: { $sum: "$totalAmountRaised" },
+          totalCampaignsCreated: { $sum: "$totalCampaignsCreated" }
+        }
+      }
+    ]);
+
+    console.log(campaignDetails);
+    res.status(200).json({ success: true, campaignDetails: campaignDetails });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error retrieving campaign details" });
+  }
+});

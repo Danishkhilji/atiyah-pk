@@ -19,6 +19,7 @@ export default function CampaignPage() {
 useEffect(()=>{
     GetCampagin(campaignId).then((response)=>{
         if (response?.data.success === true) {
+            console.log(response?.data ,"response?.data")
             setCampaign(response.data.data)
           }
     })
@@ -32,14 +33,14 @@ const handleDonateBtnClick = (campaignId, e) => {
 
     return (
         <>
-            <Navbar link1={<a href='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<div style={{
+            {/* <Navbar link1={<a href='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} link2={<a href='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></a>} search={<div style={{
                 width: "10%",
                 display: "flex",
                 marginRight: "22px",
                 alignItems: "center",
                 justifyContent: "space-around"
             }}><img style={{ width: "25px", height: "25px" }} src={notiIcon} alt="noti" /> <img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" /></div>} />
-
+ */}
             <div>
                 <div className="container-center">
                     <h2 className="campaign-name" style={{ marginLeft: '-3.9rem' }}>{campagin?.campaign ? campagin?.campaign : "Title to be display here"}</h2>
@@ -51,7 +52,7 @@ const handleDonateBtnClick = (campaignId, e) => {
                                     <h6>Decription</h6>
                                     <p>{campagin?.description ? campagin?.description : "Description to be display here"}</p>
                                 </div>
-                                <div className="comment-section">
+                                {/* <div className="comment-section">
                                     <div className="comment">
                                         <img src={User} alt="" />
                                         <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
@@ -64,7 +65,7 @@ const handleDonateBtnClick = (campaignId, e) => {
                                         <img src={User} alt="" />
                                         <p><b>USER123</b> <br /> Lorem ipsum dolor sit amet consectetur.</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div id="col">

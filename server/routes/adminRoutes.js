@@ -4,6 +4,8 @@ const adminController= require("../controllers/adminController")
 const commentController= require("../controllers/commentController")
 
 router.get("/dashboard",adminController.GetActiveCampaigns)
+router.get("/getDonors",adminController.GetDonors)
+router.get("/GetCampaignCreators",adminController.GetCampaignCreators)
 
 router.patch("/campaginStatus/:id",adminController.CampaignStatusUpdate)
 

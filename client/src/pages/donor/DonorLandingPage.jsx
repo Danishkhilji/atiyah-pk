@@ -75,7 +75,7 @@ const DonorLandingPage = () => {
       <div className='new-campaigns'>
         <h4>New Campaigns</h4>
         <p>For those who crave fresh opportunities to make a positive impact, our "Latest Campaigns" section is the perfect destination. Here, you'll find a stream of brand-new campaigns, each with a unique mission and story to tell. From empowering individuals in need to fostering innovation and creativity, these campaigns represent the ever-growing tapestry of causes that our community champions. Be among the first to lend your support and witness the incredible potential of these emerging initiatives.</p>
-        <a className='view-all' href="detail"><p>view all</p></a>
+        <a className='view-all' href="all-campaigns"><p>view all</p></a>
         <Cards data={newCampaigns} />
 
       </div>

@@ -231,7 +231,7 @@ const Home = () => {
           marginRight: '2rem'
         }}>
           <h5>Popular Campaigns</h5>
-          <a className='view-all' href="detail"><p>view all</p></a>
+          <a className='view-all' href="all-campaigns"><p>view all</p></a>
         </div>
         <div >
           <Cards data={popularCampaigns} />

@@ -11,11 +11,13 @@ import './profile.css';
 import { Logout } from '../../request/authAPIS';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/authSlice';
+import { useSelector } from 'react-redux';
 const Profile = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user.user);   
 
   const handleNameClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,7 +25,12 @@ const Profile = () => {
 
   const handleClosePopover = () => {
     setAnchorEl(null);
-    navigate('/receiver/profile')
+    if(user.role === "admin"){
+      navigate('/admin/profile')
+    }else
+    {
+      navigate('/receiver/profile') 
+    }
   };
 
   const handleLogout = () => {

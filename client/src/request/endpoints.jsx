@@ -10,6 +10,7 @@ export const ENDPOINTS = {
     GET_CAMAPIGN: 'common/campaign/',
     UPDATE_PROFILE: "common/updateProfile/",
     RESET_PASSWORD: "common/UpdatePassword/",
+    VIEW_ALL_CAMPAIGNS: "common/viewAll",
 
 // Receiver
     CREATE_CAMPAIGN: "/receiver/createCampagin",
@@ -23,6 +24,8 @@ export const ENDPOINTS = {
     MY_DONATIONS: "donor/donatedcampaign/",
 
 // Admin
-    GET_ACTIVE_CAMPAIGNS :"/admin/dashboard"
+    GET_ACTIVE_CAMPAIGNS :"/admin/dashboard",
+    GET_DONORS: "/admin/getDonors" ,
+    GET_CAMAPIGN_CREATORS :"/admin/GetCampaignCreators"
 
   };

@@ -5,6 +5,7 @@ const commonController= require("../controllers/commonController")
 const authController= require("../controllers/authController")
 
 router.get("/campaign/:id",commonController.GetCampaign)
+router.get("/viewAll",commonController.GetAllCampaigns)
 router.put("/updateProfile/:id",authController.UpdateProfile)
 router.post("/updatePassword/:userId",commonController.UpdatePassword)
 module.exports = router
