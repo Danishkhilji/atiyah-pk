@@ -16,10 +16,13 @@ export const ENDPOINTS = {
     GET_USER_CAMPAIGNS: 'receiver/dashbaord/',
     GET_USER_ALL_CAMPAIGNS: 'receiver/dashbaord/myCampaigns/',
 
-// Donor
+
     GET_ALL_CAMAPIGNS : "/donor/campaigns",
     DONATE_NOW : "/donor/donate/",
     DONATION : "/donor/donatedcampaign",
-    MY_DONATIONS: "donor/donatedcampaign/"
+    MY_DONATIONS: "donor/donatedcampaign/",
+
+// Admin
+    GET_ACTIVE_CAMPAIGNS :"/admin/dashboard"
 
   };

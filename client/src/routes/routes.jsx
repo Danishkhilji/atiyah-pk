@@ -49,9 +49,9 @@ const AppRoutes = () => {
       <Route path="upload-campaign" element={<UploadCampaign />} />
       <Route path="campaign-details/:campaignId" element={<CampaignPage />} />
       <Route path="all-campaigns" element={<ViewAll />} />
-      <Route path="donor" element={<DonorLandingPage />} />
-      <Route path="donor/profile" element={<DonorProfile />} />
-      <Route path="donor/my-donation" element={<MyDonations />} />
+      <Route path="d-landing" element={<DonorLandingPage />} />
+      <Route path="d-profile" element={<DonorProfile />} />
+      <Route path="d-my-donation" element={<MyDonations />} />
       <Route path="donation/:campaignId" element={<Donation />} />
       <Route path="success/:campaignId" element={<Success />} />
 

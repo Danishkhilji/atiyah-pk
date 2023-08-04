@@ -11,10 +11,11 @@ import Container from '@mui/material/Container';
 import img from "../../Assets/jpeg/child.jpg";
 import img2 from "../../Assets/transparent/1.png";
 
-
+import { useNavigate } from 'react-router-dom';
 export default function ThankYouPage() {
+  const navigate = useNavigate();
   const handleBackClick = () => {
-    // Handle back button click here
+    navigate(-1)
   };
 
   return (
