@@ -6,6 +6,7 @@ import bookImg from "../../Assets/card_image/book.jpg"
 import flower from "../../Assets/jpeg/fundraising2.jpg"
 import Cards from "../../components/Cards/Card"
 import "./home.css"
+import "../../components/Navbar/Navbar.css"
 import Footer from '../../components/Footer/Footer'
 import { NavLink } from 'react-router-dom';
 import Tab from '@mui/material/Tab';
@@ -84,14 +85,14 @@ const Home = () => {
 
   return (
     <div className='main-container'>
-      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: 'black', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: 'black', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: 'black', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: 'black', fontWeight: "bold" }} /></a>} link5={<div className='sigin-signup' style={{
+      <Navbar link1={<a href="#home"><Tab label="Home" style={{ color: 'black', fontWeight: "bold" }} /></a>} link2={<a href="#campaign"><Tab label="Campaigns" style={{ color: 'black', fontWeight: "bold" }} /></a>} link3={<a href="#about"><Tab label="About" style={{ color: 'black', fontWeight: "bold" }} /></a>} link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: 'black', fontWeight: "bold" }} /></a>} link5={<div className='sigin-signup ' style={{
         width: '12%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: "space-between"
       }}>
-        <NavLink to="login">SignIn</NavLink>
-        <NavLink className="sigup-btn" to="signup">SignUp</NavLink>
+        <NavLink className="responsive-signup-btns " to="login">SignIn</NavLink>
+        <NavLink className="sigup-btn responsive-signup-btns " to="signup">SignUp</NavLink>
       </div>} login={<a href='/login'>Login</a>} signup={<a href='signup'>Signup</a>} />
 
       <div id='home' className='main-landing-titles'>
