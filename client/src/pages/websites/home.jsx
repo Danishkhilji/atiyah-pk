@@ -16,10 +16,11 @@ import Shield1 from '../../Assets/png/shield1.png'
 import Consultancy from '../../Assets/png/consultancy.png'
 import Setup from '../../Assets/png/setup.png'
 import Social from '../../Assets/png/social-network.png'
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, a } from 'react-spring';
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { GetAllActiveCampagins } from '../../request/donorAPIs'
 function useIsInViewport(ref) {
   const [isInViewport, setIsInViewport] = useState(false);
 
@@ -71,35 +72,15 @@ const Home = () => {
     navigate('/login')
   }
 
-  const data = [
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.9",
-      price: "5000 PKR"
-    },
-    {
-      images: eduImg,
-      title: "Aslam",
-      description: "Request for Education",
-      rating: "4.8",
-      price: "4000 PKR"
-    },
-    {
-      images: bookImg,
-      title: "Shaheen",
-      description: "Request for book",
-      rating: "4.9",
-    },
-    {
-      images: cardImg,
-      title: "Shaheen",
-      description: "Request for money",
-      rating: "4.5",
-      price: "10000 PKR"
-    }
-  ]
+  const [newCampaigns, setNewCampaigns] = useState()
+  const [popularCampaigns, setPopularCampaigns] = useState()
+  useEffect(() => {
+    GetAllActiveCampagins().then((response) => {
+      console.log(response, "response")
+      setNewCampaigns(response.data.newCampaigns)
+      setPopularCampaigns(response.data.popularCampaigns)
+    })
+  }, [])
 
   return (
     <div className='main-container'>
@@ -108,8 +89,8 @@ const Home = () => {
         link3={<a href="#about"><Tab label="About" style={{ color: ' #117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></a>}
         link4={<a href="#how-it-works"><Tab label="How it works" style={{ color: ' #117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></a>}
         link5={<div className='sigin-signup' style={{ width: '12%', display: 'flex', alignItems: 'center', justifyContent: "space-between" }}>
-          <NavLink to="login" style={{fontFamily: 'Edu SA Beginner', fontSize: '17px', cursor: 'pointer'}}>SignIn</NavLink>
-          <NavLink className="sigup-btn" to="signup" style={{fontFamily: 'Edu SA Beginner', fontSize: '17px', cursor: 'pointer'}}>SignUp</NavLink>
+          <NavLink to="login" style={{ fontFamily: 'Edu SA Beginner', fontSize: '17px', cursor: 'pointer' }}>SignIn</NavLink>
+          <NavLink className="sigup-btn" to="signup" style={{ fontFamily: 'Edu SA Beginner', fontSize: '17px', cursor: 'pointer' }}>SignUp</NavLink>
         </div>}
       />
 
@@ -166,10 +147,12 @@ const Home = () => {
           <h5 style={{ marginBottom: '2rem', fontSize: '30px', fontFamily: 'Tektur' }}>Trust & Security</h5>
           <p style={{ fontFamily: 'Libre Baskerville' }}>We have your back. <br /> With a team dedicated to trust and safety, we've successfully managed fundraisers worldwide for more than a decade. Don't worry about a thing, we've you covered</p>
         </div>
+      </div>
+      <div >
         <div className="sec2">
           <h5 style={{ marginBottom: '2rem', fontSize: '30px', fontFamily: 'Tektur' }}>Atiyah Pk has everything you need</h5>
           <div className="sec2-1">
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Shield} alt="shield" style={{
                   height: '28px',
@@ -181,7 +164,7 @@ const Home = () => {
               <p style={{ fontFamily: 'Libre Baskerville' }}>Atiyah Pk has the first and only donor guarantee in the industry</p>
             </div>
 
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Setup} alt="Setup" style={{
                   height: '28px',
@@ -193,7 +176,7 @@ const Home = () => {
               <p style={{ fontFamily: 'Libre Baskerville' }}>You can personlize and share your Campaign in just a few minutes</p>
             </div>
 
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Shield1} alt="shield1" style={{
                   height: '28px',
@@ -207,7 +190,7 @@ const Home = () => {
           </div>
 
           <div className="sec2-2">
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Social} alt="social" style={{
                   height: '28px',
@@ -219,7 +202,7 @@ const Home = () => {
               <p style={{ fontFamily: 'Libre Baskerville' }}>Harness the power of social media to spread your story and get more support</p>
             </div>
 
-            <div style={{ margin: '25px' }}>
+            <div style={{ width: "40%", margin: '25px' }}>
               <div style={{ display: 'flex' }}>
                 <img src={Consultancy} alt="consultancy" style={{
                   height: '28px',
@@ -247,7 +230,7 @@ const Home = () => {
           <Link to='all-campaigns' className='view-all' style={{ fontFamily: 'Libre Baskerville' }}><p>view all</p></Link>
         </div>
         <div >
-          <Cards data={data} />
+          <Cards data={popularCampaigns} />
         </div>
 
         <br />
@@ -262,7 +245,7 @@ const Home = () => {
           <Link to='all-campaigns' className='view-all' style={{ fontFamily: 'Libre Baskerville' }}><p>view all</p></Link>
         </div>
         <div >
-          <Cards data={data} />
+          <Cards data={newCampaigns} />
         </div>
       </div>
 

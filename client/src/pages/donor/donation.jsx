@@ -150,7 +150,8 @@ export default function CreditCardPage() {
   };
 
   const handleBackClick = () => {
-    // Implement the functionality for the back button click here
+    navigate(-1)
+
   };
 
   const donationAmountValue = parseFloat(donationAmount) || 0;

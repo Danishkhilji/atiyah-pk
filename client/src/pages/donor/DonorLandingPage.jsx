@@ -5,17 +5,35 @@ import Cards from '../../components/Cards/Card'
 import profileIcon from "../../Assets/logos/user.png"
 import { Tab } from '@mui/material'
 import "./donorLanding.css"
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, a } from 'react-spring';
 import { GetAllActiveCampagins } from '../../request/donorAPIs'
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+import logo from "../../Assets/logos/1.png"
+import menuIcon from "../../Assets/logos/menu.png"
+import "../../components/Navbar/Navbar.css"
 import { Link } from 'react-router-dom'
-
 const DonorLandingPage = () => {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   const slideInFromLeftNew = useSpring({ opacity: 1, transform: 'translateX(0)', from: { opacity: 0, transform: 'translateX(-100%)' }, config: { duration: 1000 } });
   const [newCampaigns, setNewCampaigns] = useState()
   const [popularCampaigns, setPopularCampaigns] = useState()
   useEffect(() => {
     GetAllActiveCampagins().then((response) => {
+      console.log(response, "response")
       setNewCampaigns(response.data.newCampaigns)
       setPopularCampaigns(response.data.popularCampaigns)
     })
@@ -31,7 +49,7 @@ const DonorLandingPage = () => {
           <h1 style={{ fontFamily: 'Tektur' }}>ATIYAH PK</h1>
           <p style={{ fontFamily: 'Libre Baskerville' }}>Welcome to our Atiyah PK, where you can explore and support a diverse range of impactful campaigns. On our website, you will find two compelling sections: "Popular Campaigns" and "Latest Campaigns."</p>
         </animated.div>
-      </div>
+      </div >
       <div className='new-campaigns'>
         <h4 style={{ fontFamily: 'Tektur' }}>New Campaigns</h4>
         <p style={{ fontFamily: 'Libre Baskerville' }}>For those who crave fresh opportunities to make a positive impact, our "Latest Campaigns" section is the perfect destination. Here, you'll find a stream of brand-new campaigns, each with a unique mission and story to tell. From empowering individuals in need to fostering innovation and creativity, these campaigns represent the ever-growing tapestry of causes that our community champions. Be among the first to lend your support and witness the incredible potential of these emerging initiatives.</p>
@@ -48,7 +66,7 @@ const DonorLandingPage = () => {
 
       </div>
       <Footer />
-    </div>
+    </div >
   )
 }
 

@@ -688,3 +688,9 @@
 .css-117w1su-MuiStepIcon-text {
   font-family: Tektur !important;
 }
+
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root,
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root,
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  font-family: Edu SA Beginner !important;
+}
