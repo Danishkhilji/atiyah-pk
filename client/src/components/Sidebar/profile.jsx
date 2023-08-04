@@ -64,13 +64,13 @@ const Profile = () => {
       </div>
       <div>
         <p
-          style={{ fontSize: '14px', cursor: 'pointer', display: 'block', margin: '0px' }}
+          style={{ fontSize: '14px', cursor: 'pointer', display: 'block', margin: '0px', fontFamily: 'Zilla Slab' }}
           onClick={handleNameClick}
         >
           User Name
         </p>
         <p
-          style={{ fontSize: '12px', color: "#6e6b6a", cursor: 'pointer', margin: '0px' }}
+          style={{ fontSize: '12px', color: "#6e6b6a", cursor: 'pointer', margin: '0px', fontFamily: 'Libre Baskerville' }}
           onClick={handleNameClick}>
           Useremail@gmail.com
         </p>

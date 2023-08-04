@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar/drawer'
-import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -13,7 +12,7 @@ const data = [
   { name: "Dashboard", icon: <HomeOutlinedIcon />, path: "" },
   { name: "Donors", icon: <InboxOutlinedIcon />, active: true, color: '#fff', path: "donor-list" },
   { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list" },
-  { name: "Profit", icon: <MailOutlineIcon /> },
+  { name: "Profit", icon: <MailOutlineIcon />, path: "profit" },
 ];
 
 const columns = [
@@ -43,8 +42,6 @@ const columns = [
   }
   
 ];
-
-
 const DonorList = () => {
   const [donors, setDonors] = useState()
 
@@ -61,7 +58,7 @@ useEffect(()=>{
         <Sidebar data={data} />
       </div>
       <div style={{ margin:"30px", flex: 1, padding: '30px' }}>
-        <h3>Donors Table</h3>
+        <h3 style={{ fontFamily: 'Tektur'}}>Donors Table</h3>
         {donors && donors.length > 0 ? (
           <DataTable columns={columns} rows={donors.map(item => ({
             name: item?.userName, // Assuming campaign.campaign is the name you want
@@ -74,7 +71,8 @@ useEffect(()=>{
         )}
 
       </div>
-    </div>
+  </div>
+
 
   )
 }

@@ -10,7 +10,7 @@ const data = [
   { name: "Dashboard", icon: <HomeOutlinedIcon />, path: "" },
   { name: "Donors", icon: <InboxOutlinedIcon />, path: "donor-list" },
   { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, active: true, color: '#fff', path: "client-list" },
-  { name: "Profit", icon: <MailOutlineIcon /> },
+  { name: "Profit", icon: <MailOutlineIcon />, path: "profit" },
 ];
 const columns = [
   { id: 'userName', label: 'Client Name', minWidth: 170 },
@@ -41,7 +41,7 @@ const ClientList = () => {
         <Sidebar data={data} />
       </div>
       <div style={{ margin:"30px" , flex: 1, padding: '30px' }}>
-        <h3>Client Table</h3>
+        <h3 style={{ fontFamily: 'Tektur' }}>Client Table</h3>
         {campaigns && campaigns.length > 0 ? (
           <DataTable columns={columns} rows={campaigns.map(item => ({
             userName: item?.userName, // Assuming campaign.campaign is the name you want

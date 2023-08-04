@@ -88,3 +88,4 @@ const campaignSchema = new Schema({
 const campaignModel = mongoose.model("Campaigns", campaignSchema);
 
 module.exports = campaignModel;
+

@@ -13,6 +13,7 @@ import RightPic from '../../../Assets/png/rightpic.jpg'
 import { SignIn } from "../../../request/authAPIS";
 import { ToastContainer } from 'react-toastify';
 import { FloatingLabel, Form } from "react-bootstrap";
+import { SettingsRemoteOutlined } from "@mui/icons-material";
 
 const defaultTheme = createTheme();
 
@@ -20,21 +21,21 @@ export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [radioValue, setRadioValue] = useState('');
+  const [role, setRole] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!name || !email || !password || !radioValue) {
+    if (!name || !email || !password || !role) {
       setError('Please fill in all fields.');
       return;
     }
 
     setError('');
 
-    SignIn({ name, email, password }).then((response) => {
+    SignIn({ name, email, password, role }).then((response) => {
       if (response?.data.success === true) {
         setTimeout(() => {
           navigate("/login");
@@ -67,8 +68,9 @@ export default function SignUp() {
   }
 
   const handleRadioChange = (e) => {
-    setRadioValue(e.target.value);
+    setRole(e.target.value);
     setError('');
+    console.log(role)
   }
 
   return (
@@ -81,7 +83,7 @@ export default function SignUp() {
 
               <Grid container justifyContent="flex-end" className="temp">
                 <Grid item>
-                  <NavLink to="/login">
+                  <NavLink to="/login" style={{ fontFamily: 'zilla slab' }}>
                     {"Already have an account? Sign in"}
                   </NavLink>
                 </Grid>
@@ -100,10 +102,11 @@ export default function SignUp() {
                 <h2 style={{
                   marginBottom: '35px',
                   marginTop: '-20px',
+                  fontFamily: 'Edu SA Beginner'
                 }}>Welcome to the Family</h2>
               </Box>
               <Form className="login-form" onSubmit={handleSubmit}>
-                <FloatingLabel className="mb-3" controlId="formBasicName" label="Full Name">
+                <FloatingLabel className="mb-3" controlId="formBasicName" label="Full Name" style={{ fontFamily: 'zilla slab' }}>
                   <Form.Control
                     autoComplete="off"
                     placeholder="Full Name"
@@ -112,7 +115,7 @@ export default function SignUp() {
                     onChange={handleUsernameChange}
                   />
                 </FloatingLabel>
-                <FloatingLabel className="mb-3" controlId="formBasicEmail" label="Email address">
+                <FloatingLabel className="mb-3" controlId="formBasicEmail" label="Email address" style={{ fontFamily: 'zilla slab' }}>
                   <Form.Control
                     autoComplete="off"
                     placeholder="name@example.com"
@@ -121,7 +124,7 @@ export default function SignUp() {
                     onChange={handleEmailChange}
                   />
                 </FloatingLabel>
-                <FloatingLabel className="mb-3" controlId="formBasicPassword" label="Password">
+                <FloatingLabel className="mb-3" controlId="formBasicPassword" label="Password" style={{ fontFamily: 'zilla slab' }}>
                   <Form.Control
                     type="password"
                     placeholder="Password"
@@ -130,14 +133,14 @@ export default function SignUp() {
                     onChange={handlePasswordChange}
                   />
                 </FloatingLabel>
-                <div className="radio-input" onChange={handleRadioChange}>
-                  <input type="radio" id="value-1" name="value-radio" defaultValue="value-1" />
-                  <label htmlFor="value-1">Donor</label>
-                  <input type="radio" id="value-2" name="value-radio" defaultValue="value-2" />
-                  <label htmlFor="value-2">Reciever</label>
+                <div className="radio-input" onChange={handleRadioChange} style={{ fontFamily: 'zilla slab' }}>
+                  <input type="radio" id="receiver" name="value-radio" defaultValue="donor" />
+                  <label htmlFor="receiver">Donor</label>
+                  <input type="radio" id="donor" name="value-radio" defaultValue="receiver" />
+                  <label htmlFor="donor">Receiver</label>
                 </div>
-                {error && <div className="error-message" style={{ position: 'fixed', color: 'red' }}>{error}</div>}
-                <Button style={{ background: "#117b34" }}
+                {error && <div className="error-message" style={{ position: 'fixed', color: 'red', fontFamily: 'zilla slab' }}>{error}</div>}
+                <Button style={{ background: "#117b34", fontFamily: 'zilla slab' }}
                   type="submit"
                   fullWidth
                   variant="contained"
@@ -154,7 +157,7 @@ export default function SignUp() {
                   alignItems: "center",
                 }}
               >
-                <p>Or sign up with</p>
+                {/* <p style={{ fontFamily: 'zilla slab' }}>Or sign up with</p>
                 <div className="third-party">
                   <div className="google">
                     <img src={googleLogo} alt="Google" />
@@ -162,12 +165,12 @@ export default function SignUp() {
                   <div className="facebook">
                     <img src={facebookLogo} alt="Facebook" />
                   </div>
-                </div>
+                </div> */}
               </Box>
             </Container>
           </ThemeProvider>
 
-          <div className="ending">
+          <div className="ending" style={{ fontFamily: 'zilla slab' }}>
             <p>By Signing up, you agree with the</p>
             <br />
             <p>

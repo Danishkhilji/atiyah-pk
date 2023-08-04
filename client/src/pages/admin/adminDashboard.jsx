@@ -4,7 +4,6 @@ import CampaignTable from "../../components/AdminTables/CampaignTable";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined";
 import AdminBarChart from "../../components/adminGraph/BarChart";
 import AdminLineChart from "../../components/adminGraph/LineChart";
@@ -16,7 +15,7 @@ const data = [
   { name: "Dashboard", icon: <HomeOutlinedIcon />, active: true, color: '#fff', path: "" },
   { name: "Donors", icon: <InboxOutlinedIcon />, path: "donor-list" },
   { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list" },
-  { name: "Profit", icon: <MailOutlineIcon /> },
+  { name: "Profit", icon: <MailOutlineIcon />, path: "profit" }
 ];
 
 const columns = [
@@ -73,7 +72,7 @@ useEffect(()=>{
       </div>
       <div style={{ flex: 1, padding: '30px' }}>
         <div style={{ marginBottom: '30px' }}>
-          <h1>Analytics Overview</h1>
+          <h1 style={{fontFamily: 'Tektur'}}>Analytics Overview</h1>
         </div>
         <div style={{ display: 'flex', marginBottom: '30px', gap: '50px' }}>
           <div style={{ flex: 1 }}>
@@ -87,7 +86,7 @@ useEffect(()=>{
         <div>
 
           <div style={{ margin: '10 auto' }}>
-            <h1 style={{ marginBottom: '30px' }} >On Going Campaign</h1>
+            <h1 style={{ marginBottom: '30px', fontFamily: 'Tektur' }} >On Going Campaign</h1>
             {activeCampaign && activeCampaign.length > 0 ? (
           <DataTable columns={columns} rows={activeCampaign.map(item => ({
             campaign: item?.campaign, // Assuming campaign.campaign is the name you want
