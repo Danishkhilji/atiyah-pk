@@ -1,3 +1,9 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/b96d2ca0-a880-4f9a-8422-a2015b579895/resourceGroups/AtiyahPk_group/providers/Microsoft.Web/sites/AtiyahPk",
+    "appService.deploySubpath": "server"
 }

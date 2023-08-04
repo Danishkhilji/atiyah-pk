@@ -167,7 +167,7 @@ export default function CreditCardPage() {
   const [showCommentDialog, setShowCommentDialog] = React.useState(false);
   const [comment, setComment] = React.useState('');
   const [endorsementRating, setEndorsementRating] = React.useState(0);
-
+console.log(endorsementRating,"endorsementRating")
   const handleOpenCommentDialog = () => {
     setShowCommentDialog(true);
   };
