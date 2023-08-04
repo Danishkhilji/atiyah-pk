@@ -4,8 +4,8 @@ import User from '../Assets/logos/user.png'
 import { useEffect } from 'react';
 import { UpdateProfile } from '../request/commonAPIs';
 import { setUser } from '../store/userSlice';
-import { useDispatch ,useSelector} from 'react-redux';
-const Profile = ({user}) => {
+import { useDispatch, useSelector } from 'react-redux';
+const Profile = ({ user }) => {
   const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
   const [previewProfilePicture, setPreviewProfilePicture] = useState(null);
   const [userData, setUserData] = useState({
@@ -13,21 +13,22 @@ const Profile = ({user}) => {
     profession: "",
     location: "",
     bio: "",
-});
-const GetUser = useSelector((state) => state.user.user);   
+  });
+  const GetUser = useSelector((state) => state.user.user);
   useEffect(() => {
-    
+
     const metaTag = document.createElement('meta');
     metaTag.name = 'viewport';
     metaTag.content = 'width=device-width, initial-scale=1.0';
     document.head.appendChild(metaTag);
 
-    setUserData({  
-    name: GetUser.name,
-    profession: GetUser.profession,
-    location: GetUser.location,
-    bio: GetUser.bio
-    ,})
+    setUserData({
+      name: GetUser.name,
+      profession: GetUser.profession,
+      location: GetUser.location,
+      bio: GetUser.bio
+      ,
+    })
   }, []);
 
   const dispatch = useDispatch()
@@ -35,10 +36,10 @@ const GetUser = useSelector((state) => state.user.user);
     const { value } = event.target;
     console.log(name, value)
     setUserData((prevData) => ({
-        ...prevData,
-        [name]: value,
+      ...prevData,
+      [name]: value,
     }));
-};
+  };
 
 
   const handleProfilePictureChange = (event) => {
@@ -46,23 +47,23 @@ const GetUser = useSelector((state) => state.user.user);
     setSelectedProfilePicture(file);
     setPreviewProfilePicture(URL.createObjectURL(file));
   };
-  const updateProfile =()=>{
-    const payload={
+  const updateProfile = () => {
+    const payload = {
       name: userData.name,
       profession: userData.profession,
       location: userData.location,
       bio: userData.bio,
-      id : user._id
+      id: user._id
     }
-    UpdateProfile(payload).then((resposne)=>{
+    UpdateProfile(payload).then((resposne) => {
       dispatch(setUser(resposne.data.updatedProfile))
       setUserData(
-{
-          name:resposne.data.updatedProfile.name,
-        profession:resposne.data.updatedProfile.profession,
-        location :resposne.data.updatedProfile.location,
-        bio: resposne.data.updatedProfile.bio
-}      )
+        {
+          name: resposne.data.updatedProfile.name,
+          profession: resposne.data.updatedProfile.profession,
+          location: resposne.data.updatedProfile.location,
+          bio: resposne.data.updatedProfile.bio
+        })
       console.log(resposne.data.updatedProfile)
     })
   }
@@ -159,10 +160,10 @@ const GetUser = useSelector((state) => state.user.user);
     position: 'absolute',
     top: '184px',
     left: '102px',
-    fontFamily: 'Poppins',
     fontSize: '20px',
     lineHeight: '30px',
     color: '#EB6769FF',
+    fontFamily: 'Playball'
   };
 
   const textPro = {
@@ -192,18 +193,12 @@ const GetUser = useSelector((state) => state.user.user);
     height: '36px',
     paddingLeft: '12px',
     paddingRight: '34px',
-    fontFamily: 'Mulish',
     fontSize: '14px',
     background: '#a3a3a3ff',
     borderRadius: '6px',
     borderWidth: '0px',
     outline: 'none',
-  };
-
-  const buttonStyle = {
-    width: '9rem',
-    height: '2rem',
-    color: 'white',
+    fontFamily: 'Playball'
   };
 
   return (
@@ -236,28 +231,28 @@ const GetUser = useSelector((state) => state.user.user);
           </div>
 
           <div style={profileContainerStyle} className="container">
-            <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', }}>Profile</h3>
+            <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', fontFamily: 'Tektur' }}>Profile</h3>
             <div style={{ display: 'flex' }}>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <h5>Full Name</h5>
-                <input type="text" id="fullName"   value={userData.name} handleInputChange onChange={handleInputChange("name")} style={{ ...textboxInputStyle, width: '800px' }} />
+                <h5 style={{ fontFamily: 'Tektur' }}>Full Name</h5>
+                <input type="text" id="fullName" value={userData.name} handleInputChange onChange={handleInputChange("name")} style={{ ...textboxInputStyle, width: '800px' }} />
               </div>
             </div>
 
-            <h5 style={{ marginTop: '1rem' }}>Profession</h5>
+            <h5 style={{ marginTop: '1rem', fontFamily: 'Tektur' }}>Profession</h5>
             <div>
-              <input type="text" style={{ ...textboxInputStyle, width: '800px' }}   value={userData.profession} onChange={handleInputChange("profession")}/>
+              <input type="text" style={{ ...textboxInputStyle, width: '800px' }} value={userData.profession} onChange={handleInputChange("profession")} />
             </div>
 
 
-            <h5 style={{ marginTop: '1rem' }}>Location</h5>
+            <h5 style={{ marginTop: '1rem', fontFamily: 'Tektur' }}>Location</h5>
             <div>
-              <input type="text"   value={userData.location} onChange={handleInputChange("location")} style={{ ...textboxInputStyle, width: '800px' }} />
+              <input type="text" value={userData.location} onChange={handleInputChange("location")} style={{ ...textboxInputStyle, width: '800px' }} />
             </div>
 
-            <h5 style={{ marginTop: '1rem' }}>Bio</h5>
+            <h5 style={{ marginTop: '1rem', fontFamily: 'Tektur' }}>Bio</h5>
             <div>
-              <textarea   value={userData.bio} onChange={handleInputChange("bio")} style={{ ...textboxInputStyle, height: '100px', paddingTop: '7px', paddingBottom: '7px', width: '800px' }}></textarea>
+              <textarea value={userData.bio} onChange={handleInputChange("bio")} style={{ ...textboxInputStyle, height: '100px', paddingTop: '7px', paddingBottom: '7px', width: '800px' }}></textarea>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem', marginTop: '1rem' }}>
@@ -266,18 +261,18 @@ const GetUser = useSelector((state) => state.user.user);
 
             <hr />
 
-            <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', }}>Reset Password</h3>
+            <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', fontFamily: 'Tektur' }}>Reset Password</h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
-                <label htmlFor="CurrentPassword" >Current Password</label>
+                <label htmlFor="CurrentPassword" ><h6 style={{ fontFamily: 'Tektur' }}>Current Password</h6></label>
                 <input type="password" id="CurrentPassword" style={{ ...textboxInputStyle }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
-                <label htmlFor="NewPassword">New Password</label>
+                <label htmlFor="NewPassword"><h6 style={{ fontFamily: 'Tektur' }}>New Password</h6></label>
                 <input type="password" id="NewPNewassword" style={{ ...textboxInputStyle }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
-                <label htmlFor="ConfirmPassword">Confirm Password</label>
+                <label htmlFor="ConfirmPassword"><h6 style={{ fontFamily: 'Tektur' }}>Confirm Password</h6></label>
                 <input type="password" id="ConfirmPassword" style={{ ...textboxInputStyle }} />
               </div>
             </div>

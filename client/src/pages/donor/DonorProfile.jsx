@@ -13,8 +13,8 @@ console.log(user)
         <>
             <div>
                 <Navbar
-                    link1={<Link to='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold" }} /></Link>}
-                    link2={<Link to='my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold" }} /></Link>}
+                    link1={<Link to='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></Link>}
+                    link2={<Link to='my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></Link>}
                     search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />}
                 />
             </div>

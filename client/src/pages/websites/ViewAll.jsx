@@ -83,7 +83,7 @@ const ViewAll = () => {
     return (
         <div>
             <Navbar search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
-            <h4 style={{ marginLeft: "30px", marginTop: '2rem' }}>Choose Campaigns</h4>
+            <h4 style={{ marginLeft: "30px", marginTop: '2rem', fontFamily: 'Tektur' }}>Choose Campaigns</h4>
             <div style={{ margin: "30px" }}>
                 <Cards data={data} />
             </div>
