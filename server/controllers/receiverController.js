@@ -1,5 +1,7 @@
 const tryCatch = require("../utils/tryCatch");
 const campaignModel = require("../models/campaign");
+const Donation = require("../models/donation");
+const moment = require('moment');
 const uuid = require('uuid');
 const { bucket } = require('../config/firebaseConfig');
 
@@ -81,96 +83,44 @@ exports.CreateCampaign = tryCatch(async (req, res) => {
   fileStream.end(req.file.buffer);
 });
 
-
-
-
-// ###########################################test code##################################
-
-
-exports.registerUserAndUploadImage = (req, res) => {
-  const { name, bio } = req.body;
-
-  if (!req.file) {
-    return res.status(400).json({ error: 'No image provided' });
-  }
-  const filename = `${uuid.v4()}_${req.file.originalname}`;
-
-
-  // Create a write stream to Firebase Storage
-  const fileStream = bucket.file(filename).createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype,
-    },
-  });
-
-
-  fileStream.on('error', (error) => {
-    res.status(500).json({ error: 'An error occurred while uploading the image' });
-  });
-
-  fileStream.on('finish', () => {
-    // Set the image file as publicly accessible
-    bucket.file(filename).makePublic().then(() => {
-      const imageUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
-      const userData = { name, bio, imageUrl };
-      res.json({ message: 'User registered successfully', user: userData });
-    }).catch((error) => {
-      res.status(500).json({ error: 'An error occurred while making the image publicly accessible' });
-    });
-  });
-
-  fileStream.end(req.file.buffer);
-};
-
-
-// exports.CreateCampaign = tryCatch(async (req, res) => {
-
-//   const {
-//     user,
-//     city,
-//     postalCode,
-//     category,
-//     campaign,
-//     description,
-//     amountNeeded,
-//     accountTitle,
-//     accountNumber,
-//   } = req.body;
-//   const activeCampaign = await campaignModel.findOne({
-//     user: user,
-//     status: "active",
-//   });
-// if (activeCampaign) {
-//     res.status(400).json({ success: false, message: "Already has an active campaign" });
-//     return;
-//   }
-//   const newCampaign = new campaignModel({
-//     user,
-//     city,
-//     postalCode,
-//     category,
-//     campaign,
-//     description,
-//     amountNeeded,
-//     accountTitle,
-//     accountNumber,
-//   });
-//   await newCampaign.save();
-//   res.status(200).json({ success: false, message: "Already has an active campaign", data:newCampaign });
-// });
-
+ // Import the moment library for date manipulation
 
 exports.RetrieveData = tryCatch(async (req, res) => {
   const { id } = req.params;
 
-  const activeCampaign = await campaignModel.findOne({ user: id, status: "active" }).populate("user").populate("comments").populate("user");
+  const activeCampaign = await campaignModel.findOne({ user: id, status: "active" }).populate("user").populate("comments");
+  const donationRecords = await Donation.find({ campaign: activeCampaign._id }).populate('donor').populate('campaign');
+
   if (!activeCampaign) {
     res.status(404).json({ success: false, message: "No active campaign found" });
     return;
   }
 
-  res.status(200).json({ success: true, activeCampaign: activeCampaign });
+  // Calculate total donation and count unique donors
+  let totalDonation = 0;
+  const uniqueDonors = new Set();
+
+  const dailyDonation = Array(7).fill(0); // Initialize dailyDonation array with zeros
+
+  donationRecords.forEach(donation => {
+    totalDonation += donation.amount;
+    uniqueDonors.add(donation.donor._id.toString());
+
+    const donationDayOfWeek = moment(donation.date).day(); // Get the day of the week (0-6)
+    dailyDonation[donationDayOfWeek] += donation.amount; // Add donation amount to the corresponding day
+  });
+
+  const totalUniqueDonors = uniqueDonors.size;
+  res.status(200).json({ 
+    success: true, 
+    activeCampaign: activeCampaign, 
+    donationRecords: donationRecords,
+    totalDonation: totalDonation,
+    totalUniqueDonors: totalUniqueDonors,
+    dailyDonation: dailyDonation // Include the dailyDonation array in the response
+  });
 });
+
 
 exports.RetrieveAllCampaigns = tryCatch(async (req, res) => {
   const { id } = req.params;

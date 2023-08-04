@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
+import { NavLink } from 'react-router-dom'
 import logo from "../../Assets/logos/1.png"
 import menuIcon from "../../Assets/logos/menu.png"
 import "../../components/Navbar/Navbar.css"
@@ -33,18 +34,44 @@ const DonorLandingPage = () => {
   const [popularCampaigns, setPopularCampaigns] = useState()
   useEffect(() => {
     GetAllActiveCampagins().then((response) => {
-      console.log(response, "response")
       setNewCampaigns(response.data.newCampaigns)
       setPopularCampaigns(response.data.popularCampaigns)
     })
   }, [])
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
       <Navbar
         link1={<Link to='/'><Tab label="Home" style={{ color: '#117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></Link>}
         link2={<Link to='/my-donation'><Tab label="My Donation" style={{ color: '#117b34', fontWeight: "bold", marginTop: '10px', fontFamily: 'Cinzel', fontSize: '17px' }} /></Link>}
-        search={<img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" />} />
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
+        search={<div><Button
+          id="fade-button"
+          aria-controls={open ? 'fade-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+
+        ><img style={{ width: "25px", height: "25px" }} src={profileIcon} alt="profile" /></Button>
+          <Menu
+            id="fade-menu"
+            MenuListProps={{
+              'aria-labelledby': 'fade-button',
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={Fade}
+          >
+            <NavLink to="/donor/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <MenuItem style={{ position: "relative", bottom: "20px" }} onClick={handleClose}>Profile</MenuItem>
+            </NavLink>
+
+            <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <MenuItem style={{ color: "red" }} onClick={handleClose}>Logout</MenuItem>
+            </NavLink>
+
+
+          </Menu></div>} login={<a href="/donor-profile">Profile</a>} signup={<a href='/'>Logout</a>} />
+      < div style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white", backgroundColor: "#009b36", padding: "50px" }}>
         <animated.div style={slideInFromLeftNew} className='donor-landing-title' >
           <h1 style={{ fontFamily: 'Tektur' }}>ATIYAH PK</h1>
           <p style={{ fontFamily: 'Libre Baskerville' }}>Welcome to our Atiyah PK, where you can explore and support a diverse range of impactful campaigns. On our website, you will find two compelling sections: "Popular Campaigns" and "Latest Campaigns."</p>

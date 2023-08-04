@@ -9,6 +9,8 @@ export const ENDPOINTS = {
     UPDATE_PASSWORD: '/resetPass',
     GET_CAMAPIGN: 'common/campaign/',
     UPDATE_PROFILE: "common/updateProfile/",
+    RESET_PASSWORD: "common/UpdatePassword/",
+
 // Receiver
     CREATE_CAMPAIGN: "/receiver/createCampagin",
     GET_USER_CAMPAIGNS: 'receiver/dashbaord/',

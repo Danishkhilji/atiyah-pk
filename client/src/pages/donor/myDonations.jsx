@@ -110,7 +110,6 @@ const MyDonations = () => {
       <div style={{ margin: "30px" }}>
         <h1 style={{ marginBottom: "30px", fontFamily: 'Tektur' }}>Donations</h1>
         {donations && donations.length > 0 ? (
-          //   <DataTable columns={columns} rows={donations} style={{ width: "100vw" }} />
           <DataTable columns={columns} rows={donations.map(item => ({
             campaign: item.campaign?.campaign, // Assuming campaign.campaign is the name you want
             amount: item.amount, // Add the amount property

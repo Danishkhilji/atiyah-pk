@@ -4,23 +4,44 @@ import User from '../Assets/logos/user.png'
 import { useEffect } from 'react';
 import { UpdateProfile } from '../request/commonAPIs';
 import { setUser } from '../store/userSlice';
+<<<<<<< HEAD
 import { useDispatch, useSelector } from 'react-redux';
 const Profile = ({ user }) => {
+=======
+import { useDispatch ,useSelector} from 'react-redux';
+import { UpdatePassword } from '../request/commonAPIs';
+import { ToastContainer } from 'react-toastify';
+
+const Profile = () => {
+>>>>>>> origin/AdminDashboard
   const [selectedProfilePicture, setSelectedProfilePicture] = useState(null);
   const [previewProfilePicture, setPreviewProfilePicture] = useState(null);
+  const [restPassword, setRestPassword] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+});
   const [userData, setUserData] = useState({
     name: "",
     profession: "",
     location: "",
     bio: "",
+<<<<<<< HEAD
   });
   const GetUser = useSelector((state) => state.user.user);
   useEffect(() => {
 
+=======
+});
+
+const user = useSelector((state) => state.user.user);   
+  useEffect(() => {
+>>>>>>> origin/AdminDashboard
     const metaTag = document.createElement('meta');
     metaTag.name = 'viewport';
     metaTag.content = 'width=device-width, initial-scale=1.0';
     document.head.appendChild(metaTag);
+<<<<<<< HEAD
 
     setUserData({
       name: GetUser.name,
@@ -29,18 +50,45 @@ const Profile = ({ user }) => {
       bio: GetUser.bio
       ,
     })
+=======
+    setUserData({  
+    name: user.name,
+    profession: user.profession,
+    location: user.location,
+    bio: user.bio
+    ,})
+>>>>>>> origin/AdminDashboard
   }, []);
 
   const dispatch = useDispatch()
   const handleInputChange = (name) => (event) => {
     const { value } = event.target;
-    console.log(name, value)
     setUserData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
+const handlePasswordChange = (name) => (event) => {
+  const { value } = event.target;
+  console.log(name, value)
+  setRestPassword((prevData) => ({
+      ...prevData,
+      [name]: value,
+  }));
+};
+
+const handleResetPassword =(e)=>{
+  e.preventDefault(); 
+  const payload={
+    currentPassword :restPassword.currentPassword,
+    newPassword :restPassword.newPassword, 
+    confirmPassword:restPassword.confirmPassword,
+    id: user?._id
+  }
+  console.log(payload,"payload")
+  UpdatePassword(payload)
+}
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
@@ -53,7 +101,11 @@ const Profile = ({ user }) => {
       profession: userData.profession,
       location: userData.location,
       bio: userData.bio,
+<<<<<<< HEAD
       id: user._id
+=======
+      id : user?._id
+>>>>>>> origin/AdminDashboard
     }
     UpdateProfile(payload).then((resposne) => {
       dispatch(setUser(resposne.data.updatedProfile))
@@ -264,6 +316,7 @@ const Profile = ({ user }) => {
             <h3 style={{ display: 'flex', justifyContent: 'center', margin: '1rem', fontFamily: 'Tektur' }}>Reset Password</h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+<<<<<<< HEAD
                 <label htmlFor="CurrentPassword" ><h6 style={{ fontFamily: 'Tektur' }}>Current Password</h6></label>
                 <input type="password" id="CurrentPassword" style={{ ...textboxInputStyle }} />
               </div>
@@ -274,16 +327,29 @@ const Profile = ({ user }) => {
               <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
                 <label htmlFor="ConfirmPassword"><h6 style={{ fontFamily: 'Tektur' }}>Confirm Password</h6></label>
                 <input type="password" id="ConfirmPassword" style={{ ...textboxInputStyle }} />
+=======
+                <label htmlFor="CurrentPassword" >Current Password</label>
+                <input type="password"  onChange={handlePasswordChange("currentPassword")}  id="CurrentPassword" style={{ ...textboxInputStyle }} required/>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+                <label htmlFor="NewPassword">New Password</label>
+                <input type="password" onChange={handlePasswordChange("newPassword")}  id="NewPNewassword" style={{ ...textboxInputStyle }} required/>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+                <label htmlFor="ConfirmPassword">Confirm Password</label>
+                <input type="password" onChange={handlePasswordChange("confirmPassword")}  id="ConfirmPassword" style={{ ...textboxInputStyle }} required/>
+>>>>>>> origin/AdminDashboard
               </div>
             </div>
 
             <div className="line"></div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '4rem' }}>
-              <Button BGcolor="#117b34" color="#ffffff" marginBottom='2rem' className="button" onClick={updateProfilePicture}>Update Password</Button>
+              <Button BGcolor="#117b34" color="#ffffff" marginBottom='2rem' className="button"   onClick={(e) => handleResetPassword(e)}>Update Password</Button>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

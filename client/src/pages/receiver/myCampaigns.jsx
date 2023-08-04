@@ -6,6 +6,7 @@ import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import { GetAllCampagins } from "../../request/receiverAPIS";
 import DataTable from "../../components/table/table"
 
+import { formatDate } from "../../lib/dateFunc";
 const data = [
   { name: "Home", icon: <HomeOutlinedIcon />, path: "", },
   { name: "My Campaigns", icon: <InboxOutlinedIcon />, active: true, color: "#fff", path: "myCampaigns" },
@@ -66,7 +67,17 @@ const MyCampaigns = () => {
         <h1 style={{ margin: "30px 0", fontFamily: 'Tektur' }}>Campaigns</h1>
         {/* Check if campaigns has data before rendering DataTable */}
         {campaigns && campaigns.length > 0 ? (
-          <DataTable columns={columns} rows={campaigns} style={{ width: "100vw" }} />
+          <DataTable columns={columns}
+          rows={campaigns.map(item => ({
+            campaign: item.campaign,
+            startDate:formatDate(item.startDate),
+            Endorsement:  item.endosment ? item.Endorsement : 0, 
+            amountCollected: item.amountCollected,
+            status: item.status
+          }))}
+          // rows={campaigns} 
+           
+           style={{ width: "100vw" }} />
         ) : (
           <p>Loading...</p>
         )}
