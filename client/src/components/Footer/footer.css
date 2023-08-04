@@ -61,4 +61,8 @@
     border-bottom: 1px solid rgb(211, 211, 211);
     margin-bottom: 10px;
   }
+
+  .footer-logo {
+    display: none;
+  }
 }

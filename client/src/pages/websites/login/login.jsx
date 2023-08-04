@@ -58,7 +58,13 @@ export default function SignIn() {
                 dispatch(loginSuccess());
                 setError('');
                 setTimeout(() => {
-                    navigate("/receiverDashboard");
+                    if (user.role === 'receiver') {
+                        navigate("/receiver");
+                    } else if (user.role === 'donor') {
+                        navigate("/d-landing");
+                    } else if (user.role === 'admin') {
+                        navigate("/admin");
+                    }
                 }, 1500);
             }
         });
