@@ -22,17 +22,15 @@ const userSchema = new Schema({
   bio: {
     type: String, 
   },
+  profession: {
+    type: String, 
+  },
+  
   role: {
     type: String,
     enum: ["admin", "donor", "receiver"],
     required: true,
   },
-  permissions: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
 });
 
 const userModel = mongoose.model("User", userSchema);

@@ -9,7 +9,7 @@ const data = [
   { name: "Dashboard", icon: <HomeOutlinedIcon />, path: "" },
   { name: "Donors", icon: <InboxOutlinedIcon />, path: "donor-list" },
   { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, active: true, color: '#fff', path: "client-list" },
-  { name: "Profit", icon: <MailOutlineIcon /> },
+  { name: "Profit", icon: <MailOutlineIcon />, path: "profit" },
 ];
 
 const ClientList = () => {
@@ -19,7 +19,7 @@ const ClientList = () => {
         <Sidebar data={data} />
       </div>
       <div style={{ flex: 1, padding: '30px' }}>
-        <h3>Client Table</h3>
+        <h3 style={{ fontFamily: 'Tektur' }}>Client Table</h3>
         <ClientTable />
       </div>
     </div>

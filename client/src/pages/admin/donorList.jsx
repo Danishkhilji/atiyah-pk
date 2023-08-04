@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar/drawer'
-import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -10,7 +9,7 @@ const data = [
   { name: "Dashboard", icon: <HomeOutlinedIcon />, path: "" },
   { name: "Donors", icon: <InboxOutlinedIcon />, active: true, color: '#fff', path: "donor-list" },
   { name: "Client", icon: <CheckBoxOutlineBlankOutlinedIcon />, path: "client-list" },
-  { name: "Profit", icon: <MailOutlineIcon /> },
+  { name: "Profit", icon: <MailOutlineIcon />, path: "profit" },
 ];
 
 const DonorList = () => {
@@ -20,7 +19,7 @@ const DonorList = () => {
         <Sidebar data={data} />
       </div>
       <div style={{ flex: 1, padding: '30px' }}>
-        <h3>Donors Table</h3>
+        <h3 style={{ fontFamily: 'Tektur'}}>Donors Table</h3>
         <DonorTable />
         {/*      <div style={{ marginBottom: '30px' }}>
         <h1>Analytics Overview</h1>
